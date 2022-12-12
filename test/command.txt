@@ -1,0 +1,2 @@
+gcc -o test test.c ../include/*.h ../src/*.c -lcriterion -lm
+second is math lib

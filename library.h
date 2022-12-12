@@ -1,6 +1,0 @@
-#ifndef CROSSOVER_BSTD_LIB_LIBRARY_H
-#define CROSSOVER_BSTD_LIB_LIBRARY_H
-
-void hello(void);
-
-#endif //CROSSOVER_BSTD_LIB_LIBRARY_H

@@ -63,10 +63,15 @@ char bstd_picutils_mask_char(char c, char mask) {
         case 'X':
             return c;
         case '9':
-            size = (int)((ceil(log10(c))+1)*sizeof(char));
+            if (c == 0) {
+                return '0';
+            } else if (c == 1) {
+                return '1';
+            }
+            size = (int)(ceil(log10(c)) + 1);
             str = (char*)malloc(sizeof(char) * size);
             sprintf(str, "%d", c);
-            return str[size-2];
+            return str[size - 2];
         default:
             // todo: warn of unknown mask
             return c;
