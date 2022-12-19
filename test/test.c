@@ -72,17 +72,26 @@ Test(bstd_tests, picture_bstd_tocstr_advanced){
 
         for (int i =0; i < picture_size; i++){
             if (mask[i] == 'X'){
-                /// case alphabetical
-                /// flip for lower or upper
                 int flip = aux_random_int(0,1);
-                if (flip == 1){
-                    char random_upper = 'A' + (random() % 26);
-                    value[i] = random_upper;
-                    expected_value[i] = random_upper;
+                if(flip == 1) {
+                    /// case alphabetical
+                    /// flip for lower or upper
+                    int flip_case = aux_random_int(0, 1);
+                    if (flip_case == 1) {
+                        char random_upper = 'A' + (random() % 26);
+                        value[i] = random_upper;
+                        expected_value[i] = random_upper;
+                    } else {
+                        char random_lower = 'a' + (random() % 26);
+                        value[i] = random_lower;
+                        expected_value[i] = random_lower;
+                    }
                 } else{
-                    char random_lower = 'a' + (random() % 26);
-                    value[i] = random_lower;
-                    expected_value[i] = random_lower;
+                    ///case misc chars
+                    const char misc_chars[] = "!@#$%^&*()[]{};:/\\.,><?|`~+-_='\"";
+                    char random_misc = misc_chars[rand() % (sizeof(misc_chars) - 1)];
+                    value[i] = random_misc;
+                    expected_value[i] = random_misc;
                 }
             } else {
                 int rand_int = aux_random_int(0, 9);
@@ -92,8 +101,16 @@ Test(bstd_tests, picture_bstd_tocstr_advanced){
         }
 
         ///convert to pic
+
         bstd_Picture* pic = bstd_picutils_of(value, mask, picture_size);
         char* cstrval = bstd_picutils_to_cstr(pic);
+
+        ///debug
+        printf(" iter: %d\n", i);
+        printf("  out: %s\n", cstrval);
+        printf("  exp: %s\n", expected_value);
+
+
         ///test equality
         cr_assert_str_eq(expected_value, cstrval);
         free(expected_value);
