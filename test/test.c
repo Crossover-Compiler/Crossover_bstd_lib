@@ -19,7 +19,12 @@ int aux_random_int (int lower, int upper)
     int num = (rand() % (upper - lower + 1)) + lower;
     return num;
 }
-
+/**
+* helper function: generate random unsigned 8bit int in interval
+* @param lower
+* @param upper
+* @return random int
+*/
 int aux_random_uint8_t (int lower, int upper)
 {
     uint8_t num = (rand() % (upper - lower + 1)) + lower;
@@ -88,7 +93,7 @@ Test(bstd_tests, picture_bstd_tocstr_advanced){
                     }
                 } else{
                     ///case misc chars
-                    const char misc_chars[] = "!@#$%^&*()[]{};:/\\.,><?|`~+-_='\"";
+                    const char misc_chars[] = "     !@#$%^&*()[]{};:/\\.,><?|`~+-_='\"";
                     char random_misc = misc_chars[rand() % (sizeof(misc_chars) - 1)];
                     value[i] = random_misc;
                     expected_value[i] = random_misc;
