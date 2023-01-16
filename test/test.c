@@ -54,7 +54,7 @@ Test(bstd_tests, picture_bstd_tocstr_basic){
  *
  */
 Test(bstd_tests, picture_bstd_tocstr_advanced){
-    srand(0x007734); // seed rng for reproducibility
+    srand(0x007734); /// seed rng for reproducibility
     for(int i = 0; i < 10000; i++){
         ///generate picture size
         uint8_t picture_size = aux_random_uint8_t(5, 1000);
@@ -72,7 +72,7 @@ Test(bstd_tests, picture_bstd_tocstr_advanced){
 
         ///generating the value
         char value[picture_size];
-        char* expected_value = (char*)malloc(sizeof(char) * (picture_size + 1));/// printable string of the input
+        char* expected_value = (char*)malloc(sizeof(char) * (picture_size + 1)); /// printable string of the input
         expected_value[picture_size] = '\0';
 
         for (int i =0; i < picture_size; i++){
@@ -111,9 +111,9 @@ Test(bstd_tests, picture_bstd_tocstr_advanced){
         char* cstrval = bstd_picutils_to_cstr(pic);
 
         ///debug
-        printf(" iter: %d\n", i);
-        printf("  out: %s\n", cstrval);
-        printf("  exp: %s\n", expected_value);
+//        printf(" iter: %d\n", i);
+//        printf("  out: %s\n", cstrval);
+//        printf("  exp: %s\n", expected_value);
 
 
         ///test equality
