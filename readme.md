@@ -9,4 +9,4 @@ To test the library simply run:
 
 in the test folder.
 
-To also generate a report of the testing add ``--xml[=FILE]`` to the command above.
+To generate a report of the testing add ``--xml[=FILE]`` to the command above.

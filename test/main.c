@@ -9,6 +9,12 @@
 #include "../include/picutils.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
+
+float aux_number_to_float(bstd_Number n){
+    double res = (double) bstd_tosigned(&n) / pow(10, (n.scale));
+    return res;
+};
 
 /**
  * helper function: generate random int in interval
@@ -27,57 +33,54 @@ int aux_random_uint8_t (int lower, int upper)
     uint8_t num = (rand() % (upper - lower + 1)) + lower;
     return num;
 }
+int aux_random_uint64_t (int lower, int upper)
+{
+    uint64_t num = (rand() % (upper - lower + 1)) + lower;
+    return num;
+}
 
-int main(){
-    srand(0x007734); // seed rng for reproducibility
 
-    ///generate picture size
-    uint8_t picture_size = aux_random_uint8_t(5, 1000);
+int main() {
+    srand(0x07734); /// seed rng for reproducibility
 
-    /// generating the mask
-    char mask[picture_size];
-    for (int i =0; i < picture_size; i++){
-        int flip = aux_random_int(0,1);
-        if (flip == 1){
-            mask[i] = 'X';
+    for(int i = 0; i < 10; i++){
+        bstd_Number n;
+        n.value = aux_random_uint64_t(0, 1000);
+        n.scale = aux_random_uint64_t(0, 10);
+        n.length = aux_random_uint8_t(0, 10);
+        n.isSigned = aux_random_int(0, 1);
+        if(n.isSigned) {
+            n.positive = aux_random_int(0, 1);
         } else{
-            mask[i] = '9';
+            n.positive = true;
         }
-    }
 
-    ///generating the value
-    char value[picture_size];
-    char* expected_value =  (char*)malloc(sizeof(char) * (picture_size + 1));// printable string of the input
-    expected_value[picture_size] = '\0';
-
-    for (int i =0; i < picture_size; i++){
-        if (mask[i] == 'X'){
-            /// case alphabetical
-            /// flip for lower or upper
-            int flip = aux_random_int(0,1);
-            if (flip == 1){
-                char random_upper = 'A' + (random() % 26);
-                value[i] = random_upper;
-                expected_value[i] = random_upper;
-            } else{
-                char random_lower = 'a' + (random() % 26);
-                value[i] = random_lower;
-                expected_value[i] = random_lower;
-            }
-        } else {
-            int rand_int = aux_random_int(0, 9);
-            value[i] = rand_int;
-            expected_value[i] = rand_int + '0';
+        bstd_Number m;
+        m.value = aux_random_uint64_t(0, 1000);
+        m.scale = aux_random_uint64_t(0, 10);
+        m.length = aux_random_uint8_t(0, 10);
+        m.isSigned = aux_random_int(0, 1);
+        if(m.isSigned){
+            m.positive = aux_random_int(0, 1);
+        } else{
+            m.positive = true;
         }
-    }
 
 
+        bstd_Number o = *bstd_add(&n, &m);
 
-    bstd_Picture* pic = bstd_picutils_of(value, mask, picture_size);
-    char* cstrval = bstd_picutils_to_cstr(pic);
+        float fn = aux_number_to_float(n);
+        float fm = aux_number_to_float(m);
+        float fo = aux_number_to_float(o);
 
-    printf("  out: %s\n", cstrval);
-    printf("  exp: %s\n", expected_value);
+        float ex = fn + fm;
+        bool dbg = (fabs(fo - ex) <= 1E-6);
+        bool dbginf = (fabs(ex - fo) <= 1E-6);
+
+        printf(" iter: %d\n", i);
+        printf("  out: %d\n", dbg);
+        printf("  exp: %d\n", dbginf);
+    };
 
     return 0;
-};
+}

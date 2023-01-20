@@ -13,7 +13,7 @@ uint64_t max(uint64_t a, uint64_t b) {
     return b;
 }
 
-bstd_Number* bstd_add(bstd_Number *lhs, bstd_Number *rhs) {
+bstd_Number* bstd_add_old(bstd_Number *lhs, bstd_Number *rhs) {
 
     uint64_t s = max(lhs->scale, rhs->scale);
     int a = bstd_tosigned(lhs) * (int)pow(10, (-lhs->scale) + s);
@@ -24,6 +24,32 @@ bstd_Number* bstd_add(bstd_Number *lhs, bstd_Number *rhs) {
     number->value = (uint64_t)abs(result);
     number->scale = s;
     number->positive = result >= 0;
+
+    return number;
+}
+
+
+bstd_Number* bstd_add(bstd_Number *lhs, bstd_Number *rhs) {
+    uint64_t s = max(lhs->scale, rhs->scale);
+    int a = bstd_tosigned(lhs) * (int)pow(10, (int)(-lhs->scale) + (int)s);
+    int b = bstd_tosigned(rhs) * (int)pow(10, (int)(-rhs->scale) + (int)s);
+    int result = a + b;
+
+    bstd_Number* number = (bstd_Number*)malloc(sizeof(bstd_Number));
+    number->value = (uint64_t)abs(result);
+    number->scale = s;
+    number->positive = result >= 0;
+
+    ///input of RHS dictates the following attributes of output
+    if(!rhs->isSigned){
+        number->isSigned=false;
+    } else{
+        number->isSigned = true;
+    }
+
+    number->length = rhs->length;
+
+
 
     return number;
 }
