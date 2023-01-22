@@ -9,6 +9,6 @@
 
 bstd_Number *bstd_add(bstd_Number *lhs, bstd_Number *rhs);
 
-int bstd_tosigned(bstd_Number* n);
+int64_t bstd_tosigned(bstd_Number* n);
 
 #endif //CROSSOVER_ARITHMETIC_H
