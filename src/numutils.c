@@ -40,7 +40,12 @@ double bstd_get_double(bstd_Number *number) {
 }
 
 int64_t bstd_get_int(bstd_Number *number) {
-    int64_t value = number->positive ? (int64_t) number->value : (-1 * (int64_t) number->value);
+    int64_t value = (int64_t) number->value;
+    if (number->isSigned) {
+        if (!number->positive) {
+            value = (-1 * value);
+        }
+    }
     int64_t scale_divisor = ipow(10, number->scale);
     int64_t int_value = (int64_t) (value / scale_divisor);
     return int_value;
