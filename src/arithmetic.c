@@ -5,6 +5,7 @@
 #include "../include/arithmetic.h"
 #include <stdlib.h>
 
+// todo: this is broken. behaviour of right-shift operator for negative integers is undefined. Change argument types to uint64_t.
 int64_t ipow(int64_t base, int64_t exp)
 {
     int64_t result = 1;
@@ -20,41 +21,29 @@ int64_t ipow(int64_t base, int64_t exp)
 
     return result;
 }
+
 uint64_t max(uint64_t a, uint64_t b) {
-    if (a > b) {
-        return a;
-    }
-    return b;
+    return a > b ? a : b;
 }
 
-
-
-
-bstd_Number* bstd_add(bstd_Number *lhs, bstd_Number *rhs) {
+bstd_number* bstd_add(bstd_number *lhs, bstd_number *rhs) {
     uint64_t s = max(lhs->scale, rhs->scale);
     int64_t a = bstd_tosigned(lhs) * ipow(10, (int64_t)((-lhs->scale) + s));
     int64_t b = bstd_tosigned(rhs) * ipow(10, (int64_t)((-rhs->scale) + s));
     int64_t result = a + b;
 
-    bstd_Number* number = (bstd_Number*)malloc(sizeof(bstd_Number));
+    bstd_number* number = (bstd_number*)malloc(sizeof(bstd_number));
     number->value = (uint64_t)labs(result);
     number->scale = s;
     number->positive = result >= 0;
 
     ///input of RHS dictates the following attributes of output
-    if(!rhs->isSigned){
-        number->isSigned=false;
-    } else{
-        number->isSigned = true;
-    }
-
+    number->isSigned = rhs->isSigned;
     number->length = rhs->length;
-
-
 
     return number;
 }
 
-int64_t bstd_tosigned(bstd_Number* n) {
+int64_t bstd_tosigned(bstd_number* n) {
     return n->positive ? (int64_t)n->value : (-1 * (int64_t) n->value);
 }

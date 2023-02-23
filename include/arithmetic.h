@@ -7,9 +7,11 @@
 
 #include "number.h"
 
-bstd_Number *bstd_add(bstd_Number *lhs, bstd_Number *rhs);
-
-int64_t bstd_tosigned(bstd_Number* n);
-
 int64_t ipow(int64_t base, int64_t exp);
+
+bstd_number *bstd_add(bstd_number *lhs, bstd_number *rhs);
+
+// todo: rename to something like "toint"
+int64_t bstd_tosigned(bstd_number* n);
+
 #endif //CROSSOVER_ARITHMETIC_H

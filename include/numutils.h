@@ -7,14 +7,9 @@
 
 #include "number.h"
 
-void bstd_assign_int(bstd_Number* number, int value);
+int bstd_number_to_int(bstd_number* number);
 
-void bstd_assign_double(bstd_Number* number, double value);
-
-double bstd_get_double(bstd_Number* number);
-
-double* bstd_get_double_pointer(bstd_Number* number);
-
-int64_t bstd_get_int(bstd_Number* number);
+void bstd_assign_int(bstd_number* number, int value);
+void bstd_assign_double(bstd_number* number, double value);
 
 #endif //CROSSOVER_NUMUTILS_H

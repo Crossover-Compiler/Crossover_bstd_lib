@@ -11,14 +11,12 @@
 /**
  * todo: doc
  */
-typedef struct bstd_Number {
-
+typedef struct bstd_number_t {
     uint64_t value;
     uint64_t scale;
     uint8_t length;
-    bool isSigned;
+    bool isSigned; // todo: change bool to uint8_t
     bool positive;
-
-} bstd_Number;
+} bstd_number;
 
 #endif //CROSSOVER_NUMBER_H
