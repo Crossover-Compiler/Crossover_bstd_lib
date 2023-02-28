@@ -14,7 +14,7 @@
 * @param length
 * @return
 */
-bstd_Picture *bstd_picutils_of(char *bytes, char *mask, uint8_t length);
+bstd_picture *bstd_picutils_of(char *bytes, char *mask, uint8_t length);
 
 /**
 * todo: doc. assigns picture to another
@@ -22,14 +22,14 @@ bstd_Picture *bstd_picutils_of(char *bytes, char *mask, uint8_t length);
 * @param target
 * @return
 */
-bstd_Picture *bstd_picutils_assign(bstd_Picture *asignee, bstd_Picture *target);
+bstd_picture *bstd_picutils_assign(bstd_picture *assignee, bstd_picture *value);
 
 /**
 * todo: doc
 * @param picture
 * @return
 */
-char *bstd_picutils_to_cstr(bstd_Picture *picture);
+char *bstd_picutils_to_cstr(bstd_picture *picture);
 
 /**
 * todo: doc

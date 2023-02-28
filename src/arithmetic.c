@@ -3,14 +3,18 @@
 //
 
 #include "../include/arithmetic.h"
+#include "../include/numutils.h"
 #include <stdlib.h>
 
-// todo: this is broken. behaviour of right-shift operator for negative integers is undefined. Change argument types to uint64_t.
-int64_t ipow(int64_t base, int64_t exp)
-{
+
+uint64_t max(uint64_t a, uint64_t b) {
+    return a > b ? a : b;
+}
+
+int64_t ipow(int64_t base, uint64_t exp) {
     int64_t result = 1;
-    for (;;)
-    {
+
+    for (;;) {
         if (exp & 1)
             result *= base;
         exp >>= 1;
@@ -22,14 +26,10 @@ int64_t ipow(int64_t base, int64_t exp)
     return result;
 }
 
-uint64_t max(uint64_t a, uint64_t b) {
-    return a > b ? a : b;
-}
-
 bstd_number* bstd_add(bstd_number *lhs, bstd_number *rhs) {
     uint64_t s = max(lhs->scale, rhs->scale);
-    int64_t a = bstd_tosigned(lhs) * ipow(10, (int64_t)((-lhs->scale) + s));
-    int64_t b = bstd_tosigned(rhs) * ipow(10, (int64_t)((-rhs->scale) + s));
+    int64_t a = bstd_number_to_int(lhs);
+    int64_t b = bstd_number_to_int(rhs);
     int64_t result = a + b;
 
     bstd_number* number = (bstd_number*)malloc(sizeof(bstd_number));
@@ -42,8 +42,4 @@ bstd_number* bstd_add(bstd_number *lhs, bstd_number *rhs) {
     number->length = rhs->length;
 
     return number;
-}
-
-int64_t bstd_tosigned(bstd_number* n) {
-    return n->positive ? (int64_t)n->value : (-1 * (int64_t) n->value);
 }

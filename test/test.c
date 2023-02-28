@@ -38,8 +38,8 @@ uint64_t aux_random_uint64_t (int lower, int upper)
     return num;
 }
 
-double aux_number_to_double(bstd_Number n){
-    double res = (double)bstd_tosigned(&n) / pow(10, (double)n.scale);
+double aux_number_to_double(bstd_number n){
+    double res = (double)bstd_number_to_int(&n) / pow(10, (double)n.scale);
     return res;
 };
 
@@ -49,7 +49,7 @@ double aux_number_to_double(bstd_Number n){
 Test(bstd_tests, picture_bstd_tocstr_basic){
     char c[3] = { 'Q', 0, 'F' };
     char mask[3] = { 'X', '9', 'X' };
-    bstd_Picture* pic = bstd_picutils_of(c, mask, 3);
+    bstd_picture* pic = bstd_picutils_of(c, mask, 3);
 
     char* cstrval = bstd_picutils_to_cstr(pic);
     char* expected = "Q0F";
@@ -118,7 +118,7 @@ Test(bstd_tests, picture_bstd_tocstr_advanced){
 
         ///convert to pic
 
-        bstd_Picture* pic = bstd_picutils_of(value, mask, picture_size);
+        bstd_picture* pic = bstd_picutils_of(value, mask, picture_size);
         char* cstrval = bstd_picutils_to_cstr(pic);
 
         ///debug
@@ -135,26 +135,26 @@ Test(bstd_tests, picture_bstd_tocstr_advanced){
 
 
 /**
- * Test for bstd_Number addition (basic)
+ * Test for bstd_number addition (basic)
  */
 Test(bstd_tests, number_addition_basic){
-    bstd_Number n;
+    bstd_number n;
     n.isSigned = false;
     n.length = 3;
     n.scale = 2;
     n.positive = true;
     n.value = 777;
 
-    bstd_Number m;
+    bstd_number m;
     m.isSigned = true;
     m.length = 3;
     m.scale = 2;
     m.positive = true;
     m.value = 33;
 
-    bstd_Number o = *bstd_add(&n, &m);
+    bstd_number o = *bstd_add(&n, &m);
 
-    bstd_Number expected;
+    bstd_number expected;
     expected.length = 3;
     expected.scale = 2;
     expected.isSigned = true;
@@ -170,26 +170,26 @@ Test(bstd_tests, number_addition_basic){
 
 
 /**
- * A more interesting test for bstd_Number addition
+ * A more interesting test for bstd_number addition
  */
 Test(bstd_tests, number_addition){
-    bstd_Number n;
+    bstd_number n;
     n.isSigned = false;
     n.length = 3;
     n.scale = 2;
     n.positive = true;
     n.value = 777;
 
-    bstd_Number m;
+    bstd_number m;
     m.isSigned = true;
     m.length = 3;
     m.scale = 2;
     m.positive = false;
     m.value = 33;
 
-    bstd_Number o = *bstd_add(&n, &m);
+    bstd_number o = *bstd_add(&n, &m);
 
-    bstd_Number expected;
+    bstd_number expected;
     expected.length = 3;
     expected.scale = 2;
     expected.isSigned = true;
@@ -204,26 +204,26 @@ Test(bstd_tests, number_addition){
 }
 
 /**
- * A more interesting test for bstd_Number addition
+ * A more interesting test for bstd_number addition
  */
 Test(bstd_tests, number_addition_negative_lhs){
-    bstd_Number n;
+    bstd_number n;
     n.isSigned = true;
     n.length = 3;
     n.scale = 2;
     n.positive = false;
     n.value = 777;
 
-    bstd_Number m;
+    bstd_number m;
     m.isSigned = true;
     m.length = 3;
     m.scale = 2;
     m.positive = true;
     m.value = 33;
 
-    bstd_Number o = *bstd_add(&n, &m);
+    bstd_number o = *bstd_add(&n, &m);
 
-    bstd_Number expected;
+    bstd_number expected;
     expected.length = 3;
     expected.scale = 2;
     expected.isSigned = true;
@@ -239,26 +239,26 @@ Test(bstd_tests, number_addition_negative_lhs){
 
 
 /**
- * A more interesting test for bstd_Number addition
+ * A more interesting test for bstd_number addition
  */
 Test(bstd_tests, number_addition_negative_lhs_unsigned_rhs){
-    bstd_Number n;
+    bstd_number n;
     n.isSigned = true;
     n.length = 3;
     n.scale = 2;
     n.positive = false;
     n.value = 777;
 
-    bstd_Number m;
+    bstd_number m;
     m.isSigned = false;
     m.length = 3;
     m.scale = 2;
     m.positive = true;
     m.value = 33;
 
-    bstd_Number o = *bstd_add(&n, &m);
+    bstd_number o = *bstd_add(&n, &m);
 
-    bstd_Number expected;
+    bstd_number expected;
     expected.length = 3;
     expected.scale = 2;
     expected.isSigned = false;
@@ -279,7 +279,7 @@ Test(bstd_tests, number_addition_negative_lhs_unsigned_rhs){
 Test(bstd_tests, number_addition_fuzz){
     srand(0x007734); /// seed rng for reproducibility
     for(int i = 0; i < 10000; i++){
-        bstd_Number n;
+        bstd_number n;
         n.value = aux_random_uint64_t(0, 1000);
         n.scale = aux_random_uint64_t(0, 10);
         n.length = aux_random_uint8_t(0, 10);
@@ -290,7 +290,7 @@ Test(bstd_tests, number_addition_fuzz){
             n.positive = true;
         }
 
-        bstd_Number m;
+        bstd_number m;
         m.value = aux_random_uint64_t(0, 1000);
         m.scale = aux_random_uint64_t(0, 10);
         m.length = aux_random_uint8_t(0, 10);
@@ -302,7 +302,7 @@ Test(bstd_tests, number_addition_fuzz){
         }
 
 
-        bstd_Number o = *bstd_add(&n, &m);
+        bstd_number o = *bstd_add(&n, &m);
 
         double fn = aux_number_to_double(n);
         double fm = aux_number_to_double(m);

@@ -12,8 +12,8 @@
 #include <math.h>
 
 
-double aux_number_to_double(bstd_Number n){
-    double res = (double)bstd_tosigned(&n) / pow(10, (double)n.scale);
+double aux_number_to_double(bstd_number n){
+    double res = (double)bstd_number_to_int(&n) / pow(10, (double)n.scale);
     return res;
 };
 
@@ -46,7 +46,7 @@ int main() {
 
 
 
-    bstd_Number n;
+    bstd_number n;
     n.value = 734;
     n.scale = 9;
     n.length = 1;
@@ -57,7 +57,7 @@ int main() {
     printf("res: %e", fn);
 
 //    for(int i = 0; i < 2; i++){
-//        bstd_Number n;
+//        bstd_number n;
 //        n.value = aux_random_uint64_t(0, 1000);
 //        n.scale = aux_random_uint64_t(0, 10);
 //        n.length = aux_random_uint8_t(0, 10);
@@ -68,7 +68,7 @@ int main() {
 //            n.positive = true;
 //        }
 //
-//        bstd_Number m;
+//        bstd_number m;
 //        m.value = aux_random_uint64_t(0, 1000);
 //        m.scale = aux_random_uint64_t(0, 10);
 //        m.length = aux_random_uint8_t(0, 10);
@@ -80,7 +80,7 @@ int main() {
 //        }
 //
 //
-//        bstd_Number o = *bstd_add(&n, &m);
+//        bstd_number o = *bstd_add(&n, &m);
 //
 //        double fn = aux_number_to_double(n);
 //        double fm = aux_number_to_double(m);

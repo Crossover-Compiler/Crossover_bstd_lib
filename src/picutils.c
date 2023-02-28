@@ -8,7 +8,7 @@
 #include <stdlib.h>
 
 /**
- * Shallow copy of soure array to target array.
+ * Deep copy of source array to target array.
  * @tparam T The array element type.
  * @param source
  * @param target
@@ -22,12 +22,12 @@ char* copy(const char* source, char* target, size_t length) {
     return target;
 }
 
-bstd_Picture* bstd_picutils_of(char* bytes, char* mask, uint8_t length) {
+bstd_picture* bstd_picutils_of(char* bytes, char* mask, uint8_t length) {
 
     char* b = (char*)malloc(sizeof(char) * length + 1);
     char* m = (char*)malloc(sizeof(char) * length + 1);
 
-    bstd_Picture* picture = (bstd_Picture*)malloc(sizeof(bstd_Picture));
+    bstd_picture* picture = (bstd_picture*)malloc(sizeof(bstd_picture));
     picture->bytes = copy(bytes, b, length + 1);
     picture->mask = copy(mask, m, length + 1);
     picture->length = length;
@@ -35,12 +35,12 @@ bstd_Picture* bstd_picutils_of(char* bytes, char* mask, uint8_t length) {
     return picture;
 }
 
-bstd_Picture* bstd_picutils_assign(bstd_Picture* asignee, bstd_Picture* target) {
+bstd_picture* bstd_picutils_assign(bstd_picture* assignee, bstd_picture* value) {
     // todo: implement
     return NULL;
 }
 
-char* bstd_picutils_to_cstr(bstd_Picture* picture) {
+char* bstd_picutils_to_cstr(bstd_picture* picture) {
 
     char* str = (char*)malloc(sizeof(char) * (picture->length + 1));
     str[picture->length] = '\0'; // null terminator
@@ -71,7 +71,9 @@ char bstd_picutils_mask_char(char c, char mask) {
             size = (int)(ceil(log10(c)) + 1);
             str = (char*)malloc(sizeof(char) * size);
             sprintf(str, "%d", c);
-            return str[size - 2];
+            char result = str[size - 2];
+            free(str);
+            return result;
         default:
             // todo: warn of unknown mask
             return c;
