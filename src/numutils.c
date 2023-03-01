@@ -23,24 +23,22 @@ void bstd_assign_number(bstd_number* assignee, bstd_number* value) {
 
 void bstd_assign_int(bstd_number* number, const int value) {
 
-    int mag = ipow(10, number->length);
-    int mask = ((int)value / mag) * mag;
-    int cropped_value = abs(value) - mask;
+    int abs_value = abs(value);
+    int64_t mag = ipow(10, number->length);
+    int64_t mask = (abs_value / mag) * mag;
+    int64_t cropped_value = abs_value - mask;
 
-    number->positive = value >= 0;
-
-    // todo: what to do when the number is negative, but the number is unsigned?
-
+    number->positive = !number->isSigned || value >= 0;
     number->value = cropped_value;
 }
 
 void bstd_assign_double(bstd_number* number, const double value) {
 
-    int mag1 = ipow(10, number->length);
-    int mag2 = ipow(10, number->length - 1);
-    int shift = (int)(value * mag2);
-    int mask = (int)((double)shift / mag1) * mag1;
-    int cropped_value = abs(shift - mask);
+    int64_t mag1 = ipow(10, number->length);
+    int64_t mag2 = ipow(10, number->length - 1);
+    int64_t shift = (int64_t)(value * mag2);
+    int64_t mask = (int)((double)shift / mag1) * mag1;
+    int64_t cropped_value = abs(shift - mask);
 
     number->positive = value >= 0;
     number->value = cropped_value;
