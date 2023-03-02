@@ -1,10 +1,3 @@
-//
-// Created by bruh on 11/28/22.
-//
-
-#ifndef CROSSOVER_NUMUTILS_H
-#define CROSSOVER_NUMUTILS_H
-
 #include "number.h"
 
 /**
@@ -56,4 +49,16 @@ void bstd_assign_int(bstd_number* number, int value);
  */
 void bstd_assign_double(bstd_number* number, double value);
 
-#endif //CROSSOVER_NUMUTILS_H
+/**
+ * todo: doc
+ * @param number
+ * @param advancing
+ */
+void bstd_print_number(bstd_number number, bool advancing);
+
+/**
+ * todo: doc
+ * @param number
+ * @return
+ */
+char* bstd_number_to_cstr(bstd_number number);

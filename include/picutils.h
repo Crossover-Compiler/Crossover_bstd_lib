@@ -1,10 +1,5 @@
-//
-// Created by manta on 11/10/22.
-//
-
-#ifndef CROSSOVER_PICUTILS_H
-#define CROSSOVER_PICUTILS_H
-
+#include <stdbool.h>
+#include <stdint-gcc.h>
 #include "picture.h"
 
  /**
@@ -39,4 +34,9 @@ char *bstd_picutils_to_cstr(bstd_picture *picture);
 */
 char bstd_picutils_mask_char(char c, char mask);
 
-#endif //CROSSOVER_PICUTILS_H
+/**
+ *  todo: doc
+ * @param picture
+ * @param advancing
+ */
+void bstd_print_picture(bstd_picture picture, bool advancing);
