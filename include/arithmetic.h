@@ -1,3 +1,5 @@
+#pragma once
+
 #include "number.h"
 
 uint64_t max(uint64_t a, uint64_t b);

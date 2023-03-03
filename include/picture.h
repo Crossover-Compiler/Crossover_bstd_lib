@@ -1,4 +1,6 @@
-#include <cstdint>
+#pragma once
+
+#include <stdint.h>
 
 typedef struct bstd_picture_t {
     char *bytes;
