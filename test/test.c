@@ -49,9 +49,9 @@ double aux_number_to_double(bstd_number n){
 Test(bstd_tests, picture_bstd_tocstr_basic){
     char c[3] = { 'Q', 0, 'F' };
     char mask[3] = { 'X', '9', 'X' };
-    bstd_picture* pic = bstd_picutils_of(c, mask, 3);
+    bstd_picture* pic = bstd_picture_of(c, mask, 3);
 
-    char* cstrval = bstd_picutils_to_cstr(pic);
+    char* cstrval = bstd_picture_to_cstr(pic);
     char* expected = "Q0F";
 
     cr_assert_str_eq(expected, cstrval);
@@ -118,8 +118,8 @@ Test(bstd_tests, picture_bstd_tocstr_advanced){
 
         ///convert to pic
 
-        bstd_picture* pic = bstd_picutils_of(value, mask, picture_size);
-        char* cstrval = bstd_picutils_to_cstr(pic);
+        bstd_picture* pic = bstd_picture_of(value, mask, picture_size);
+        char* cstrval = bstd_picture_to_cstr(pic);
 
         ///debug
 //        printf(" iter: %d\n", i);
@@ -309,35 +309,97 @@ Test(bstd_tests, number_addition_fuzz){
         double fo = aux_number_to_double(o);
 
         double ex = fn + fm;
-        bool dbg = (fabs(fo - ex) <= 1E-6);
-        bool dbginf = (fabs(ex - fo) <= 1E-6);
+//        bool dbg = (fabs(fo - ex) <= 1E-6);
+//        bool dbginf = (fabs(ex - fo) <= 1E-6);
 
-        printf("========================================\n");
-        printf("                iter: %d                \n", i);
-        printf("========================================\n");
-        printf("----------------------------------------\n");
-        printf("                 Input:                 \n");
-        printf("----------------------------------------\n");
-        printf("Number n:\n - value = %lu\n - scale = %lu \n - length = %d\n - isSigned = %d\n - positive = %d\n",n.value, n.scale, n.length, n.isSigned, n.positive);
-        printf("Number m:\n - value = %lu\n - scale = %lu \n - length = %d\n - isSigned = %d\n - positive = %d\n",m.value, m.scale, m.length, m.isSigned, m.positive);
-        printf("----------------------------------------\n");
-        printf("                output:                 \n");
-        printf("----------------------------------------\n");
-        printf("Number o:\n - value = %lu\n - scale = %lu \n - length = %d\n - isSigned = %d\n - positive = %d\n",o.value, o.scale, o.length, o.isSigned, o.positive);
-        printf("----------------------------------------\n");
-        printf("              validation:               \n");
-        printf("----------------------------------------\n");
-        printf("n as double (fn): %e\n", fn);
-        printf("m as double (fm): %e\n", fm);
-        printf("o as double (fo): %e\n", fo);
-        printf("ex = fn + fm: %e\n", fo);
-        printf("Fuzzy equality test (fabs(fo - ex) <= 1E-6): %d\n", dbg);
-        printf("Fuzzy equality test (fabs(ex - fo) <= 1E-6): %d\n", dbginf);
+//        printf("========================================\n");
+//        printf("                iter: %d                \n", i);
+//        printf("========================================\n");
+//        printf("----------------------------------------\n");
+//        printf("                 Input:                 \n");
+//        printf("----------------------------------------\n");
+//        printf("Number n:\n - value = %lu\n - scale = %lu \n - length = %d\n - isSigned = %d\n - positive = %d\n",n.value, n.scale, n.length, n.isSigned, n.positive);
+//        printf("Number m:\n - value = %lu\n - scale = %lu \n - length = %d\n - isSigned = %d\n - positive = %d\n",m.value, m.scale, m.length, m.isSigned, m.positive);
+//        printf("----------------------------------------\n");
+//        printf("                output:                 \n");
+//        printf("----------------------------------------\n");
+//        printf("Number o:\n - value = %lu\n - scale = %lu \n - length = %d\n - isSigned = %d\n - positive = %d\n",o.value, o.scale, o.length, o.isSigned, o.positive);
+//        printf("----------------------------------------\n");
+//        printf("              validation:               \n");
+//        printf("----------------------------------------\n");
+//        printf("n as double (fn): %e\n", fn);
+//        printf("m as double (fm): %e\n", fm);
+//        printf("o as double (fo): %e\n", fo);
+//        printf("ex = fn + fm: %e\n", fo);
+//        printf("Fuzzy equality test (fabs(fo - ex) <= 1E-6): %d\n", dbg);
+//        printf("Fuzzy equality test (fabs(ex - fo) <= 1E-6): %d\n", dbginf);
 
         cr_assert_float_eq(fo, ex, 1E-6);
     }
 }
 
+Test(bstd_tests, bstd_picture_assign_bytes__copies) {
 
+    // given a picture and a buffer of equal length...
+    char c[3] = { 'A', 'B', 'C' };
+    char mask[3] = { 'X', 'X', 'X' };
+    bstd_picture* picture = bstd_picture_of(c, mask, 3);
 
+    char new_bytes[3] = {'D', 'E', 'F'};
+    uint8_t size = 3;
 
+    // ... when we assign that buffer to the picture...
+    bstd_assign_bytes(picture, new_bytes, size);
+
+    // ... then the picture bytes pointer and the buffer pointer may not be equal...
+    cr_expect(c != new_bytes, "Expected bytes to be copied!");
+    // ... and the picture bytes and the buffer must have the same content.
+    cr_assert_arr_eq(picture->bytes, new_bytes, size);
+}
+
+Test(bstd_tests, bstd_picture_assign_bytes__larger_buffer) {
+
+    // given a picture and a buffer, where the buffer is larger...
+    char c[3] = { 'A', 'B', 'C' };
+    char mask[3] = { 'X', 'X', 'X' };
+    bstd_picture* picture = bstd_picture_of(c, mask, 3);
+
+    char new_bytes[5] = {'D', 'E', 'F', 'G', 'H'};
+    uint8_t size = 5;
+
+    // ... when we assign that buffer to the picture...
+    bstd_assign_bytes(picture, new_bytes, size);
+
+    // ... then we expect the bytes of the picture to match the last part of the buffer.
+    // ( picture->bytes = ['F', 'G', 'H'] )
+    int delta = size - picture->length;
+    for (int i = 0; i < picture->length; ++i) {
+        cr_assert_eq(picture->bytes[i], new_bytes[delta + i]);
+    }
+}
+
+Test(bstd_tests, bstd_picture_assign_bytes__smaller_buffer) {
+
+    // given a picture and a buffer, where the buffer is smaller...
+    char c[3] = { 'A', 'B', 'C' };
+    char mask[3] = { 'X', 'X', 'X' };
+    bstd_picture* picture = bstd_picture_of(c, mask, 3);
+
+    char new_bytes[2] = {'D', 'E'};
+    uint8_t size = 2;
+
+    // ... when we assign that buffer to the picture...
+    bstd_assign_bytes(picture, new_bytes, size);
+
+    // then we expect that the leading bytes of the picture are set to zero,
+    // and the buffer to match the last parts of the picture bytes.
+    // ( picture->bytes = [0, 'D', 'E'] )
+    int delta = picture->length - size;
+    for (int i = 0; i < picture->length; ++i) {
+        if (i < delta) {
+            cr_assert_eq(picture->bytes[i], 0);
+        } else {
+            cr_assert_eq(picture->bytes[i], new_bytes[i - delta]);
+        }
+    }
+}

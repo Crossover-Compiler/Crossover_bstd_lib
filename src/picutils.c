@@ -6,6 +6,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 /**
  * Deep copy of source array to target array.
@@ -22,7 +23,7 @@ char* copy(const char* source, char* target, size_t length) {
     return target;
 }
 
-bstd_picture* bstd_picutils_of(char* bytes, char* mask, uint8_t length) {
+bstd_picture* bstd_picture_of(char* bytes, char* mask, uint8_t length) {
 
     char* b = (char*)malloc(sizeof(char) * length + 1);
     char* m = (char*)malloc(sizeof(char) * length + 1);
@@ -35,25 +36,50 @@ bstd_picture* bstd_picutils_of(char* bytes, char* mask, uint8_t length) {
     return picture;
 }
 
-bstd_picture* bstd_picutils_assign(bstd_picture* assignee, bstd_picture* value) {
+void bstd_assign_picture(bstd_picture* assignee, bstd_picture* value) {
     // todo: implement
-    return NULL;
 }
 
-char* bstd_picutils_to_cstr(bstd_picture* picture) {
+void bstd_assign_bytes(bstd_picture *assignee, const char *bytes, uint8_t buf_size) {
+
+    // the number of bytes to copy
+    uint8_t n; // = min(assignee->length, buf_size)
+
+    if (assignee->length < buf_size) {
+        // picture is smaller than buffer size
+        n = assignee->length;
+    } else {
+        // buffer is smaller than picture
+        n = buf_size;
+        // ensure any leading picture bytes are zero
+        memset(assignee->bytes, 0, assignee->length - buf_size); // todo: we can get away with setting (size - length) bytes.
+    }
+
+    // copy bytes right-to-left
+    for (int i = 0; i < n; ++i) {
+        assignee->bytes[assignee->length - 1 - i] = bytes[buf_size - 1 - i];
+    }
+}
+
+char* bstd_picture_to_cstr(bstd_picture* picture) {
 
     char* str = (char*)malloc(sizeof(char) * (picture->length + 1));
     str[picture->length] = '\0'; // null terminator
 
     for (int i = 0; i < picture->length; ++i) {
-        char c = bstd_picutils_mask_char(picture->bytes[i], picture->mask[i]);
+        char c = bstd_picture_mask_char(picture->bytes[i], picture->mask[i]);
         str[i] = c;
     }
 
     return str;
 }
 
-char bstd_picutils_mask_char(char c, char mask) {
+char bstd_picture_mask_char(char byte, char mask) {
+
+    /*
+     * 'X' => character(byte)
+     * '9' => least_significant_digit(byte)
+     */
 
     int size;
     char* str;
@@ -61,21 +87,21 @@ char bstd_picutils_mask_char(char c, char mask) {
     switch (mask) {
         case 'x':
         case 'X':
-            return c;
+            return byte;
         case '9':
-            if (c == 0) {
+            if (byte == 0) {
                 return '0';
-            } else if (c == 1) {
+            } else if (byte == 1) {
                 return '1';
             }
-            size = (int)(ceil(log10(c)) + 1);
+            size = (int)(ceil(log10(byte)) + 1);
             str = (char*)malloc(sizeof(char) * size);
-            sprintf(str, "%d", c);
+            sprintf(str, "%d", byte);
             char result = str[size - 2];
             free(str);
             return result;
         default:
             // todo: warn of unknown mask
-            return c;
+            return byte;
     }
 }
