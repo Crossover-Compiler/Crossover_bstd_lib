@@ -6,6 +6,17 @@
 #define CROSSOVER_PICUTILS_H
 
 #include "picture.h"
+#include <stddef.h>
+
+/**
+ * Deep copies the content of the specified source buffer to the specified target buffer.
+ * The specified buffers must be of equal length.
+ * @param source The buffer whose content to copy_buffer.
+ * @param target The buffer to copy_buffer into.
+ * @param length The length of the buffers.
+ * @return Returns a reference to the target buffer.
+ */
+unsigned char* copy_buffer(const unsigned char* source, unsigned char* target, size_t length);
 
  /**
 * todo: doc. Make sure it copies the arrays!
@@ -14,7 +25,7 @@
 * @param length
 * @return
 */
-bstd_picture *bstd_picture_of(char *bytes, char *mask, uint8_t length);
+bstd_picture *bstd_picture_of(unsigned char *bytes, char *mask, uint8_t length);
 
 /**
 * todo: doc. assigns picture to another
@@ -30,7 +41,15 @@ void bstd_assign_picture(bstd_picture *assignee, bstd_picture *value);
 * @param bytes The byte buffer to copy to the specified picture.
 * @param size The size of the specified byte buffer.
 */
-void bstd_assign_bytes(bstd_picture *assignee, const char *bytes, uint8_t size);
+void bstd_assign_bytes(bstd_picture *assignee, const unsigned char *bytes, uint8_t size);
+
+/**
+* Assigns the specified c-style string to the specified picture.
+* Assigned strings are converted according to the picture's constraints. This is the inverse of bstd_picture_to_cstr.
+* @param assignee The picture to assign the specified string to.
+* @param str The c-style string to copy_buffer to the specified picture. Must be null-terminated.
+*/
+void bstd_assign_str(bstd_picture *assignee, char *str);
 
 /**
 * Creates a C-style string representation of the specified picture.
@@ -47,6 +66,15 @@ char *bstd_picture_to_cstr(bstd_picture *picture);
 * @param mask The mask to apply to the specified byte.
 * @return Returns a character representation of the specified byte under the specified mask.
 */
-char bstd_picture_mask_char(char byte, char mask);
+char bstd_picture_mask_char(unsigned char byte, char mask);
+
+/**
+* Creates a byte representation of the specified character under the specified mask.
+* This is the inverse of bstd_picture_mask_char.
+* @param c The character to create a representation of.
+* @param mask The mask to apply to the specified byte.
+* @return Returns a character representation of the specified byte under the specified mask.
+*/
+unsigned char bstd_picture_unmask_char(char c, char mask);
 
 #endif //CROSSOVER_PICUTILS_H
