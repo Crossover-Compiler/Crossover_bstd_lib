@@ -28,8 +28,8 @@ int64_t ipow(int64_t base, uint64_t exp) {
 
 bstd_number* bstd_add(bstd_number *lhs, bstd_number *rhs) {
     uint64_t s = max(lhs->scale, rhs->scale);
-    int64_t a = bstd_number_to_int(lhs);
-    int64_t b = bstd_number_to_int(rhs);
+    int64_t a = bstd_number_to_int(lhs) * ipow(10, (int64_t)((-lhs->scale) + s));
+    int64_t b = bstd_number_to_int(rhs) * ipow(10, (int64_t)((-rhs->scale) + s));
     int64_t result = a + b;
 
     bstd_number* number = (bstd_number*)malloc(sizeof(bstd_number));
