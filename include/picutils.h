@@ -18,7 +18,7 @@ bstd_picture *bstd_picutils_of(char *bytes, char *mask, uint8_t length);
 * @param target
 * @return
 */
-bstd_picture *bstd_picutils_assign(bstd_picture *assignee, bstd_picture *value);
+void bstd_picutils_assign(bstd_picture *assignee, bstd_picture *value);
 
 /**
 * todo: doc
