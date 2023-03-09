@@ -33,6 +33,20 @@ Test(picture_tests, bstd_picture_to_cstr__numerical){
     cr_assert_str_eq(str, "Q0F");
 }
 
+Test(picture_tests, bstd_picture_to_cstr__null_bytes_as_spaces){
+
+    // given a well-formed picture containing a null-byte under an 'X' mask...
+    unsigned char c[3] = { 'Q', 0, 'F' };
+    char mask[3] = { 'X', 'X', 'X' };
+    bstd_picture* pic = bstd_picture_of(c, mask, 3);
+
+    // ... when we create a string representation of that picture...
+    char* str = bstd_picture_to_cstr(pic);
+
+    // ... then the null-byte must show up as a space.
+    cr_assert_str_eq(str, "Q F");
+}
+
 Test(picture_tests, bstd_picture_to_cstr__copies) {
 
     // given a well-formed picture...
