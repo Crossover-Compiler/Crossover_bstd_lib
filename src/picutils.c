@@ -1,7 +1,3 @@
-//
-// Created by manta on 11/10/22.
-//
-
 #include "../include/picutils.h"
 #include <math.h>
 #include <stdio.h>
@@ -149,5 +145,18 @@ unsigned char bstd_picture_unmask_char(char c, char mask) {
         default:
             // todo: warn of unknown mask
             return c;
+    }
+}
+
+// TODO: Add optional delimiter
+void bstd_print_picture(bstd_picture picture, bool advancing) {
+    if (advancing) {
+        if (picture.bytes[0] == '\0') {
+            printf("\r\n");
+        } else {
+            printf("%s\r\n", picture.bytes);
+        }
+    } else {
+        printf("%s", picture.bytes);
     }
 }

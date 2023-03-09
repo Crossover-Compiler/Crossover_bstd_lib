@@ -1,9 +1,4 @@
-//
-// Created by bruh on 10/17/22.
-//
-
-#ifndef CROSSOVER_NUMBER_H
-#define CROSSOVER_NUMBER_H
+#pragma once
 
 #include <stdint.h>
 #include <stdbool.h>
@@ -19,4 +14,3 @@ typedef struct bstd_number_t {
     bool positive;
 } bstd_number;
 
-#endif //CROSSOVER_NUMBER_H
