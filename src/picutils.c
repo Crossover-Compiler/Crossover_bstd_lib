@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 #ifndef BSTD_SPACE
 #define BSTD_SPACE ' '
@@ -31,7 +32,39 @@ bstd_picture* bstd_picture_of(unsigned char *bytes, char *mask, uint8_t length) 
 }
 
 void bstd_assign_picture(bstd_picture* assignee, bstd_picture* value) {
-    // todo: implement
+    unsigned char *newCharPointer = malloc(assignee->length);
+
+    // Take bytes from value
+    for (int i = 0; i < value->length ;i++) {
+        if (assignee->mask[i] == value->mask[i] || assignee->mask[i] == 'X') {
+            newCharPointer[i] = value->bytes[i];
+        } else if (assignee->mask[i] == 'A') {
+            if (isalpha(value->bytes[i]) != 0) {
+                newCharPointer[i] = value->bytes[i];
+            } else {
+                newCharPointer[i] = ' ';
+            }
+        } else if (assignee->mask[i] == '9') {
+            if (isdigit(value->bytes[i])) {
+                newCharPointer[i] = value->bytes[i] - '0';
+            } else if (value->bytes[i] <= 9) {
+                newCharPointer[i] = value->bytes[i];
+            } else {
+                newCharPointer[i] = 0;
+            }
+        }
+    }
+
+    // When there are no more bytes from value
+    for (int newCharPointerLength = value->length; newCharPointerLength < assignee->length; newCharPointerLength++) {
+        if (assignee->mask[newCharPointerLength] == 'X' || assignee->mask[newCharPointerLength] == 'A') {
+            newCharPointer[newCharPointerLength] = ' ';
+        } else {
+            newCharPointer[newCharPointerLength] = 0;
+        }
+    }
+
+    assignee->bytes = newCharPointer;
 }
 
 void bstd_assign_bytes(bstd_picture *assignee, const unsigned char *bytes, uint8_t buf_size) {
@@ -105,12 +138,14 @@ char bstd_picture_mask_char(unsigned char byte, char mask) {
     char* str;
 
     switch (mask) {
-        case 'x':
         case 'X':
-            if (byte == 0) {
+            return (char)byte;
+        case 'A':
+            if (isalpha(byte) != 0) {
+                return (char)byte;
+            } else {
                 return BSTD_SPACE;
             }
-            return (char)byte;
         case '9':
             if (byte == 0) {
                 return '0';
@@ -132,8 +167,8 @@ char bstd_picture_mask_char(unsigned char byte, char mask) {
 unsigned char bstd_picture_unmask_char(char c, char mask) {
 
     switch (mask) {
-        case 'x':
         case 'X':
+        case 'A':
             return c;
         case '9':
             if (c >= '0' && c <= '9') {
@@ -151,12 +186,12 @@ unsigned char bstd_picture_unmask_char(char c, char mask) {
 // TODO: Add optional delimiter
 void bstd_print_picture(bstd_picture picture, bool advancing) {
     if (advancing) {
-        if (picture.bytes[0] == '\0') {
+        if (picture.length == 0) {
             printf("\r\n");
         } else {
-            printf("%s\r\n", picture.bytes);
+            printf("%s\r\n", bstd_picture_to_cstr(&picture));
         }
     } else {
-        printf("%s", picture.bytes);
+        printf("%s", bstd_picture_to_cstr(&picture));
     }
 }
