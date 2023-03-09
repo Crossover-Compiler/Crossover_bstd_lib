@@ -135,7 +135,7 @@ Test(stress_tests, number_addition_fuzz){
         double ex = fn + fm;
 //        bool dbg = (fabs(fo - ex) <= 1E-6);
 //        bool dbginf = (fabs(ex - fo) <= 1E-6);
-
+//
 //        printf("========================================\n");
 //        printf("                iter: %d                \n", i);
 //        printf("========================================\n");
@@ -154,7 +154,7 @@ Test(stress_tests, number_addition_fuzz){
 //        printf("n as double (fn): %e\n", fn);
 //        printf("m as double (fm): %e\n", fm);
 //        printf("o as double (fo): %e\n", fo);
-//        printf("ex = fn + fm: %e\n", fo);
+//        printf("ex = fn + fm: %e\n", ex);
 //        printf("Fuzzy equality test (fabs(fo - ex) <= 1E-6): %d\n", dbg);
 //        printf("Fuzzy equality test (fabs(ex - fo) <= 1E-6): %d\n", dbginf);
 

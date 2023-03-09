@@ -4,6 +4,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+#ifndef BSTD_SPACE
+#define BSTD_SPACE ' '
+#endif
+
 unsigned char* copy_buffer(const unsigned char* source, unsigned char* target, size_t length) {
     for (int i = 0; i < length; ++i) {
         target[i] = source[i];
@@ -93,7 +97,7 @@ char* bstd_picture_to_cstr(bstd_picture* picture) {
 char bstd_picture_mask_char(unsigned char byte, char mask) {
 
     /*
-     * 'X' => character(byte)
+     * 'X' => character(byte) or SPACE if null
      * '9' => least_significant_digit(byte)
      */
 
@@ -103,7 +107,10 @@ char bstd_picture_mask_char(unsigned char byte, char mask) {
     switch (mask) {
         case 'x':
         case 'X':
-            return byte;
+            if (byte == 0) {
+                return BSTD_SPACE;
+            }
+            return (char)byte;
         case '9':
             if (byte == 0) {
                 return '0';
@@ -118,7 +125,7 @@ char bstd_picture_mask_char(unsigned char byte, char mask) {
             return result;
         default:
             // todo: warn of unknown mask
-            return byte;
+            return (char)byte;
     }
 }
 
