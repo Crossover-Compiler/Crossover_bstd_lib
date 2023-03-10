@@ -144,6 +144,10 @@ Test(number_tests, number_addition_negative_lhs_unsigned_rhs){
     cr_assert_eq(o.value, expected.value);
 }
 
+/*
+ * bstd_assign_double
+ */
+
 Test(number_tests, number_assign_double__same_cardinality){
 
     // given a well-formed number and a constant double of the same cardinality...
