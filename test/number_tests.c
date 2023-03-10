@@ -422,39 +422,41 @@ Test(number_tests, assign_number__same_constraints){
     cr_assert_eq(n.value, expected.value);
 }
 
-Test(number_tests, assign_number__different_length){
 
-    // todo: implement
-//
-//    // given two numbers of the same constraints...
-//    bstd_number n;
-//    n.isSigned = false;
-//    n.length = 3;
-//    n.scale = 2;
-//    n.positive = true;
-//    n.value = 777;
-//
-//    bstd_number m;
-//    m.isSigned = false;
-//    m.length = 3;
-//    m.scale = 2;
-//    m.positive = true;
-//    m.value = 33;
-//
-//    // ... when we assign one number the other...
-//    bstd_assign_number(&n, &m);
-//
-//    // ... then we expect the right-hand side number to be assigned to the left-hand side number, maintaining the left-hand side's constraints.
-//    bstd_number expected;
-//    expected.length = 3;
-//    expected.scale = 2;
-//    expected.isSigned = false;
-//    expected.positive = true;
-//    expected.value = 33;
-//
-//    cr_assert_eq(n.length,expected.length);
-//    cr_assert_eq(n.scale, expected.scale);
-//    cr_assert_eq(n.isSigned, expected.isSigned);
-//    cr_assert_eq(n.positive, expected.positive);
-//    cr_assert_eq(n.value, expected.value);
+/*
+ * bstd_assign_number
+ */
+
+Test(number_tests, assign_number__different_length){
+    // given two numbers of different constraints...
+    bstd_number n;
+    n.isSigned = false;
+    n.length = 6;
+    n.scale = 3;
+    n.positive = true;
+    n.value = 190123;
+
+    bstd_number m;
+    m.isSigned = false;
+    m.length = 4;
+    m.scale = 2;
+    m.positive = true;
+    m.value = 0;
+
+    // ... when we assign one number the other...
+    bstd_assign_number(&m, &n);
+
+    // ... then we expect the right-hand side number to be assigned to the left-hand side number, maintaining the left-hand side's constraints.
+    bstd_number expected;
+    expected.length = 4;
+    expected.scale = 2;
+    expected.isSigned = false;
+    expected.positive = true;
+    expected.value = 9012;
+
+    cr_assert_eq(m.length,expected.length);
+    cr_assert_eq(m.scale, expected.scale);
+    cr_assert_eq(m.isSigned, expected.isSigned);
+    cr_assert_eq(m.positive, expected.positive);
+    cr_assert_eq(m.value, expected.value);
 }
