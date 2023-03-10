@@ -5,6 +5,10 @@
 #include "../include/numutils.h"
 #include "../include/arithmetic.h"
 
+#ifndef BSTD_STRESS_TEST_EPSILON
+#define BSTD_STRESS_TEST_EPSILON 1E-6
+#endif
+
 int aux_random_int(int lower, int upper) {
     int num = (rand() % (upper - lower + 1)) + lower;
     return num;
@@ -158,6 +162,6 @@ Test(stress_tests, number_addition_fuzz){
 //        printf("Fuzzy equality test (fabs(fo - ex) <= 1E-6): %d\n", dbg);
 //        printf("Fuzzy equality test (fabs(ex - fo) <= 1E-6): %d\n", dbginf);
 
-        cr_assert_float_eq(fo, ex, 1E-6);
+        cr_assert_float_eq(fo, ex, BSTD_STRESS_TEST_EPSILON);
     }
 }

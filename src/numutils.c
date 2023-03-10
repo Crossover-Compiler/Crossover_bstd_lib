@@ -33,7 +33,7 @@ void bstd_assign_int(bstd_number* number, const int value) {
 void bstd_assign_double(bstd_number* number, const double value) {
 
     int64_t mag1 = ipow(10, number->length);
-    int64_t mag2 = ipow(10, number->length - 1);
+    int64_t mag2 = ipow(10, number->scale);
     int64_t shift = (int64_t)(value * mag2);
     int64_t mask = (int)((double)shift / mag1) * mag1;
     int64_t cropped_value = labs(shift - mask);
