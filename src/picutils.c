@@ -9,21 +9,21 @@
 #define BSTD_SPACE ' '
 #endif
 
-unsigned char* copy_buffer(const unsigned char* source, unsigned char* target, size_t length) {
+unsigned char *copy_buffer(const unsigned char *source, unsigned char *target, size_t length) {
     for (int i = 0; i < length; ++i) {
         target[i] = source[i];
     }
     return target;
 }
 
-bstd_picture* bstd_picture_of(unsigned char *bytes, char *mask, uint8_t length) {
+bstd_picture *bstd_picture_of(unsigned char *bytes, char *mask, uint8_t length) {
 
-    unsigned char* b = (unsigned char*)malloc(sizeof(unsigned char) * length + 1);
-    char* m = (char*)malloc(sizeof(char) * length + 1);
+    unsigned char *b = (unsigned char *) malloc(sizeof(unsigned char) * length + 1);
+    char *m = (char *) malloc(sizeof(char) * length + 1);
 
-    bstd_picture* picture = (bstd_picture*)malloc(sizeof(bstd_picture));
+    bstd_picture *picture = (bstd_picture *) malloc(sizeof(bstd_picture));
     picture->bytes = copy_buffer(bytes, b, length + 1);
-    picture->mask = copy_buffer(mask, m, length + 1);
+    picture->mask = (char*) copy_buffer((unsigned char*) mask, (unsigned char*) m , length + 1);
     picture->length = length;
 
     // todo: ensure that the bytes do not violate the mask
@@ -31,61 +31,48 @@ bstd_picture* bstd_picture_of(unsigned char *bytes, char *mask, uint8_t length) 
     return picture;
 }
 
-void bstd_assign_picture(bstd_picture* assignee, bstd_picture* value) {
-    unsigned char *newCharPointer = malloc(assignee->length);
+void bstd_assign_picture(bstd_picture *assignee, bstd_picture *value) {
+    bstd_assign_bytes_with_mask(assignee, value->bytes, value->mask, value->length);
+}
 
+void bstd_assign_bytes_with_mask(bstd_picture *assignee, const unsigned char *bytes, const char *mask, uint8_t buf_size) {
     // Take bytes from value
-    for (int i = 0; i < value->length ;i++) {
-        if (assignee->mask[i] == value->mask[i] || assignee->mask[i] == 'X') {
-            newCharPointer[i] = value->bytes[i];
+    for (int i = 0; i < buf_size && i < assignee->length; i++) {
+        if (assignee->mask[i] == mask[i] || assignee->mask[i] == 'X') {
+            assignee->bytes[i] = bytes[i];
         } else if (assignee->mask[i] == 'A') {
-            if (isalpha(value->bytes[i]) != 0) {
-                newCharPointer[i] = value->bytes[i];
+            if (isalpha(bytes[i]) != 0) {
+                assignee->bytes[i] = bytes[i];
             } else {
-                newCharPointer[i] = BSTD_SPACE;
+                assignee->bytes[i] = BSTD_SPACE;
             }
         } else if (assignee->mask[i] == '9') {
-            if (isdigit(value->bytes[i])) {
-                newCharPointer[i] = value->bytes[i] - '0';
-            } else if (value->bytes[i] <= 9) {
-                newCharPointer[i] = value->bytes[i];
+            if (isdigit(bytes[i])) {
+                assignee->bytes[i] = bytes[i] - '0';
+            } else if (bytes[i] <= 9) {
+                assignee->bytes[i] = bytes[i];
             } else {
-                newCharPointer[i] = 0;
+                assignee->bytes[i] = 0;
             }
         }
     }
 
-    // When there are no more bytes from value
-    for (int newCharPointerLength = value->length; newCharPointerLength < assignee->length; newCharPointerLength++) {
+    // When there are no more bytes from value, and we need more bytes
+    for (int newCharPointerLength = buf_size; newCharPointerLength < assignee->length; newCharPointerLength++) {
         if (assignee->mask[newCharPointerLength] == 'X' || assignee->mask[newCharPointerLength] == 'A') {
-            newCharPointer[newCharPointerLength] = BSTD_SPACE;
+            assignee->bytes[newCharPointerLength] = BSTD_SPACE;
         } else {
-            newCharPointer[newCharPointerLength] = 0;
+            assignee->bytes[newCharPointerLength] = 0;
         }
     }
-
-    assignee->bytes = newCharPointer;
 }
 
 void bstd_assign_bytes(bstd_picture *assignee, const unsigned char *bytes, uint8_t buf_size) {
-
-    // the number of bytes to copy
-    uint8_t n; // = min(assignee->length, buf_size)
-
-    if (assignee->length < buf_size) {
-        // picture is smaller than buffer size
-        n = assignee->length;
-    } else {
-        // buffer is smaller than picture
-        n = buf_size;
-        // ensure any leading picture bytes are zero
-        memset(assignee->bytes, 0, assignee->length - buf_size);
+    char *mask = malloc(buf_size);
+    for (int i = 0; i < buf_size; i++) {
+        mask[i] = 'X';
     }
-
-    // copy bytes right-to-left
-    for (int i = 0; i < n; ++i) {
-        assignee->bytes[assignee->length - 1 - i] = bytes[buf_size - 1 - i];
-    }
+    bstd_assign_bytes_with_mask(assignee, bytes, mask, buf_size);
 }
 
 void bstd_assign_str(bstd_picture *assignee, char *str) {
@@ -114,9 +101,9 @@ void bstd_assign_str(bstd_picture *assignee, char *str) {
     }
 }
 
-char* bstd_picture_to_cstr(bstd_picture* picture) {
+char *bstd_picture_to_cstr(bstd_picture *picture) {
 
-    char* str = (char*)malloc(sizeof(char) * (picture->length + 1));
+    char *str = (char *) malloc(sizeof(char) * (picture->length + 1));
     str[picture->length] = '\0'; // null terminator
 
     for (int i = 0; i < picture->length; ++i) {
@@ -135,18 +122,18 @@ char bstd_picture_mask_char(unsigned char byte, char mask) {
      */
 
     int size;
-    char* str;
+    char *str;
 
     switch (mask) {
         case 'X':
             // If the byte is between and including 0 and 9 it was probably a digit
             if (byte >= 0 && byte <= 9) {
-                return ((char)byte) + '0';
+                return ((char) byte) + '0';
             }
-            return (char)byte;
+            return (char) byte;
         case 'A':
             if (isalpha(byte) != 0) {
-                return (char)byte;
+                return (char) byte;
             } else {
                 return BSTD_SPACE;
             }
@@ -156,15 +143,15 @@ char bstd_picture_mask_char(unsigned char byte, char mask) {
             } else if (byte == 1) {
                 return '1';
             }
-            size = (int)(ceil(log10(byte)) + 1);
-            str = (char*)malloc(sizeof(char) * size);
+            size = (int) (ceil(log10(byte)) + 1);
+            str = (char *) malloc(sizeof(char) * size);
             sprintf(str, "%d", byte);
             char result = str[size - 2];
             free(str);
             return result;
         default:
             // todo: warn of unknown mask
-            return (char)byte;
+            return (char) byte;
     }
 }
 

@@ -32,6 +32,15 @@ bstd_picture *bstd_picture_of(unsigned char *bytes, char *mask, uint8_t length);
 void bstd_assign_picture(bstd_picture *assignee, bstd_picture *value);
 
 /**
+ * todo: doc. assigns everything a picture would have to a picture
+ * @param assignee
+ * @param bytes
+ * @param mask
+ * @param buf_size
+ */
+void bstd_assign_bytes_with_mask(bstd_picture *assignee, const unsigned char *bytes, const char *mask, uint8_t buf_size);
+
+/**
 * Copies the specified byte buffer into the specified picture.
 * @param assignee The picture to copy the specified bytes to.
 * @param bytes The byte buffer to copy to the specified picture.
