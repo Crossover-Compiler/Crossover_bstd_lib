@@ -8,7 +8,7 @@
  * @param number The number to evaluate.
  * @return Returns one iff the specified number represents an integer. Otherwise, returns zero.
  */
-int bstd_number_is_integer(bstd_number* number);
+int bstd_number_is_integer(const bstd_number* number);
 
 /**
 // * Creates an integer representation for the specified bstd_number. The representation is an independent copy (setting it does not affect the specified bstd_number).
@@ -18,7 +18,7 @@ int bstd_number_is_integer(bstd_number* number);
  * @param number The number to create a representation of.
  * @return Returns an integer representation of the specified number.
  */
-int bstd_number_to_int(bstd_number* number);
+int bstd_number_to_int(const bstd_number* number);
 
 /**
  * Creates a number representation for the specified bstd_number. The representation is an independent copy (setting it does not affect the specified bstd_number).
@@ -28,14 +28,14 @@ int bstd_number_to_int(bstd_number* number);
  * @param number The number to create a representation of.
  * @return Returns a double representation of the specified number.
  */
-double bstd_number_to_double(bstd_number* number);
+double bstd_number_to_double(const bstd_number* number);
 
 /**
  * Assigns the specified value to the specified assignee. If the numbers' constraints do not match, the assignee's constraints are leading.
  * @param assignee
  * @param value
  */
-void bstd_assign_number(bstd_number* assignee, bstd_number* value);
+void bstd_assign_number(bstd_number* assignee, const bstd_number* value);
 
 /**
  * Assigns the specified integer to the specified bstd_number, following the BabyCobol assignment specifications.
