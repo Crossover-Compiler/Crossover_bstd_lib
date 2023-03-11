@@ -42,7 +42,7 @@ void bstd_assign_picture(bstd_picture* assignee, bstd_picture* value) {
             if (isalpha(value->bytes[i]) != 0) {
                 newCharPointer[i] = value->bytes[i];
             } else {
-                newCharPointer[i] = ' ';
+                newCharPointer[i] = BSTD_SPACE;
             }
         } else if (assignee->mask[i] == '9') {
             if (isdigit(value->bytes[i])) {
@@ -58,7 +58,7 @@ void bstd_assign_picture(bstd_picture* assignee, bstd_picture* value) {
     // When there are no more bytes from value
     for (int newCharPointerLength = value->length; newCharPointerLength < assignee->length; newCharPointerLength++) {
         if (assignee->mask[newCharPointerLength] == 'X' || assignee->mask[newCharPointerLength] == 'A') {
-            newCharPointer[newCharPointerLength] = ' ';
+            newCharPointer[newCharPointerLength] = BSTD_SPACE;
         } else {
             newCharPointer[newCharPointerLength] = 0;
         }
@@ -139,6 +139,10 @@ char bstd_picture_mask_char(unsigned char byte, char mask) {
 
     switch (mask) {
         case 'X':
+            // If the byte is between and including 0 and 9 it was probably a digit
+            if (byte >= 0 && byte <= 9) {
+                return ((char)byte) + '0';
+            }
             return (char)byte;
         case 'A':
             if (isalpha(byte) != 0) {
@@ -184,12 +188,12 @@ unsigned char bstd_picture_unmask_char(char c, char mask) {
 }
 
 // TODO: Add optional delimiter
-void bstd_print_picture(bstd_picture picture, bool advancing) {
-    if (advancing) {
+void bstd_print_picture(bstd_picture picture, bool spacer) {
+    if (spacer) {
         if (picture.length == 0) {
-            printf("\r\n");
+            printf(" ");
         } else {
-            printf("%s\r\n", bstd_picture_to_cstr(&picture));
+            printf(" %s", bstd_picture_to_cstr(&picture));
         }
     } else {
         printf("%s", bstd_picture_to_cstr(&picture));
