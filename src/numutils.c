@@ -3,20 +3,40 @@
 #include "../include/numutils.h"
 #include "../include/arithmetic.h"
 
-int bstd_number_is_integer(bstd_number* number) {
+int bstd_number_is_integer(const bstd_number* number) {
     return !number->scale;
 }
 
-int bstd_number_to_int(bstd_number* number) {
+int bstd_number_to_int(const bstd_number* number) {
     return !number->positive && number->isSigned ? -number->value : number->value;
 }
 
-double bstd_number_to_double(bstd_number* number) {
+double bstd_number_to_double(const bstd_number* number) {
     return bstd_number_to_int(number) / (double)ipow(10, number->scale);
 }
 
-void bstd_assign_number(bstd_number* assignee, bstd_number* value) {
-    // todo: implement this.
+void bstd_assign_number(bstd_number* assignee, const bstd_number* value) {
+
+    if (bstd_number_is_integer(value)) {
+
+        const int value_conv = bstd_number_to_int(value);
+
+        if (bstd_number_is_integer(assignee)) {
+            bstd_assign_int(assignee, value_conv);
+        } else {
+            bstd_assign_double(assignee, (double)value_conv);
+        }
+
+    } else {
+
+        const double value_conv = bstd_number_to_double(value);
+
+        if (bstd_number_is_integer(assignee)) {
+            bstd_assign_int(assignee, (int)value_conv);
+        } else {
+            bstd_assign_double(assignee, value_conv);
+        }
+    }
 }
 
 void bstd_assign_int(bstd_number* number, const int value) {
@@ -33,9 +53,9 @@ void bstd_assign_int(bstd_number* number, const int value) {
 void bstd_assign_double(bstd_number* number, const double value) {
 
     int64_t mag1 = ipow(10, number->length);
-    int64_t mag2 = ipow(10, number->length - 1);
+    int64_t mag2 = ipow(10, number->scale);
     int64_t shift = (int64_t)(value * mag2);
-    int64_t mask = (int)((double)shift / mag1) * mag1;
+    int64_t mask = (int64_t)((double)shift / mag1) * mag1;
     int64_t cropped_value = labs(shift - mask);
 
     number->positive = value >= 0;

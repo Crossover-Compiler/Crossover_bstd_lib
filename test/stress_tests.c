@@ -126,7 +126,7 @@ Test(stress_tests, number_addition_fuzz){
         }
 
 
-        bstd_number o = *bstd_add(&n, &m);
+        bstd_number o = *bstd_sum(&n, &m);
 
         double fn = aux_number_to_double(n);
         double fm = aux_number_to_double(m);
