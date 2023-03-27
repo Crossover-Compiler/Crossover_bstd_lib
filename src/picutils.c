@@ -73,6 +73,7 @@ void bstd_assign_bytes(bstd_picture *assignee, const unsigned char *bytes, uint8
         mask[i] = 'X';
     }
     bstd_assign_bytes_with_mask(assignee, bytes, mask, buf_size);
+    free(mask);
 }
 
 void bstd_assign_str(bstd_picture *assignee, char *str) {
