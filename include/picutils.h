@@ -24,15 +24,16 @@ unsigned char* copy_buffer(const unsigned char* source, unsigned char* target, s
 bstd_picture *bstd_picture_of(unsigned char *bytes, char *mask, uint8_t length);
 
 /**
-* todo: doc. assigns picture to another
-* @param assignee
-* @param target
-* @return
+* Copies the content of the specified value picture to the specified assignee.
+* TODO: Should ensure that the representation of both pictures is correct under their mask.
+* @param assignee The picture to copy the contents of the specified picture to.
+* @param target The picture whose content to copy into the specified assignee.
 */
 void bstd_assign_picture(bstd_picture *assignee, bstd_picture *value);
 
 /**
 * Copies the specified byte buffer into the specified picture.
+* TODO: Should ensure that the representation of the assignee is correct under its mask after assigning the bytes.
 * @param assignee The picture to copy the specified bytes to.
 * @param bytes The byte buffer to copy to the specified picture.
 * @param size The size of the specified byte buffer.

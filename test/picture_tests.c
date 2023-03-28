@@ -108,6 +108,79 @@ Test(picture_tests, bstd_picture_to_cstr__numerical_truncates) {
 }
 
 /*
+ * bstd_assign_picture
+ */
+
+Test(picture_tests, bstd_assign_picture__copies) {
+
+    // given two pictures of equal length...
+    unsigned char c[3] = {'A', 'B', 'C'};
+    char mask[3] = {'X', 'X', 'X'};
+    bstd_picture *picture = bstd_picture_of(c, mask, 3);
+
+    unsigned char c2[3] = {'D', 'E', 'F'};
+    char mask2[3] = {'X', 'X', 'X'};
+    bstd_picture *picture2 = bstd_picture_of(c2, mask2, 3);
+
+    // ... when we assign one picture to the other...
+    bstd_assign_picture(picture, picture2);
+
+    // ... then the picture bytes pointers may not be equal...
+    cr_expect(picture->bytes != picture2->bytes, "Expected bytes to be copied!");
+    // ... and the picture bytes and the buffer must have the same content.
+    cr_assert_arr_eq(picture->bytes, picture2->bytes, picture->length);
+}
+
+Test(picture_tests, bstd_assign_picture__larger_assignee) {
+
+    // given two pictures of different lengths...
+    unsigned char c[4] = {'A', 'B', 'C', 'D'};
+    char mask[4] = {'X', 'X', 'X', 'X'};
+    bstd_picture *picture = bstd_picture_of(c, mask, 4);
+
+    unsigned char c2[3] = {'E', 'F', 'G'};
+    char mask2[3] = {'X', 'X', 'X'};
+    bstd_picture *picture2 = bstd_picture_of(c2, mask2, 3);
+
+    // ... when we assign the smaller picture to the larger...
+    bstd_assign_picture(picture, picture2);
+
+    // ... then we expect that the leading bytes of the larger picture are set to zero,
+    // and the smaller picture to match the last part of larger the picture's bytes.
+    // ( picture->bytes = [0, 'E', 'F', 'G'] )
+    int delta = picture->length - picture2->length;
+    for (int i = 0; i < picture->length; ++i) {
+        if (i < delta) {
+            cr_assert_eq(picture->bytes[i], 0);
+        } else {
+            cr_assert_eq(picture->bytes[i], picture2->bytes[i - delta]);
+        }
+    }
+}
+
+Test(picture_tests, bstd_assign_picture__smaller_assignee) {
+
+    // given two pictures of different lengths...
+    unsigned char c[3] = {'A', 'B', 'C'};
+    char mask[3] = {'X', 'X', 'X'};
+    bstd_picture *picture = bstd_picture_of(c, mask, 3);
+
+    unsigned char c2[4] = {'D', 'E', 'F', 'G'};
+    char mask2[4] = {'X', 'X', 'X', 'X'};
+    bstd_picture *picture2 = bstd_picture_of(c2, mask2, 4);
+
+    // ... when we assign the larger picture to the smaller...
+    bstd_assign_picture(picture, picture2);
+
+    // ... then we expect the bytes of the smaller picture to match the last part of the larger picture.
+    // ( picture->bytes = ['E´, 'F', 'G'] )
+    int delta = picture2->length - picture->length;
+    for (int i = 0; i < picture->length; ++i) {
+        cr_assert_eq(picture->bytes[i], picture2->bytes[delta + i]);
+    }
+}
+
+/*
  * bstd_assign_bytes
  */
 

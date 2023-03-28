@@ -465,6 +465,10 @@ Test(number_tests, assign_number__different_length){
     cr_assert_eq(m.value, expected.value);
 }
 
+/*
+ * bstd_assign_double
+ */
+
 Test(number_tests, number_assign_double__same_cardinality){
 
     // given a well-formed number and a constant double of the same cardinality...

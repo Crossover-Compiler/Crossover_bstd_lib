@@ -31,7 +31,7 @@ bstd_picture* bstd_picture_of(unsigned char *bytes, char *mask, uint8_t length) 
 }
 
 void bstd_assign_picture(bstd_picture* assignee, bstd_picture* value) {
-    // todo: implement
+    bstd_assign_bytes(assignee, value->bytes, value->length);
 }
 
 void bstd_assign_bytes(bstd_picture *assignee, const unsigned char *bytes, uint8_t buf_size) {
