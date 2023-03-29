@@ -127,9 +127,8 @@ char bstd_picture_mask_char(unsigned char byte, char mask) {
 
     switch (mask) {
         case 'X':
-            // If the byte is between and including 0 and 9 it was probably a digit
-            if (byte >= 0 && byte <= 9) {
-                return ((char) byte) + '0';
+            if (byte == 0) {
+                return BSTD_SPACE;
             }
             return (char) byte;
         case 'A':
