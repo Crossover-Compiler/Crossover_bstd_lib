@@ -25,10 +25,6 @@ uint64_t aux_random_uint64_t (int lower, int upper)
     return num;
 }
 
-double aux_number_to_double(bstd_number n){
-    double res = (double)bstd_number_to_int(&n) / pow(10, (double)n.scale);
-    return res;
-}
 
 /**
  * Test for to_cstr (stress test)
@@ -132,9 +128,9 @@ Test(stress_tests, number_addition_fuzz){
 
         bstd_number o = *bstd_sum(&n, &m);
 
-        double fn = aux_number_to_double(n);
-        double fm = aux_number_to_double(m);
-        double fo = aux_number_to_double(o);
+        double fn = bstd_number_to_double(&n);
+        double fm = bstd_number_to_double(&m);
+        double fo = bstd_number_to_double(&o);
 
         double ex = fn + fm;
 //        bool dbg = (fabs(fo - ex) <= 1E-6);
