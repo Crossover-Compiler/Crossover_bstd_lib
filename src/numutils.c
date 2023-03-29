@@ -12,12 +12,6 @@ int64_t bstd_number_to_int(const bstd_number* number) {
 }
 
 double bstd_number_to_double(const bstd_number* number) {
-    int64_t a = bstd_number_to_int(number);
-    int64_t b = ipow(10, number->scale);
-
-    double db = (double)ipow(10, number->scale);
-    double result = bstd_number_to_int(number) / (double)ipow(10, number->scale);
-
     return bstd_number_to_int(number) / (double)ipow(10, number->scale);
 }
 
