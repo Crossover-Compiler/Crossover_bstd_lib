@@ -4,3 +4,5 @@
 /test/Testing/
 /Testing/
 /test/out/*
+/test/coverage.info
+/test/coverage/
