@@ -18,7 +18,7 @@ int bstd_number_is_integer(const bstd_number* number);
  * @param number The number to create a representation of.
  * @return Returns an integer representation of the specified number.
  */
-int bstd_number_to_int(const bstd_number* number);
+int64_t bstd_number_to_int(const bstd_number* number);
 
 /**
  * Creates a number representation for the specified bstd_number. The representation is an independent copy (setting it does not affect the specified bstd_number).
