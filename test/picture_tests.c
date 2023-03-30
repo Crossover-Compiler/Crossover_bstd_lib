@@ -9,7 +9,7 @@ Test(picture_tests, bstd_picture_to_cstr__text){
 
     // given a well-formed picture representing only text...
     unsigned char c[3] = { 'A', 'B', 'C' };
-    char mask[3] = { 'X', 'X', 'X' };
+    char mask[3] = { BSTD_MASK_X, BSTD_MASK_X, BSTD_MASK_X };
     bstd_picture* pic = bstd_picture_of(c, mask, 3);
 
     // ... when we create a string representation of that picture...
@@ -23,7 +23,7 @@ Test(picture_tests, bstd_picture_to_cstr__numerical){
 
     // given a well-formed picture containing a numerical zero...
     unsigned char c[3] = { 'Q', 0, 'F' };
-    char mask[3] = { 'X', '9', 'X' };
+    char mask[3] = { BSTD_MASK_X, BSTD_MASK_9, BSTD_MASK_X };
     bstd_picture* pic = bstd_picture_of(c, mask, 3);
 
     // ... when we create a string representation of that picture...
@@ -35,9 +35,9 @@ Test(picture_tests, bstd_picture_to_cstr__numerical){
 
 Test(picture_tests, bstd_picture_to_cstr__null_bytes_as_spaces){
 
-    // given a well-formed picture containing a null-byte under an 'X' mask...
+    // given a well-formed picture containing a null-byte under an BSTD_MASK_X mask...
     unsigned char c[3] = { 'Q', 0, 'F' };
-    char mask[3] = { 'X', 'X', 'X' };
+    char mask[3] = { BSTD_MASK_X, BSTD_MASK_X, BSTD_MASK_X };
     bstd_picture* pic = bstd_picture_of(c, mask, 3);
 
     // ... when we create a string representation of that picture...
@@ -51,7 +51,7 @@ Test(picture_tests, bstd_picture_to_cstr__copies) {
 
     // given a well-formed picture...
     unsigned char c[3] = {'A', 'B', 'C'};
-    char mask[3] = {'X', 'X', 'X'};
+    char mask[3] = {BSTD_MASK_X, BSTD_MASK_X, BSTD_MASK_X};
     bstd_picture *picture = bstd_picture_of(c, mask, 3);
 
     // ... when we create a string representation of that picture...
@@ -67,7 +67,7 @@ Test(picture_tests, bstd_picture_to_cstr__correct_length) {
 
     // given a well-formed picture...
     unsigned char c[3] = {'A', 'B', 'C'};
-    char mask[3] = {'X', 'X', 'X'};
+    char mask[3] = {BSTD_MASK_X, BSTD_MASK_X, BSTD_MASK_X};
     bstd_picture *picture = bstd_picture_of(c, mask, 3);
 
     // ... when we create a string representation of that picture...
@@ -82,7 +82,7 @@ Test(picture_tests, bstd_picture_to_cstr__truncate_length) {
 
     // given an ill-formed picture where a numerical value is greater than a single digit...
     unsigned char c[3] = {'H', 'H', 42};
-    char mask[3] = {'X', 'X', '9'};
+    char mask[3] = {BSTD_MASK_X, BSTD_MASK_X, BSTD_MASK_9};
     bstd_picture *picture = bstd_picture_of(c, mask, 3);
 
     // ... when we create a string representation of that picture...
@@ -97,7 +97,7 @@ Test(picture_tests, bstd_picture_to_cstr__numerical_truncates) {
 
     // given an ill-formed picture where a numerical value is greater than a single digit...
     unsigned char c[3] = {'H', 'H', 42};
-    char mask[3] = {'X', 'X', '9'};
+    char mask[3] = {BSTD_MASK_X, BSTD_MASK_X, BSTD_MASK_9};
     bstd_picture *picture = bstd_picture_of(c, mask, 3);
 
     // ... when we create a string representation of that picture...
@@ -115,11 +115,11 @@ Test(picture_tests, bstd_assign_picture__copies) {
 
     // given two pictures of equal length...
     unsigned char c[3] = {'A', 'B', 'C'};
-    char mask[3] = {'X', 'X', 'X'};
+    char mask[3] = {BSTD_MASK_X, BSTD_MASK_X, BSTD_MASK_X};
     bstd_picture *picture = bstd_picture_of(c, mask, 3);
 
     unsigned char c2[3] = {'D', 'E', 'F'};
-    char mask2[3] = {'X', 'X', 'X'};
+    char mask2[3] = {BSTD_MASK_X, BSTD_MASK_X, BSTD_MASK_X};
     bstd_picture *picture2 = bstd_picture_of(c2, mask2, 3);
 
     // ... when we assign one picture to the other...
@@ -135,25 +135,24 @@ Test(picture_tests, bstd_assign_picture__larger_assignee) {
 
     // given two pictures of different lengths...
     unsigned char c[4] = {'A', 'B', 'C', 'D'};
-    char mask[4] = {'X', 'X', 'X', 'X'};
+    char mask[4] = {BSTD_MASK_X, BSTD_MASK_X, BSTD_MASK_X, BSTD_MASK_X};
     bstd_picture *picture = bstd_picture_of(c, mask, 4);
 
     unsigned char c2[3] = {'E', 'F', 'G'};
-    char mask2[3] = {'X', 'X', 'X'};
+    char mask2[3] = {BSTD_MASK_X, BSTD_MASK_X, BSTD_MASK_X};
     bstd_picture *picture2 = bstd_picture_of(c2, mask2, 3);
 
     // ... when we assign the smaller picture to the larger...
     bstd_assign_picture(picture, picture2);
 
-    // ... then we expect that the leading bytes of the larger picture are set to zero,
-    // and the smaller picture to match the last part of larger the picture's bytes.
-    // ( picture->bytes = [0, 'E', 'F', 'G'] )
-    int delta = picture->length - picture2->length;
+    // ... then we expect that the trailing bytes of the larger picture are set to their default value,
+    // and the smaller picture to match the first part of larger the picture's bytes.
+    // ( picture->bytes = ['E', 'F', 'G', ' '] )
     for (int i = 0; i < picture->length; ++i) {
-        if (i < delta) {
-            cr_assert_eq(picture->bytes[i], 0);
+        if (i < picture2->length) {
+            cr_assert_eq(picture->bytes[i], picture2->bytes[i]);
         } else {
-            cr_assert_eq(picture->bytes[i], picture2->bytes[i - delta]);
+            cr_assert_eq(picture->bytes[i], bstd_default_value(picture->mask[i]));
         }
     }
 }
@@ -162,91 +161,20 @@ Test(picture_tests, bstd_assign_picture__smaller_assignee) {
 
     // given two pictures of different lengths...
     unsigned char c[3] = {'A', 'B', 'C'};
-    char mask[3] = {'X', 'X', 'X'};
+    char mask[3] = {BSTD_MASK_X, BSTD_MASK_X, BSTD_MASK_X};
     bstd_picture *picture = bstd_picture_of(c, mask, 3);
 
     unsigned char c2[4] = {'D', 'E', 'F', 'G'};
-    char mask2[4] = {'X', 'X', 'X', 'X'};
+    char mask2[4] = {BSTD_MASK_X, BSTD_MASK_X, BSTD_MASK_X, BSTD_MASK_X};
     bstd_picture *picture2 = bstd_picture_of(c2, mask2, 4);
 
     // ... when we assign the larger picture to the smaller...
     bstd_assign_picture(picture, picture2);
 
-    // ... then we expect the bytes of the smaller picture to match the last part of the larger picture.
-    // ( picture->bytes = ['E´, 'F', 'G'] )
-    int delta = picture2->length - picture->length;
+    // ... then we expect the bytes of the smaller picture to match the first part of the larger picture.
+    // ( picture->bytes = ['D', 'E´, 'F'] )
     for (int i = 0; i < picture->length; ++i) {
-        cr_assert_eq(picture->bytes[i], picture2->bytes[delta + i]);
-    }
-}
-
-/*
- * bstd_assign_bytes
- */
-
-Test(picture_tests, bstd_assign_bytes__copies) {
-
-    // given a picture and a buffer of equal length...
-    unsigned char c[3] = {'A', 'B', 'C'};
-    char mask[3] = {'X', 'X', 'X'};
-    bstd_picture *picture = bstd_picture_of(c, mask, 3);
-
-    unsigned char new_bytes[3] = {'D', 'E', 'F'};
-    uint8_t size = 3;
-
-    // ... when we assign that buffer to the picture...
-    bstd_assign_bytes(picture, new_bytes, size);
-
-    // ... then the picture bytes pointer and the buffer pointer may not be equal...
-    cr_expect(picture->bytes != new_bytes, "Expected bytes to be copied!");
-    // ... and the picture bytes and the buffer must have the same content.
-    cr_assert_arr_eq(picture->bytes, new_bytes, size);
-}
-
-Test(picture_tests, bstd_assign_bytes__larger_buffer) {
-
-    // given a picture and a buffer, where the buffer is larger...
-    unsigned char c[3] = {'A', 'B', 'C'};
-    char mask[3] = {'X', 'X', 'X'};
-    bstd_picture *picture = bstd_picture_of(c, mask, 3);
-
-    unsigned char new_bytes[5] = {'D', 'E', 'F', 'G', 'H'};
-    uint8_t size = 5;
-
-    // ... when we assign that buffer to the picture...
-    bstd_assign_bytes(picture, new_bytes, size);
-
-    // ... then we expect the bytes of the picture to match the last part of the buffer.
-    // ( picture->bytes = ['F', 'G', 'H'] )
-    int delta = size - picture->length;
-    for (int i = 0; i < picture->length; ++i) {
-        cr_assert_eq(picture->bytes[i], new_bytes[delta + i]);
-    }
-}
-
-Test(picture_tests, bstd_assign_bytes__smaller_buffer) {
-
-    // given a picture and a buffer, where the buffer is smaller...
-    unsigned char c[3] = {'A', 'B', 'C'};
-    char mask[3] = {'X', 'X', 'X'};
-    bstd_picture *picture = bstd_picture_of(c, mask, 3);
-
-    unsigned char new_bytes[2] = {'D', 'E'};
-    uint8_t size = 2;
-
-    // ... when we assign that buffer to the picture...
-    bstd_assign_bytes(picture, new_bytes, size);
-
-    // ... then we expect that the leading bytes of the picture are set to zero,
-    // and the buffer to match the last part of the picture bytes.
-    // ( picture->bytes = [0, 'D', 'E'] )
-    int delta = picture->length - size;
-    for (int i = 0; i < picture->length; ++i) {
-        if (i < delta) {
-            cr_assert_eq(picture->bytes[i], 0);
-        } else {
-            cr_assert_eq(picture->bytes[i], new_bytes[i - delta]);
-        }
+        cr_assert_eq(picture->bytes[i], picture2->bytes[i]);
     }
 }
 
@@ -258,7 +186,7 @@ Test(picture_tests, bstd_assign_str__copy) {
 
     // given a picture and a string of equal length...
     unsigned char c[3] = {'A', 'B', 'C'};
-    char mask[3] = {'X', 'X', 'X'};
+    char mask[3] = {BSTD_MASK_X, BSTD_MASK_X, BSTD_MASK_X};
     bstd_picture *picture = bstd_picture_of(c, mask, 3);
 
     char* str = "DEF";
@@ -276,7 +204,7 @@ Test(picture_tests, bstd_assign_str__larger_string) {
 
     // given a picture and a string, where the string is larger...
     unsigned char c[3] = {'A', 'B', 'C'};
-    char mask[3] = {'X', 'X', 'X'};
+    char mask[3] = {BSTD_MASK_X, BSTD_MASK_X, BSTD_MASK_X};
     bstd_picture *picture = bstd_picture_of(c, mask, 3);
 
     char* str = "DEFGH";
@@ -285,11 +213,10 @@ Test(picture_tests, bstd_assign_str__larger_string) {
     // ... when we assign that string to the picture...
     bstd_assign_str(picture, str);
 
-    // ... then we expect the bytes of the picture to match the last part of the string.
-    // ( picture->bytes = ['F', 'G', 'H'] )
-    int delta = str_len - picture->length;
+    // ... then we expect the bytes of the picture to match the first part of the string.
+    // ( picture->bytes = ['D', 'E', 'F'] )
     for (int i = 0; i < picture->length; ++i) {
-        cr_assert_eq(picture->bytes[i], str[delta + i]);
+        cr_assert_eq(picture->bytes[i], str[i]);
     }
 }
 
@@ -297,7 +224,7 @@ Test(picture_tests, bstd_assign_str__smaller_string) {
 
     // given a picture and a string, where the string is smaller...
     unsigned char c[3] = {'A', 'B', 'C'};
-    char mask[3] = {'X', 'X', 'X'};
+    char mask[3] = {BSTD_MASK_X, BSTD_MASK_X, BSTD_MASK_X};
     bstd_picture *picture = bstd_picture_of(c, mask, 3);
 
     char* str = "DE";
@@ -306,15 +233,14 @@ Test(picture_tests, bstd_assign_str__smaller_string) {
     // ... when we assign that string to the picture...
     bstd_assign_str(picture, str);
 
-    // ... then we expect that the leading bytes of the picture are set to zero,
-    // and the string to match the last part of the picture bytes.
-    // ( picture->bytes = [0, 'D', 'E'] )
-    int delta = picture->length - str_len;
+    // ... then we expect that the trailing bytes of the picture are set to their default value,
+    // and the string to match the first part of the picture bytes.
+    // ( picture->bytes = ['D', 'E', ' '] )
     for (int i = 0; i < picture->length; ++i) {
-        if (i < delta) {
-            cr_assert_eq(picture->bytes[i], 0);
+        if (i < str_len) {
+            cr_assert_eq(picture->bytes[i], str[i]);
         } else {
-            cr_assert_eq(picture->bytes[i], str[i - delta]);
+            cr_assert_eq(picture->bytes[i], bstd_default_value(picture->mask[i]));
         }
     }
 }
@@ -323,12 +249,14 @@ Test(picture_tests, bstd_assign_str__invertible) {
 
     // given a well-formed picture...
     unsigned char c[3] = {'H', 4, 2};
-    char mask[3] = {'X', '9', '9'};
+    char mask[3] = {BSTD_MASK_X, BSTD_MASK_9, BSTD_MASK_9};
     bstd_picture *picture = bstd_picture_of(c, mask, 3);
 
     // ... when we copy the bytes of that picture...
     unsigned char* bytes = (unsigned char*)malloc(sizeof(unsigned char) * picture->length);
-    copy_buffer(picture->bytes, bytes, picture->length);
+    for (int i = 0; i < picture->length; ++i) {
+        bytes[i] = picture->bytes[i];
+    }
     // ... and then create a string representation of the picture...
     char* str = bstd_picture_to_cstr(picture);
     // ... and then re-assign that string to the same picture...
@@ -336,4 +264,47 @@ Test(picture_tests, bstd_assign_str__invertible) {
 
     // ... then we expect the content of the picture to be exactly what it originally was.
     cr_assert_arr_eq(picture->bytes, bytes, picture->length);
+}
+
+/*
+ * bstd_picture_default_value
+ */
+
+Test(picture_tests, bstd_default_value__correct) {
+
+    // given all possible picture masks...
+    char masks[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+
+    // ... when we obtain the default values for those masks...
+    unsigned char defaults[3];
+    for (int i = 0; i < 3; ++i) {
+        defaults[i] = bstd_default_value(masks[i]);
+    }
+
+    // ... then we expect the default values to be correct.
+    unsigned char expected[3] = {' ', ' ', 0};
+    for (int i = 0; i < 3; ++i) {
+        cr_assert_eq(defaults[i], expected[i]);
+    }
+}
+
+/*
+ * bstd_picture_init
+ */
+
+Test(picture_tests, bstd_picture_init__correct) {
+
+    // given a picture containing non-default values
+    unsigned char c[3] = {'A', 'B', 3};
+    char mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    bstd_picture *picture = bstd_picture_of(c, mask, 3);
+
+    // ... when we initialize the values for that picture...
+    bstd_picture_init(picture);
+
+    // ... then we expect the values of the picture to be set to its mask's default value.
+    // ( picture->bytes = [' ', ' ', 0] )
+    for (int i = 0; i < picture->length; ++i) {
+        cr_assert_eq(picture->bytes[i], bstd_default_value(picture->mask[i]));
+    }
 }

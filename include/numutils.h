@@ -52,14 +52,14 @@ void bstd_assign_int(bstd_number* number, int value);
 void bstd_assign_double(bstd_number* number, double value);
 
 /**
- * todo: doc
+ * todo: remove; bstd_number_to_cstr is sufficient
  * @param number
  * @param advancing
  */
 void bstd_print_number(bstd_number number, bool advancing);
 
 /**
- * todo: doc
+ * todo: rename to bstd_number_to_str to be consistent with bstd_picture_to_str
  * @param number
  * @return
  */
