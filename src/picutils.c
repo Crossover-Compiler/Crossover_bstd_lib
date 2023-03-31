@@ -43,11 +43,8 @@ bstd_picture *bstd_picture_of(unsigned char *bytes, char *mask, uint8_t length) 
  */
 static void bstd_picture_init_range(bstd_picture* picture, size_t start, size_t end) {
 
-    // we can achieve this safely by masking, and then unmasking again, a null-value under the same mask.
     for (unsigned int i = start; i < end; ++i) {
-        const char m = picture->mask[i];
-        const char c = bstd_mask(0, m);
-        picture->bytes[i] = bstd_unmask(c, m);
+        picture->bytes[i] = bstd_default_value(picture->mask[i]);
     }
 }
 
