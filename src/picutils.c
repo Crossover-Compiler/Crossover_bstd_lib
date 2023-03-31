@@ -125,7 +125,8 @@ unsigned char bstd_default_value(char mask) {
 char bstd_mask(unsigned char byte, char mask) {
 
     /*
-     * 'X' => character(byte) or SPACE if null
+     * 'X' => byte
+     * 'A' => isalpha(byte) ? byte : SPACE
      * '9' => least_significant_digit(byte)
      */
 
@@ -134,9 +135,6 @@ char bstd_mask(unsigned char byte, char mask) {
 
     switch (mask) {
         case BSTD_MASK_X:
-            if (byte == 0) {
-                return BSTD_SPACE;
-            }
             return (char) byte;
         case BSTD_MASK_A:
             if (isalpha(byte)) {
