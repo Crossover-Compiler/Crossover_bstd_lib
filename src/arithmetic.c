@@ -41,7 +41,7 @@ bstd_number* bstd_sum(const bstd_number *lhs, const bstd_number *rhs) {
     number->scale = s;
     number->positive = result >= 0;
     number->isSigned = !number->positive;
-    number->length = length;
+    number->length = (length <= 18) ? length : 18;
 
     return number;
 }

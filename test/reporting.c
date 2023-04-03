@@ -14,10 +14,10 @@ ReportHook(PRE_ALL)(struct criterion_test_set *tests) {
     (void) tests;
     setbuf(stdout, NULL);
     setbuf(stderr, NULL);
-    puts("criterion_init");
+    puts("starting tests");
 }
 
 ReportHook(POST_ALL)(struct criterion_global_stats *stats) {
     (void) stats;
-    puts("criterion_fini");
+    puts("completed tests");
 }

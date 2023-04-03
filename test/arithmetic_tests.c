@@ -174,8 +174,1554 @@ Test(arithmetic_tests, max__b_eq_max){
  * +---------------+------------------------------+-----------------------------------+
  * |   Condition   |            Valid             |              Invalid              |
  * +---------------+------------------------------+-----------------------------------+
- * | Value of base | MININT64 =< base =< MAXINT64 | base < MININT64 , base > MAXINT64 |
+ * | Value of base | MININT64 <= base <= MAXINT64 | base < MININT64 , base > MAXINT64 |
  * | Value of exp  | exp >= 0                     | exp < 0, exp > MAXUINT64          |
  * +---------------+------------------------------+-----------------------------------+
  *
+ * Note: output overflows are expected behaviour
 */
+
+/*
+ * testing valid conditions MININT64 =< base =< MAXINT64 and exp >= 0
+ *
+ * in: base = 2, exp = 5
+ * expected = 32
+ *
+ */
+Test(arithmetic_tests, ipow__2_pow_5){
+    uint64_t res = ipow(2,5);
+    uint64_t ex = 32;
+    cr_assert_eq(res, ex);
+}
+
+/*
+ * testing invalid condition base < MININT64, using boundary value MININT64-1
+ *
+ * in: base = -9223372036854775809, exp = 1
+ * expected = 9223372036854775807
+ *
+ */
+Test(arithmetic_tests, ipow__base_lt_min){
+    uint64_t res = ipow(-9223372036854775809,1);
+    uint64_t ex = 9223372036854775807;
+    cr_assert_eq(res, ex);
+}
+
+/*
+ * testing invalid condition base > MININT64, using boundary value MININT64+1
+ *
+ * in: base = 9223372036854775808, exp = 1
+ * expected = -9223372036854775808
+ *
+ */
+Test(arithmetic_tests, ipow__base_gt_max){
+    uint64_t res = ipow(9223372036854775808,1);
+    uint64_t ex = -9223372036854775808;
+    cr_assert_eq(res, ex);
+}
+
+/*
+ * testing invalid condition exp < 0, using boundry value -1
+ *
+ * in: base = 1, exp = -1
+ * expected = 1
+ *
+ */
+Test(arithmetic_tests, ipow__exp_lt_0){
+    uint64_t res = ipow(1, -1);
+    uint64_t ex = 1;
+    cr_assert_eq(res, ex);
+}
+
+/*
+ * testing invalid condition exp > MAXUINT64, using boundry value MINUINT64+1
+ *
+ * in: base = 5, exp = 18446744073709551616
+ * expected = 1
+ *
+ */
+Test(arithmetic_tests, ipow__exp_gt_max){
+    uint64_t res = ipow(5, 18446744073709551616);
+    uint64_t ex = 1;
+    cr_assert_eq(res, ex);
+}
+
+/*
+ * testing boundry value base = MAXINT64
+ *
+ * in: base = 9223372036854775807, exp = 1
+ * expected = 9223372036854775807
+ *
+ */
+Test(arithmetic_tests, ipow__base_eq_max){
+    uint64_t res = ipow(9223372036854775807,1);
+    uint64_t ex = 9223372036854775807;
+    cr_assert_eq(res, ex);
+}
+
+/*
+ * testing boundry value base = MININT64
+ *
+ * in: base = -9223372036854775808, exp = 1
+ * expected = -9223372036854775808
+ *
+ */
+Test(arithmetic_tests, ipow__base_eq_min){
+    uint64_t res = ipow(-9223372036854775808,1);
+    uint64_t ex = -9223372036854775808;
+    cr_assert_eq(res, ex);
+}
+
+/*
+ * testing boundry value exp = 0
+ *
+ * in: base = 5, exp = 0
+ * expected = 1
+ *
+ */
+Test(arithmetic_tests, ipow__exp_eq_0){
+    uint64_t res = ipow(5,0);
+    uint64_t ex = 1;
+    cr_assert_eq(res, ex);
+}
+
+/*
+ * testing boundry value exp = 0
+ *
+ * in: base = 1, exp = 18446744073709551615
+ * expected = 1
+ *
+ */
+Test(arithmetic_tests, ipow__exp_eq_max){
+    uint64_t res = ipow(1,18446744073709551615);
+    uint64_t ex = 1;
+    cr_assert_eq(res, ex);
+}
+
+
+/**
+ * Tests for void bstd_sum(bstd_number *lhs, const bstd_number *rhs)
+ *
+ * Equivalence classes:
+ * +-----------------------+-------------------------+--------------------------------------+
+ * |       Condition       |          Valid          |               Invalid                |
+ * +-----------------------+-------------------------+--------------------------------------+
+ * | Value of lhs.value    | lhs.value >= 0          | lhs.value < 0, lhs.value > MAXUINT64 |
+ * | Value of lhs.scale    | 0 <= lhs.scale <= 18    | lhs.scale < 0, lhs.scale > 18        |
+ * | Value of lhs.length   | 1 <= lhs.length <= 18   | lhs.length < 0, lhs.length > 18      |
+ * | Value of lhs.isSigned | lhs.isSigned = false,   |                                      |
+ * |                       | lhs.isSigned = true     |                                      |
+ * | Value of lhs.positive | lhs.positive = false,   |                                      |
+ * |                       | lhs.positive = true     |                                      |
+ * | Relation              | lhs.isSigned = true &&  | lhs.isSigned = false &&              |
+ * |                       | lhs.positive = false,   | lhs.positive = false                 |
+ * |                       | lhs.isSigned = false && |                                      |
+ * |                       | lhs.positive = true,    |                                      |
+ * |                       | lhs.isSigned = true &&  |                                      |
+ * |                       | lhs.positive = true     |                                      |
+ * | Value of rhs.value    | rhs.value >= 0          | rhs.value < 0, rhs.value > MAXUINT64 |
+ * | Value of rhs.scale    | 0 <= rhs.scale <= 18    | rhs.scale < 0, rhs.scale > MAXUINT64 |
+ * | Value of rhs.length   | 1 <= rhs.length <= 18   | rhs.length < 0, rhs.length > 18      |
+ * | Value of rhs.isSigned | rhs.isSigned = false,   |                                      |
+ * |                       | rhs.isSigned = true     |                                      |
+ * | Value of rhs.positive | rhs.positive = false,   |                                      |
+ * |                       | rhs.positive = true     |                                      |
+ * | Relation              | lhs.isSigned = true &&  | rhs.isSigned = false &&              |
+ * |                       | lhs.positive = false,   | rhs.positive = false                 |
+ * |                       | lhs.isSigned = false && |                                      |
+ * |                       | lhs.positive = true,    |                                      |
+ * |                       | lhs.isSigned = true &&  |                                      |
+ * |                       | lhs.positive = true     |                                      |
+ * +-----------------------+-------------------------+--------------------------------------+
+ *
+*/
+
+//valid classes tests
+
+/*
+ * Testing valid conditions:
+ *
+ * lhs.value >= 0,
+ * 0 <= lhs.scale <= 18,
+ * 1 <= lhs.length <= 18,
+ * lhs.isSigned = false,
+ * lhs.positive = true,
+ * lhs.isSigned = false && lhs.positive = true
+ *
+ * rhs.value >= 0,
+ * 0 <= rhs.scale <= 18,
+ * 1 <= rhs.length <= 18,
+ * rhs.isSigned = false,
+ * rhs.positive = true,
+ * rhs.isSigned = false && rhs.positive = true
+ *
+ * in:
+ * lhs.value = 5555;
+ * lhs.scale = 3;
+ * lhs.length = 4;
+ * lhs.isSigned = false;
+ * lhs.positive = true;
+ *
+ * rhs.value = 1234;
+ * rhs.scale = 6;
+ * rhs.length = 7;
+ * rhs.isSigned = false;
+ * rhs.positive = true;
+ *
+ * expected:
+ * ex.value = 5556234;
+ * ex.scale = 6;
+ * ex.length = 7;
+ * ex.isSigned = false;
+ * ex.positive = true;
+ *
+ */
+Test(arithmetic_tests, bstd_sum__pos_unsigned){
+    bstd_number lhs;
+    lhs.value = 5555;
+    lhs.scale = 3;
+    lhs.length = 4;
+    lhs.isSigned = false;
+    lhs.positive = true;
+
+    bstd_number rhs;
+    rhs.value = 1234;
+    rhs.scale = 6;
+    rhs.length = 7;
+    rhs.isSigned = false;
+    rhs.positive = true;
+
+    bstd_number* res = bstd_sum(&lhs, &rhs);
+
+    bstd_number ex;
+    ex.value = 5556234;
+    ex.scale = 6;
+    ex.length = 7;
+    ex.isSigned = false;
+    ex.positive = true;
+
+    cr_assert_eq(ex.value, res->value);
+    cr_assert_eq(ex.scale, res->scale);
+    cr_assert_eq(ex.length, res->length);
+    cr_assert_eq(ex.isSigned, res->isSigned);
+    cr_assert_eq(ex.positive, res->positive);
+
+    free(res);
+}
+
+/*
+ * Testing valid conditions:
+ *
+ * lhs.value >= 0,
+ * 0 <= lhs.scale <= 18,
+ * 1 <= lhs.length <= 18,
+ * lhs.isSigned = true,
+ * lhs.positive = true,
+ * lhs.isSigned = true && lhs.positive = true
+ *
+ * rhs.value >= 0,
+ * 0 <= rhs.scale <= 18,
+ * 1 <= rhs.length <= 18,
+ * rhs.isSigned = true,
+ * rhs.positive = true,
+ * rhs.isSigned = true && rhs.positive = true
+ *
+ * in:
+ * lhs.value = 5555;
+ * lhs.scale = 3;
+ * lhs.length = 4;
+ * lhs.isSigned = true;
+ * lhs.positive = true;
+ *
+ * rhs.value = 1234;
+ * rhs.scale = 6;
+ * rhs.length = 7;
+ * rhs.isSigned = true;
+ * rhs.positive = true;
+ *
+ * expected:
+ * ex.value = 5556234;
+ * ex.scale = 6;
+ * ex.length = 7;
+ * ex.isSigned = false;
+ * ex.positive = true;
+ *
+ */
+Test(arithmetic_tests, bstd_sum__pos_signed_pos){
+    bstd_number lhs;
+    lhs.value = 5555;
+    lhs.scale = 3;
+    lhs.length = 4;
+    lhs.isSigned = true;
+    lhs.positive = true;
+
+    bstd_number rhs;
+    rhs.value = 1234;
+    rhs.scale = 6;
+    rhs.length = 7;
+    rhs.isSigned = true;
+    rhs.positive = true;
+
+    bstd_number* res = bstd_sum(&lhs, &rhs);
+
+    bstd_number ex;
+    ex.value = 5556234;
+    ex.scale = 6;
+    ex.length = 7;
+    ex.isSigned = false;
+    ex.positive = true;
+
+
+    cr_assert_eq(ex.value, res->value);
+    cr_assert_eq(ex.scale, res->scale);
+    cr_assert_eq(ex.length, res->length);
+    cr_assert_eq(ex.isSigned, res->isSigned);
+    cr_assert_eq(ex.positive, res->positive);
+
+    free(res);
+}
+
+/*
+ * Testing valid conditions:
+ *
+ * lhs.value >= 0,
+ * 0 <= lhs.scale <= 18,
+ * 1 <= lhs.length <= 18,
+ * lhs.isSigned = true,
+ * lhs.positive = false,
+ * lhs.isSigned = true && lhs.positive = false
+ *
+ * rhs.value >= 0,
+ * 0 <= rhs.scale <= 18,
+ * 1 <= rhs.length <= 18,
+ * rhs.isSigned = true,
+ * rhs.positive = false,
+ * rhs.isSigned = true && rhs.positive = false
+ *
+ * in:
+ * lhs.value = 5555;
+ * lhs.scale = 3;
+ * lhs.length = 4;
+ * lhs.isSigned = true;
+ * lhs.positive = false;
+ *
+ * rhs.value = 1234;
+ * rhs.scale = 6;
+ * rhs.length = 7;
+ * rhs.isSigned = true;
+ * rhs.positive = false;
+ *
+ * expected:
+ * ex.value = 5556234;
+ * ex.scale = 6;
+ * ex.length = 7;
+ * ex.isSigned = true;
+ * ex.positive = false;
+ *
+ */
+Test(arithmetic_tests, bstd_sum__pos_signed_neg){
+    bstd_number lhs;
+    lhs.value = 5555;
+    lhs.scale = 3;
+    lhs.length = 4;
+    lhs.isSigned = true;
+    lhs.positive = false;
+
+    bstd_number rhs;
+    rhs.value = 1234;
+    rhs.scale = 6;
+    rhs.length = 7;
+    rhs.isSigned = true;
+    rhs.positive = false;
+
+    bstd_number* res = bstd_sum(&lhs, &rhs);
+
+    bstd_number ex;
+    ex.value = 5556234;
+    ex.scale = 6;
+    ex.length = 7;
+    ex.isSigned = true;
+    ex.positive = false;
+
+
+    cr_assert_eq(ex.value, res->value);
+    cr_assert_eq(ex.scale, res->scale);
+    cr_assert_eq(ex.length, res->length);
+    cr_assert_eq(ex.isSigned, res->isSigned);
+    cr_assert_eq(ex.positive, res->positive);
+
+    free(res);
+}
+
+/*
+ * Testing valid conditions:
+ *
+ * lhs.value >= 0,
+ * 0 <= lhs.scale <= 18,
+ * 1 <= lhs.length <= 18,
+ * lhs.isSigned = true,
+ * lhs.positive = true,
+ * lhs.isSigned = true && lhs.positive = true
+ *
+ * rhs.value >= 0,
+ * 0 <= rhs.scale <= 18,
+ * 1 <= rhs.length <= 18,
+ * rhs.isSigned = true,
+ * rhs.positive = false,
+ * rhs.isSigned = true && rhs.positive = false
+ *
+ * in:
+ * lhs.value = 5555;
+ * lhs.scale = 3;
+ * lhs.length = 4;
+ * lhs.isSigned = true;
+ * lhs.positive = true;
+ *
+ * rhs.value = 1234;
+ * rhs.scale = 6;
+ * rhs.length = 7;
+ * rhs.isSigned = true;
+ * rhs.positive = false;
+ *
+ * expected:
+ * ex.value = 5553766;
+ * ex.scale = 6;
+ * ex.length = 7;
+ * ex.isSigned = false;
+ * ex.positive = true;
+ *
+ */
+Test(arithmetic_tests, bstd_sum__lhs_pos_rhs_neg){
+    bstd_number lhs;
+    lhs.value = 5555;
+    lhs.scale = 3;
+    lhs.length = 4;
+    lhs.isSigned = true;
+    lhs.positive = true;
+
+    bstd_number rhs;
+    rhs.value = 1234;
+    rhs.scale = 6;
+    rhs.length = 7;
+    rhs.isSigned = true;
+    rhs.positive = false;
+
+    bstd_number* res = bstd_sum(&lhs, &rhs);
+
+    bstd_number ex;
+    ex.value = 5553766;
+    ex.scale = 6;
+    ex.length = 7;
+    ex.isSigned = false;
+    ex.positive = true;
+
+
+    cr_assert_eq(ex.value, res->value);
+    cr_assert_eq(ex.scale, res->scale);
+    cr_assert_eq(ex.length, res->length);
+    cr_assert_eq(ex.isSigned, res->isSigned);
+    cr_assert_eq(ex.positive, res->positive);
+
+    free(res);
+}
+
+/*
+ * Testing valid conditions:
+ *
+ * lhs.value >= 0,
+ * 0 <= lhs.scale <= 18,
+ * 1 <= lhs.length <= 18,
+ * lhs.isSigned = true,
+ * lhs.positive = false,
+ * lhs.isSigned = true && lhs.positive = false
+ *
+ * rhs.value >= 0,
+ * 0 <= rhs.scale <= 18,
+ * 1 <= rhs.length <= 18,
+ * rhs.isSigned = true,
+ * rhs.positive = true,
+ * rhs.isSigned = true && rhs.positive = true
+ *
+ * in:
+ * lhs.value = 5555;
+ * lhs.scale = 3;
+ * lhs.length = 4;
+ * lhs.isSigned = true;
+ * lhs.positive = false;
+ *
+ * rhs.value = 1234;
+ * rhs.scale = 6;
+ * rhs.length = 7;
+ * rhs.isSigned = true;
+ * rhs.positive = true;
+ *
+ * expected:
+ * ex.value = 5553766;
+ * ex.scale = 6;
+ * ex.length = 7;
+ * ex.isSigned = true;
+ * ex.positive = false;
+ *
+ */
+Test(arithmetic_tests, bstd_sum__lhs_neg_rhs_pos){
+    bstd_number lhs;
+    lhs.value = 5555;
+    lhs.scale = 3;
+    lhs.length = 4;
+    lhs.isSigned = true;
+    lhs.positive = false;
+
+    bstd_number rhs;
+    rhs.value = 1234;
+    rhs.scale = 6;
+    rhs.length = 7;
+    rhs.isSigned = true;
+    rhs.positive = true;
+
+    bstd_number* res = bstd_sum(&lhs, &rhs);
+
+    bstd_number ex;
+    ex.value = 5553766;
+    ex.scale = 6;
+    ex.length = 7;
+    ex.isSigned = true;
+    ex.positive = false;
+
+
+    cr_assert_eq(ex.value, res->value);
+    cr_assert_eq(ex.scale, res->scale);
+    cr_assert_eq(ex.length, res->length);
+    cr_assert_eq(ex.isSigned, res->isSigned);
+    cr_assert_eq(ex.positive, res->positive);
+
+    free(res);
+}
+
+// invalid classes lhs
+
+/*
+ * Testing valid conditions:
+ * 0 <= lhs.scale <= 18,
+ * 1 <= lhs.length <= 18,
+ * lhs.isSigned = false,
+ * lhs.positive = true,
+ * lhs.isSigned = false && lhs.positive = true
+ *
+ * rhs.value >= 0,
+ * 0 <= rhs.scale <= 18,
+ * 1 <= rhs.length <= 18,
+ * rhs.isSigned = false,
+ * rhs.positive = true,
+ * rhs.isSigned = false && rhs.positive = true
+ *
+ * with invalid condition:
+ * lhs.value < 0
+ *
+ * in:
+ * lhs.value = -1;
+ * lhs.scale = 3;
+ * lhs.length = 4;
+ * lhs.isSigned = false;
+ * lhs.positive = true;
+ *
+ * rhs.value = 1234;
+ * rhs.scale = 6;
+ * rhs.length = 7;
+ * rhs.isSigned = false;
+ * rhs.positive = true;
+ *
+ * expected:
+ * ex.value = 234;
+ * ex.scale = 6;
+ * ex.length = 3;
+ * ex.isSigned = false;
+ * ex.positive = true;
+ *
+ *
+ *
+ */
+Test(arithmetic_tests, bstd_sum__lhs_value_lt_0){
+    bstd_number lhs;
+    lhs.value = -1;
+    lhs.scale = 3;
+    lhs.length = 4;
+    lhs.isSigned = false;
+    lhs.positive = true;
+
+    bstd_number rhs;
+    rhs.value = 1234;
+    rhs.scale = 6;
+    rhs.length = 7;
+    rhs.isSigned = false;
+    rhs.positive = true;
+
+    bstd_number* res = bstd_sum(&lhs, &rhs);
+
+    bstd_number ex;
+    ex.value = 234;
+    ex.scale = 6;
+    ex.length = 3;
+    ex.isSigned = false;
+    ex.positive = true;
+
+    cr_assert_eq(ex.value, res->value);
+    cr_assert_eq(ex.scale, res->scale);
+    cr_assert_eq(ex.length, res->length);
+    cr_assert_eq(ex.isSigned, res->isSigned);
+    cr_assert_eq(ex.positive, res->positive);
+
+    free(res);
+}
+
+/*
+ * Testing valid conditions:
+ *
+ * 0 <= lhs.scale <= 18,
+ * 1 <= lhs.length <= 18,
+ * lhs.isSigned = false,
+ * lhs.positive = true,
+ * lhs.isSigned = false && lhs.positive = true
+ *
+ * rhs.value >= 0,
+ * 0 <= rhs.scale <= 18,
+ * 1 <= rhs.length <= 18,
+ * rhs.isSigned = false,
+ * rhs.positive = true,
+ * rhs.isSigned = false && rhs.positive = true
+ *
+ * with invalid condition:
+ * lhs.value > maxuint64
+ *
+ * in:
+ * lhs.value = 18446744073709551616;
+ * lhs.scale = 3;
+ * lhs.length = 4;
+ * lhs.isSigned = false;
+ * lhs.positive = true;
+ *
+ * rhs.value = 1234;
+ * rhs.scale = 6;
+ * rhs.length = 7;
+ * rhs.isSigned = false;
+ * rhs.positive = true;
+ *
+ * expected:
+ * ex.value = 1234;
+ * ex.scale = 6;
+ * ex.length = 4;
+ * ex.isSigned = false;
+ * ex.positive = true;
+ *
+ */
+Test(arithmetic_tests, bstd_sum__lhs_value_gt_max){
+    bstd_number lhs;
+    lhs.value = 18446744073709551616;
+    lhs.scale = 3;
+    lhs.length = 4;
+    lhs.isSigned = false;
+    lhs.positive = true;
+
+    bstd_number rhs;
+    rhs.value = 1234;
+    rhs.scale = 6;
+    rhs.length = 7;
+    rhs.isSigned = false;
+    rhs.positive = true;
+
+    bstd_number* res = bstd_sum(&lhs, &rhs);
+
+    bstd_number ex;
+    ex.value = 1234;
+    ex.scale = 6;
+    ex.length = 4;
+    ex.isSigned = false;
+    ex.positive = true;
+
+    cr_assert_eq(ex.value, res->value);
+    cr_assert_eq(ex.scale, res->scale);
+    cr_assert_eq(ex.length, res->length);
+    cr_assert_eq(ex.isSigned, res->isSigned);
+    cr_assert_eq(ex.positive, res->positive);
+
+    free(res);
+}
+
+/*
+ * Testing valid conditions:
+ *
+ * lhs.value >= 0,
+ * 0 <= lhs.scale <= 18,
+ * 1 <= lhs.length <= 18,
+ * lhs.isSigned = false,
+ * lhs.positive = true,
+ * lhs.isSigned = false && lhs.positive = true
+ *
+ * rhs.value >= 0,
+ * 0 <= rhs.scale <= 18,
+ * 1 <= rhs.length <= 18,
+ * rhs.isSigned = false,
+ * rhs.positive = true,
+ * rhs.isSigned = false && rhs.positive = true
+ *
+ * and invalid condition:
+ * scale < 0
+ *
+ * in:
+ * lhs.value = 5555;
+ * lhs.scale = -1;
+ * lhs.length = 4;
+ * lhs.isSigned = false;
+ * lhs.positive = true;
+ *
+ * rhs.value = 1234;
+ * rhs.scale = 6;
+ * rhs.length = 7;
+ * rhs.isSigned = false;
+ * rhs.positive = true;
+ *
+ * expected:
+ * ex.value = 5555;
+ * ex.scale = 18446744073709551615;
+ * ex.length = 4;
+ * ex.isSigned = false;
+ * ex.positive = true;
+ *
+ */
+Test(arithmetic_tests, bstd_sum__lhs_scale_lt_0){
+    bstd_number lhs;
+    lhs.value = 5555;
+    lhs.scale = -1;
+    lhs.length = 4;
+    lhs.isSigned = false;
+    lhs.positive = true;
+
+    bstd_number rhs;
+    rhs.value = 1234;
+    rhs.scale = 6;
+    rhs.length = 7;
+    rhs.isSigned = false;
+    rhs.positive = true;
+
+    bstd_number* res = bstd_sum(&lhs, &rhs);
+
+    bstd_number ex;
+    ex.value = 5555;
+    ex.scale = 18446744073709551615;
+    ex.length = 4;
+    ex.isSigned = false;
+    ex.positive = true;
+
+    cr_assert_eq(ex.value, res->value);
+    cr_assert_eq(ex.scale, res->scale);
+    cr_assert_eq(ex.length, res->length);
+    cr_assert_eq(ex.isSigned, res->isSigned);
+    cr_assert_eq(ex.positive, res->positive);
+
+    free(res);
+}
+
+/*
+ * Testing valid conditions:
+ *
+ * lhs.value >= 0
+ * 1 <= lhs.length <= 18,
+ * lhs.isSigned = false,
+ * lhs.positive = true,
+ * lhs.isSigned = false && lhs.positive = true
+ *
+ * rhs.value >= 0,
+ * 0 <= rhs.scale <= 18,
+ * 1 <= rhs.length <= 18,
+ * rhs.isSigned = false,
+ * rhs.positive = true,
+ * rhs.isSigned = false && rhs.positive = true
+ *
+ * and invalid condition:
+ * lhs.scale > 18
+ *
+ * in:
+ * lhs.value = 5555;
+ * lhs.scale = 19;
+ * lhs.length = 4;
+ * lhs.isSigned = false;
+ * lhs.positive = true;
+ *
+ * rhs.value = 1234;
+ * rhs.scale = 6;
+ * rhs.length = 7;
+ * rhs.isSigned = false;
+ * rhs.positive = true;
+ *
+ * expected:
+ * ex.value = 12340000000005555;
+ * ex.scale = 19;
+ * ex.length = 17;
+ * ex.isSigned = false;
+ * ex.positive = true;
+ *
+ */
+Test(arithmetic_tests, bstd_sum__lhs_scale_gt_18){
+    bstd_number lhs;
+    lhs.value = 5555;
+    lhs.scale = 19;
+    lhs.length = 4;
+    lhs.isSigned = false;
+    lhs.positive = true;
+
+    bstd_number rhs;
+    rhs.value = 1234;
+    rhs.scale = 6;
+    rhs.length = 7;
+    rhs.isSigned = false;
+    rhs.positive = true;
+
+    bstd_number* res = bstd_sum(&lhs, &rhs);
+
+    bstd_number ex;
+    ex.value = 12340000000005555;
+    ex.scale = 19;
+    ex.length = 17;
+    ex.isSigned = false;
+    ex.positive = true;
+
+    cr_assert_eq(ex.value, res->value);
+    cr_assert_eq(ex.scale, res->scale);
+    cr_assert_eq(ex.length, res->length);
+    cr_assert_eq(ex.isSigned, res->isSigned);
+    cr_assert_eq(ex.positive, res->positive);
+
+    free(res);
+}
+
+/*
+ * Testing valid conditions:
+ *
+ * lhs.value >= 0,
+ * 0 <= lhs.scale <= 18,
+ * lhs.isSigned = false,
+ * lhs.positive = true,
+ * lhs.isSigned = false && lhs.positive = true
+ *
+ * rhs.value >= 0,
+ * 0 <= rhs.scale <= 18,
+ * 1 <= rhs.length <= 18,
+ * rhs.isSigned = false,
+ * rhs.positive = true,
+ * rhs.isSigned = false && rhs.positive = true
+ *
+ * and invalid condition:
+ * lhs.length < 0
+ *
+ * in:
+ * lhs.value = 5555;
+ * lhs.scale = 3;
+ * lhs.length = -1;
+ * lhs.isSigned = false;
+ * lhs.positive = true;
+ *
+ * rhs.value = 1234;
+ * rhs.scale = 6;
+ * rhs.length = 7;
+ * rhs.isSigned = false;
+ * rhs.positive = true;
+ *
+ * expected:
+ * ex.value = 5556234;
+ * ex.scale = 6;
+ * ex.length = 7;
+ * ex.isSigned = false;
+ * ex.positive = true;
+ *
+ */
+Test(arithmetic_tests, bstd_sum__lhs_length_lt_0){
+    bstd_number lhs;
+    lhs.value = 5555;
+    lhs.scale = 3;
+    lhs.length = -1;
+    lhs.isSigned = false;
+    lhs.positive = true;
+
+    bstd_number rhs;
+    rhs.value = 1234;
+    rhs.scale = 6;
+    rhs.length = 7;
+    rhs.isSigned = false;
+    rhs.positive = true;
+
+    bstd_number* res = bstd_sum(&lhs, &rhs);
+
+    bstd_number ex;
+    ex.value = 5556234;
+    ex.scale = 6;
+    ex.length = 7;
+    ex.isSigned = false;
+    ex.positive = true;
+
+    cr_assert_eq(ex.value, res->value);
+    cr_assert_eq(ex.scale, res->scale);
+    cr_assert_eq(ex.length, res->length);
+    cr_assert_eq(ex.isSigned, res->isSigned);
+    cr_assert_eq(ex.positive, res->positive);
+
+    free(res);
+}
+
+/*
+ * Testing valid conditions:
+ *
+ * lhs.value >= 0,
+ * 0 <= lhs.scale <= 18,
+ * lhs.isSigned = false,
+ * lhs.positive = true,
+ * lhs.isSigned = false && lhs.positive = true
+ *
+ * rhs.value >= 0,
+ * 0 <= rhs.scale <= 18,
+ * 1 <= rhs.length <= 18,
+ * rhs.isSigned = false,
+ * rhs.positive = true,
+ * rhs.isSigned = false && rhs.positive = true
+ *
+ * and invalid condition:
+ * lhs.length > 18
+ *
+ * in:
+ * lhs.value = 5555;
+ * lhs.scale = 3;
+ * lhs.length = -1;
+ * lhs.isSigned = false;
+ * lhs.positive = true;
+ *
+ * rhs.value = 1234;
+ * rhs.scale = 6;
+ * rhs.length = 7;
+ * rhs.isSigned = false;
+ * rhs.positive = true;
+ *
+ * expected:
+ * ex.value = 5556234;
+ * ex.scale = 6;
+ * ex.length = 7;
+ * ex.isSigned = false;
+ * ex.positive = true;
+ *
+ */
+Test(arithmetic_tests, bstd_sum__lhs_length_gt_18){
+    bstd_number lhs;
+    lhs.value = 5555;
+    lhs.scale = 3;
+    lhs.length = 19;
+    lhs.isSigned = false;
+    lhs.positive = true;
+
+    bstd_number rhs;
+    rhs.value = 1234;
+    rhs.scale = 6;
+    rhs.length = 7;
+    rhs.isSigned = false;
+    rhs.positive = true;
+
+    bstd_number* res = bstd_sum(&lhs, &rhs);
+
+    bstd_number ex;
+    ex.value = 5556234;
+    ex.scale = 6;
+    ex.length = 7;
+    ex.isSigned = false;
+    ex.positive = true;
+
+    cr_assert_eq(ex.value, res->value);
+    cr_assert_eq(ex.scale, res->scale);
+    cr_assert_eq(ex.length, res->length);
+    cr_assert_eq(ex.isSigned, res->isSigned);
+    cr_assert_eq(ex.positive, res->positive);
+
+    free(res);
+}
+
+/*
+ * Testing valid conditions:
+ *
+ * lhs.value >= 0,
+ * 0 <= lhs.scale <= 18,
+ * 1 <= lhs.length <= 18,
+ * lhs.isSigned = false,
+ * lhs.positive = false,
+ *
+ * rhs.value >= 0,
+ * 0 <= rhs.scale <= 18,
+ * 1 <= rhs.length <= 18,
+ * rhs.isSigned = false,
+ * rhs.positive = true,
+ * rhs.isSigned = false && rhs.positive = true
+ *
+ * and invalid condition:
+ * lhs.isSigned = false && lhs.positive = false
+ *
+ * in:
+ * lhs.value = 5555;
+ * lhs.scale = 3;
+ * lhs.length = 4;
+ * lhs.isSigned = false;
+ * lhs.positive = false;
+ *
+ * rhs.value = 1234;
+ * rhs.scale = 6;
+ * rhs.length = 7;
+ * rhs.isSigned = false;
+ * rhs.positive = true;
+ *
+ * expected:
+ * ex.value = 5556234;
+ * ex.scale = 6;
+ * ex.length = 7;
+ * ex.isSigned = false;
+ * ex.positive = true;
+ *
+ */
+Test(arithmetic_tests, bstd_sum__lhs_unsigned_negative){
+    bstd_number lhs;
+    lhs.value = 5555;
+    lhs.scale = 3;
+    lhs.length = 4;
+    lhs.isSigned = false;
+    lhs.positive = false;
+
+    bstd_number rhs;
+    rhs.value = 1234;
+    rhs.scale = 6;
+    rhs.length = 7;
+    rhs.isSigned = false;
+    rhs.positive = true;
+
+    bstd_number* res = bstd_sum(&lhs, &rhs);
+
+    bstd_number ex;
+    ex.value = 5556234;
+    ex.scale = 6;
+    ex.length = 7;
+    ex.isSigned = false;
+    ex.positive = true;
+
+    cr_assert_eq(ex.value, res->value);
+    cr_assert_eq(ex.scale, res->scale);
+    cr_assert_eq(ex.length, res->length);
+    cr_assert_eq(ex.isSigned, res->isSigned);
+    cr_assert_eq(ex.positive, res->positive);
+
+    free(res);
+}
+
+//invalid classes rhs
+
+/*
+ * Testing valid conditions:
+ * lhs.value >= 0,
+ * 0 <= lhs.scale <= 18,
+ * 1 <= lhs.length <= 18,
+ * lhs.isSigned = false,
+ * lhs.positive = true,
+ * lhs.isSigned = false && lhs.positive = true
+ *
+ * 0 <= rhs.scale <= 18,
+ * 1 <= rhs.length <= 18,
+ * rhs.isSigned = false,
+ * rhs.positive = true,
+ * rhs.isSigned = false && rhs.positive = true
+ *
+ * with invalid condition:
+ * rhs.value < 0
+ *
+ * in:
+ * lhs.value = 5555;
+ * lhs.scale = 3;
+ * lhs.length = 4;
+ * lhs.isSigned = false;
+ * lhs.positive = true;
+ *
+ * rhs.value = -1;
+ * rhs.scale = 6;
+ * rhs.length = 7;
+ * rhs.isSigned = false;
+ * rhs.positive = true;
+ *
+ * expected:
+ * ex.value = 5554999;
+ * ex.scale = 6;
+ * ex.length = 7;
+ * ex.isSigned = false;
+ * ex.positive = true;
+ *
+ *
+ *
+ */ //temp:done
+Test(arithmetic_tests, bstd_sum__rhs_value_lt_0){
+    bstd_number lhs;
+    lhs.value = 5555;
+    lhs.scale = 3;
+    lhs.length = 4;
+    lhs.isSigned = false;
+    lhs.positive = true;
+
+    bstd_number rhs;
+    rhs.value = -1;
+    rhs.scale = 6;
+    rhs.length = 7;
+    rhs.isSigned = false;
+    rhs.positive = true;
+
+    bstd_number* res = bstd_sum(&lhs, &rhs);
+
+    bstd_number ex;
+    ex.value = 5554999;
+    ex.scale = 6;
+    ex.length = 7;
+    ex.isSigned = false;
+    ex.positive = true;
+
+    cr_assert_eq(ex.value, res->value);
+    cr_assert_eq(ex.scale, res->scale);
+    cr_assert_eq(ex.length, res->length);
+    cr_assert_eq(ex.isSigned, res->isSigned);
+    cr_assert_eq(ex.positive, res->positive);
+
+    free(res);
+}
+
+/*
+ * Testing valid conditions:
+ * lhs.value >= 0,
+ * 0 <= lhs.scale <= 18,
+ * 1 <= lhs.length <= 18,
+ * lhs.isSigned = false,
+ * lhs.positive = true,
+ * lhs.isSigned = false && lhs.positive = true
+ *
+ *
+ * 0 <= rhs.scale <= 18,
+ * 1 <= rhs.length <= 18,
+ * rhs.isSigned = false,
+ * rhs.positive = true,
+ * rhs.isSigned = false && rhs.positive = true
+ *
+ * with invalid condition:
+ * rhs.value > maxuint64
+ *
+ * in:
+ * lhs.value = 5555;
+ * lhs.scale = 3;
+ * lhs.length = 4;
+ * lhs.isSigned = false;
+ * lhs.positive = true;
+ *
+ * rhs.value = 18446744073709551616;
+ * rhs.scale = 6;
+ * rhs.length = 7;
+ * rhs.isSigned = false;
+ * rhs.positive = true;
+ *
+ * expected:
+ * ex.value = 5555000;
+ * ex.scale = 6;
+ * ex.length = 7;
+ * ex.isSigned = false;
+ * ex.positive = true;
+ *
+ */ //temp: done
+Test(arithmetic_tests, bstd_sum__rhs_value_gt_max){
+    bstd_number lhs;
+    lhs.value = 5555;
+    lhs.scale = 3;
+    lhs.length = 4;
+    lhs.isSigned = false;
+    lhs.positive = true;
+
+    bstd_number rhs;
+    rhs.value = 18446744073709551616;
+    rhs.scale = 6;
+    rhs.length = 7;
+    rhs.isSigned = false;
+    rhs.positive = true;
+
+    bstd_number* res = bstd_sum(&lhs, &rhs);
+
+    bstd_number ex;
+    ex.value = 5555000;
+    ex.scale = 6;
+    ex.length = 7;
+    ex.isSigned = false;
+    ex.positive = true;
+
+    cr_assert_eq(ex.value, res->value);
+    cr_assert_eq(ex.scale, res->scale);
+    cr_assert_eq(ex.length, res->length);
+    cr_assert_eq(ex.isSigned, res->isSigned);
+    cr_assert_eq(ex.positive, res->positive);
+
+    free(res);
+}
+
+/*
+ * Testing valid conditions:
+ *
+ * lhs.value >= 0,
+ * 0 <= lhs.scale <= 18,
+ * 1 <= lhs.length <= 18,
+ * lhs.isSigned = false,
+ * lhs.positive = true,
+ * lhs.isSigned = false && lhs.positive = true
+ *
+ * rhs.value >= 0,
+ * 1 <= rhs.length <= 18,
+ * rhs.isSigned = false,
+ * rhs.positive = true,
+ * rhs.isSigned = false && rhs.positive = true
+ *
+ * and invalid condition:
+ * rhs.scale < 0
+ *
+ * in:
+ * lhs.value = 5555;
+ * lhs.scale = 3;
+ * lhs.length = 4;
+ * lhs.isSigned = false;
+ * lhs.positive = true;
+ *
+ * rhs.value = 1234;
+ * rhs.scale = -1;
+ * rhs.length = 7;
+ * rhs.isSigned = false;
+ * rhs.positive = true;
+ *
+ * expected:
+ * ex.value = 1234;
+ * ex.scale = 18446744073709551615;
+ * ex.length = 4;
+ * ex.isSigned = false;
+ * ex.positive = true;
+ *
+ */ //temp: done
+Test(arithmetic_tests, bstd_sum__rhs_scale_lt_0){
+    bstd_number lhs;
+    lhs.value = 5555;
+    lhs.scale = 3;
+    lhs.length = 4;
+    lhs.isSigned = false;
+    lhs.positive = true;
+
+    bstd_number rhs;
+    rhs.value = 1234;
+    rhs.scale = -1;
+    rhs.length = 7;
+    rhs.isSigned = false;
+    rhs.positive = true;
+
+    bstd_number* res = bstd_sum(&lhs, &rhs);
+
+    bstd_number ex;
+    ex.value = 1234;
+    ex.scale = 18446744073709551615;
+    ex.length = 4;
+    ex.isSigned = false;
+    ex.positive = true;
+
+    cr_assert_eq(ex.value, res->value);
+    cr_assert_eq(ex.scale, res->scale);
+    cr_assert_eq(ex.length, res->length);
+    cr_assert_eq(ex.isSigned, res->isSigned);
+    cr_assert_eq(ex.positive, res->positive);
+
+    free(res);
+}
+
+/*
+ * Testing valid conditions:
+ *
+ * lhs.value >= 0
+ * 1 <= lhs.length <= 18,
+ * lhs.isSigned = false,
+ * lhs.positive = true,
+ * lhs.isSigned = false && lhs.positive = true
+ *
+ * rhs.value >= 0,
+ * 0 <= rhs.scale <= 18,
+ * 1 <= rhs.length <= 18,
+ * rhs.isSigned = false,
+ * rhs.positive = true,
+ * rhs.isSigned = false && rhs.positive = true
+ *
+ * and invalid condition:
+ * rhs.scale > 18
+ *
+ * in:
+ * lhs.value = 5555;
+ * lhs.scale = 19;
+ * lhs.length = 4;
+ * lhs.isSigned = false;
+ * lhs.positive = true;
+ *
+ * rhs.value = 1234;
+ * rhs.scale = 6;
+ * rhs.length = 7;
+ * rhs.isSigned = false;
+ * rhs.positive = true;
+ *
+ * expected:
+ * ex.value = 12340000000005555;
+ * ex.scale = 19;
+ * ex.length = 17;
+ * ex.isSigned = false;
+ * ex.positive = true;
+ *
+ */
+Test(arithmetic_tests, bstd_sum__rhs_scale_gt_18){
+    bstd_number lhs;
+    lhs.value = 5555;
+    lhs.scale = 19;
+    lhs.length = 4;
+    lhs.isSigned = false;
+    lhs.positive = true;
+
+    bstd_number rhs;
+    rhs.value = 1234;
+    rhs.scale = 6;
+    rhs.length = 7;
+    rhs.isSigned = false;
+    rhs.positive = true;
+
+    bstd_number* res = bstd_sum(&lhs, &rhs);
+
+    bstd_number ex;
+    ex.value = 12340000000005555;
+    ex.scale = 19;
+    ex.length = 17;
+    ex.isSigned = false;
+    ex.positive = true;
+
+    cr_assert_eq(ex.value, res->value);
+    cr_assert_eq(ex.scale, res->scale);
+    cr_assert_eq(ex.length, res->length);
+    cr_assert_eq(ex.isSigned, res->isSigned);
+    cr_assert_eq(ex.positive, res->positive);
+
+    free(res);
+}
+
+/*
+ * Testing valid conditions:
+ *
+ * lhs.value >= 0,
+ * 0 <= lhs.scale <= 18,
+ * lhs.isSigned = false,
+ * lhs.positive = true,
+ * lhs.isSigned = false && lhs.positive = true
+ *
+ * rhs.value >= 0,
+ * 0 <= rhs.scale <= 18,
+ * 1 <= rhs.length <= 18,
+ * rhs.isSigned = false,
+ * rhs.positive = true,
+ * rhs.isSigned = false && rhs.positive = true
+ *
+ * and invalid condition:
+ * lhs.length < 0
+ *
+ * in:
+ * lhs.value = 5555;
+ * lhs.scale = 3;
+ * lhs.length = -1;
+ * lhs.isSigned = false;
+ * lhs.positive = true;
+ *
+ * rhs.value = 1234;
+ * rhs.scale = 6;
+ * rhs.length = 7;
+ * rhs.isSigned = false;
+ * rhs.positive = true;
+ *
+ * expected:
+ * ex.value = 5556234;
+ * ex.scale = 6;
+ * ex.length = 7;
+ * ex.isSigned = false;
+ * ex.positive = true;
+ *
+ */
+Test(arithmetic_tests, bstd_sum__rhs_length_lt_0){
+    bstd_number lhs;
+    lhs.value = 5555;
+    lhs.scale = 3;
+    lhs.length = -1;
+    lhs.isSigned = false;
+    lhs.positive = true;
+
+    bstd_number rhs;
+    rhs.value = 1234;
+    rhs.scale = 6;
+    rhs.length = 7;
+    rhs.isSigned = false;
+    rhs.positive = true;
+
+    bstd_number* res = bstd_sum(&lhs, &rhs);
+
+    bstd_number ex;
+    ex.value = 5556234;
+    ex.scale = 6;
+    ex.length = 7;
+    ex.isSigned = false;
+    ex.positive = true;
+
+    cr_assert_eq(ex.value, res->value);
+    cr_assert_eq(ex.scale, res->scale);
+    cr_assert_eq(ex.length, res->length);
+    cr_assert_eq(ex.isSigned, res->isSigned);
+    cr_assert_eq(ex.positive, res->positive);
+
+    free(res);
+}
+
+/*
+ * Testing valid conditions:
+ *
+ * lhs.value >= 0,
+ * 0 <= lhs.scale <= 18,
+ * lhs.isSigned = false,
+ * lhs.positive = true,
+ * lhs.isSigned = false && lhs.positive = true
+ *
+ * rhs.value >= 0,
+ * 0 <= rhs.scale <= 18,
+ * 1 <= rhs.length <= 18,
+ * rhs.isSigned = false,
+ * rhs.positive = true,
+ * rhs.isSigned = false && rhs.positive = true
+ *
+ * and invalid condition:
+ * lhs.length > 18
+ *
+ * in:
+ * lhs.value = 5555;
+ * lhs.scale = 3;
+ * lhs.length = -1;
+ * lhs.isSigned = false;
+ * lhs.positive = true;
+ *
+ * rhs.value = 1234;
+ * rhs.scale = 6;
+ * rhs.length = 7;
+ * rhs.isSigned = false;
+ * rhs.positive = true;
+ *
+ * expected:
+ * ex.value = 5556234;
+ * ex.scale = 6;
+ * ex.length = 7;
+ * ex.isSigned = false;
+ * ex.positive = true;
+ *
+ */
+Test(arithmetic_tests, bstd_sum__rhs_length_gt_18){
+    bstd_number lhs;
+    lhs.value = 5555;
+    lhs.scale = 3;
+    lhs.length = 19;
+    lhs.isSigned = false;
+    lhs.positive = true;
+
+    bstd_number rhs;
+    rhs.value = 1234;
+    rhs.scale = 6;
+    rhs.length = 7;
+    rhs.isSigned = false;
+    rhs.positive = true;
+
+    bstd_number* res = bstd_sum(&lhs, &rhs);
+
+    bstd_number ex;
+    ex.value = 5556234;
+    ex.scale = 6;
+    ex.length = 7;
+    ex.isSigned = false;
+    ex.positive = true;
+
+    cr_assert_eq(ex.value, res->value);
+    cr_assert_eq(ex.scale, res->scale);
+    cr_assert_eq(ex.length, res->length);
+    cr_assert_eq(ex.isSigned, res->isSigned);
+    cr_assert_eq(ex.positive, res->positive);
+
+    free(res);
+}
+
+/*
+ * Testing valid conditions:
+ *
+ * lhs.value >= 0,
+ * 0 <= lhs.scale <= 18,
+ * 1 <= lhs.length <= 18,
+ * lhs.isSigned = false,
+ * lhs.positive = false,
+ *
+ * rhs.value >= 0,
+ * 0 <= rhs.scale <= 18,
+ * 1 <= rhs.length <= 18,
+ * rhs.isSigned = false,
+ * rhs.positive = true,
+ * rhs.isSigned = false && rhs.positive = true
+ *
+ * and invalid condition:
+ * lhs.isSigned = false && lhs.positive = false
+ *
+ * in:
+ * lhs.value = 5555;
+ * lhs.scale = 3;
+ * lhs.length = 4;
+ * lhs.isSigned = false;
+ * lhs.positive = false;
+ *
+ * rhs.value = 1234;
+ * rhs.scale = 6;
+ * rhs.length = 7;
+ * rhs.isSigned = false;
+ * rhs.positive = true;
+ *
+ * expected:
+ * ex.value = 5556234;
+ * ex.scale = 6;
+ * ex.length = 7;
+ * ex.isSigned = false;
+ * ex.positive = true;
+ *
+ */
+Test(arithmetic_tests, bstd_sum__rhs_unsigned_negative){
+    bstd_number lhs;
+    lhs.value = 5555;
+    lhs.scale = 3;
+    lhs.length = 4;
+    lhs.isSigned = false;
+    lhs.positive = false;
+
+    bstd_number rhs;
+    rhs.value = 1234;
+    rhs.scale = 6;
+    rhs.length = 7;
+    rhs.isSigned = false;
+    rhs.positive = true;
+
+    bstd_number* res = bstd_sum(&lhs, &rhs);
+
+    bstd_number ex;
+    ex.value = 5556234;
+    ex.scale = 6;
+    ex.length = 7;
+    ex.isSigned = false;
+    ex.positive = true;
+
+    cr_assert_eq(ex.value, res->value);
+    cr_assert_eq(ex.scale, res->scale);
+    cr_assert_eq(ex.length, res->length);
+    cr_assert_eq(ex.isSigned, res->isSigned);
+    cr_assert_eq(ex.positive, res->positive);
+
+    free(res);
+}
