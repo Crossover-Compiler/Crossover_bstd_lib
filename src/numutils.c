@@ -146,13 +146,13 @@ char *bstd_number_to_cstr(bstd_number number) {
 }
 
 // TODO: Sign gets calculated here, but should be calculated in bstd_number_to_cstr!
-void bstd_print_number(bstd_number number, bool advancing) {
+void bstd_print_number(bstd_number number, bool spacer) {
     char *str = bstd_number_to_cstr(number);
-    if (advancing) {
+    if (spacer) {
         if (number.positive && number.isSigned) {
-            printf("+%s\r\n", str);
+            printf(" +%s", str);
         } else {
-            printf("%s\r\n", str);
+            printf(" %s", str);
         }
     } else {
         if (number.positive && number.isSigned) {

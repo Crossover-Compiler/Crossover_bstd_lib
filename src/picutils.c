@@ -3,26 +3,31 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
-#ifndef BSTD_SPACE
-#define BSTD_SPACE ' '
-#endif
-
-unsigned char* copy_buffer(const unsigned char* source, unsigned char* target, size_t length) {
+/**
+ * Deep copies the content of the specified source buffer to the specified target buffer.
+ * The specified buffers must be of equal length.
+ * @param source The buffer whose content to copy_buffer.
+ * @param target The buffer to copy_buffer into.
+ * @param length The length of the buffers.
+ * @return Returns a reference to the target buffer.
+ */
+static unsigned char *copy_buffer(const unsigned char *source, unsigned char *target, size_t length) {
     for (int i = 0; i < length; ++i) {
         target[i] = source[i];
     }
     return target;
 }
 
-bstd_picture* bstd_picture_of(unsigned char *bytes, char *mask, uint8_t length) {
+bstd_picture *bstd_picture_of(unsigned char *bytes, char *mask, uint8_t length) {
 
-    unsigned char* b = (unsigned char*)malloc(sizeof(unsigned char) * length + 1);
-    char* m = (char*)malloc(sizeof(char) * length + 1);
+    unsigned char *b = (unsigned char *) malloc(sizeof(unsigned char) * length + 1);
+    char *m = (char *) malloc(sizeof(char) * length + 1);
 
-    bstd_picture* picture = (bstd_picture*)malloc(sizeof(bstd_picture));
+    bstd_picture *picture = (bstd_picture *) malloc(sizeof(bstd_picture));
     picture->bytes = copy_buffer(bytes, b, length + 1);
-    picture->mask = copy_buffer(mask, m, length + 1);
+    picture->mask = (char*) copy_buffer((unsigned char*) mask, (unsigned char*) m , length + 1);
     picture->length = length;
 
     // todo: ensure that the bytes do not violate the mask
@@ -30,34 +35,60 @@ bstd_picture* bstd_picture_of(unsigned char *bytes, char *mask, uint8_t length) 
     return picture;
 }
 
-void bstd_assign_picture(bstd_picture* assignee, bstd_picture* value) {
-    bstd_assign_bytes(assignee, value->bytes, value->length);
+/**
+ * Initializes the content of this picture with the appropriate default values for its mask from start (inclusive) to end (exclusive).
+ * @param picture The picture to initialize.
+ * @param start The starting index of the values to initialize (inclusive).
+ * @param end The end index of the values to initialize (exclusive). May not exceed the picture length.
+ */
+static void bstd_picture_init_range(bstd_picture* picture, size_t start, size_t end) {
+
+    for (unsigned int i = start; i < end; ++i) {
+        picture->bytes[i] = bstd_default_value(picture->mask[i]);
+    }
 }
 
-void bstd_assign_bytes(bstd_picture *assignee, const unsigned char *bytes, uint8_t buf_size) {
+void bstd_picture_init(bstd_picture* picture) {
+    bstd_picture_init_range(picture, 0, picture->length);
+}
+
+void bstd_assign_picture(bstd_picture *assignee, const bstd_picture *value) {
 
     // the number of bytes to copy
     uint8_t n; // = min(assignee->length, buf_size)
 
-    if (assignee->length < buf_size) {
-        // picture is smaller than buffer size
+    if (assignee->length < value->length) {
+        // assignee length is smaller than value length
         n = assignee->length;
     } else {
-        // buffer is smaller than picture
-        n = buf_size;
-        // ensure any leading picture bytes are zero
-        memset(assignee->bytes, 0, assignee->length - buf_size);
+        // value is smaller than or equal to assignee length
+        n = value->length;
+        // ensure any trailing picture bytes are their default value
+        bstd_picture_init_range(assignee, value->length, assignee->length);
     }
 
-    // copy bytes right-to-left
+    // assign values left-to-right
     for (int i = 0; i < n; ++i) {
-        assignee->bytes[assignee->length - 1 - i] = bytes[buf_size - 1 - i];
+        const char c = bstd_mask(value->bytes[i], value->mask[i]);
+        assignee->bytes[i] = bstd_unmask(c, assignee->mask[i]);
     }
 }
 
-void bstd_assign_str(bstd_picture *assignee, char *str) {
+char *bstd_picture_to_cstr(const bstd_picture *picture) {
 
-    size_t str_len = strlen(str);
+    char *str = (char *) malloc(sizeof(char) * (picture->length + 1));
+    str[picture->length] = '\0'; // null terminator
+
+    for (int i = 0; i < picture->length; ++i) {
+        str[i] = bstd_mask(picture->bytes[i], picture->mask[i]);
+    }
+
+    return str;
+}
+
+void bstd_assign_str(bstd_picture *assignee, const char *str) {
+
+    const size_t str_len = strlen(str);
 
     // the number of bytes to copy
     uint8_t n;
@@ -68,74 +99,77 @@ void bstd_assign_str(bstd_picture *assignee, char *str) {
     } else {
         // buffer is smaller than picture
         n = str_len;
-        // ensure any leading picture bytes are zero
-        memset(assignee->bytes, 0, assignee->length - str_len);
+        // ensure any trailing picture bytes are their default value
+        bstd_picture_init_range(assignee, str_len, assignee->length);
     }
 
-    // unmask and store characters right-to-left
+    // unmask and store characters left-to-right
     for (int i = 0; i < n; ++i) {
-        char c = str[str_len - 1 - i];
-        uint8_t pic_index = assignee->length - 1 - i;
-        char mask = assignee->mask[pic_index];
-        assignee->bytes[pic_index] = bstd_picture_unmask_char(c, mask);
+        assignee->bytes[i] = bstd_unmask(str[i], assignee->mask[i]);
     }
 }
 
-char* bstd_picture_to_cstr(bstd_picture* picture) {
+unsigned char bstd_default_value(char mask) {
 
-    char* str = (char*)malloc(sizeof(char) * (picture->length + 1));
-    str[picture->length] = '\0'; // null terminator
-
-    for (int i = 0; i < picture->length; ++i) {
-        char c = bstd_picture_mask_char(picture->bytes[i], picture->mask[i]);
-        str[i] = c;
+    switch(mask) {
+        case BSTD_MASK_9:
+            return 0;
+        case BSTD_MASK_X:
+        case BSTD_MASK_A:
+            return BSTD_SPACE;
+        default:
+            return 0;
     }
-
-    return str;
 }
 
-char bstd_picture_mask_char(unsigned char byte, char mask) {
+char bstd_mask(unsigned char byte, char mask) {
 
     /*
-     * 'X' => character(byte) or SPACE if null
+     * 'X' => byte
+     * 'A' => isalpha(byte) ? byte : SPACE
      * '9' => least_significant_digit(byte)
      */
 
     int size;
-    char* str;
+    char *str;
 
     switch (mask) {
-        case 'x':
-        case 'X':
-            if (byte == 0) {
-                return BSTD_SPACE;
+        case BSTD_MASK_X:
+            return (char) byte;
+        case BSTD_MASK_A:
+            if (isalpha(byte)) {
+                return (char) byte;
             }
-            return (char)byte;
-        case '9':
+            return BSTD_SPACE;
+        case BSTD_MASK_9:
             if (byte == 0) {
                 return '0';
             } else if (byte == 1) {
                 return '1';
             }
-            size = (int)(ceil(log10(byte)) + 1);
-            str = (char*)malloc(sizeof(char) * size);
+            size = (int) (ceil(log10(byte)) + 1);
+            str = (char *) malloc(sizeof(char) * size);
             sprintf(str, "%d", byte);
             char result = str[size - 2];
             free(str);
             return result;
         default:
             // todo: warn of unknown mask
-            return (char)byte;
+            return (char) byte;
     }
 }
 
-unsigned char bstd_picture_unmask_char(char c, char mask) {
+unsigned char bstd_unmask(char c, char mask) {
 
     switch (mask) {
-        case 'x':
-        case 'X':
+        case BSTD_MASK_X:
             return c;
-        case '9':
+        case BSTD_MASK_A:
+            if (isalpha(c)) {
+                return c;
+            }
+            return BSTD_SPACE;
+        case BSTD_MASK_9:
             if (c >= '0' && c <= '9') {
                 // we can parse this character to a digit
                 return c - '0';
@@ -149,14 +183,14 @@ unsigned char bstd_picture_unmask_char(char c, char mask) {
 }
 
 // TODO: Add optional delimiter
-void bstd_print_picture(bstd_picture picture, bool advancing) {
-    if (advancing) {
-        if (picture.bytes[0] == '\0') {
-            printf("\r\n");
+void bstd_print_picture(bstd_picture picture, bool spacer) {
+    if (spacer) {
+        if (picture.length == 0) {
+            printf(" ");
         } else {
-            printf("%s\r\n", picture.bytes);
+            printf(" %s", bstd_picture_to_cstr(&picture));
         }
     } else {
-        printf("%s", picture.bytes);
+        printf("%s", bstd_picture_to_cstr(&picture));
     }
 }
