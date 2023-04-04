@@ -19,7 +19,7 @@ void bstd_assign_number(bstd_number* assignee, const bstd_number* value) {
 
     if (bstd_number_is_integer(value)) {
 
-        const int value_conv = bstd_number_to_int(value);
+        const int value_conv = (int)bstd_number_to_int(value);
 
         if (bstd_number_is_integer(assignee)) {
             bstd_assign_int(assignee, value_conv);

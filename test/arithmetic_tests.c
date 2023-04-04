@@ -306,9 +306,9 @@ Test(arithmetic_tests, ipow__exp_eq_max){
  * +-----------------------+-------------------------+--------------------------------------+
  * |       Condition       |          Valid          |               Invalid                |
  * +-----------------------+-------------------------+--------------------------------------+
- * | Value of lhs.value    | lhs.value >= 0          | lhs.value < 0, lhs.value > MAXUINT64 |
- * | Value of lhs.scale    | 0 <= lhs.scale <= 18    | lhs.scale < 0, lhs.scale > 18        |
- * | Value of lhs.length   | 1 <= lhs.length <= 18   | lhs.length < 0, lhs.length > 18      |
+ * | Value of lhs.value    | 0 <= lhs.value <= 9(9)  | lhs.value < 0, lhs.value > 9(9)      |
+ * | Value of lhs.scale    | 0 <= lhs.scale <= 9     | lhs.scale < 0, lhs.scale > 9         |
+ * | Value of lhs.length   | 1 <= lhs.length <= 9    | lhs.length < 0, lhs.length > 9       |
  * | Value of lhs.isSigned | lhs.isSigned = false,   |                                      |
  * |                       | lhs.isSigned = true     |                                      |
  * | Value of lhs.positive | lhs.positive = false,   |                                      |
@@ -319,9 +319,9 @@ Test(arithmetic_tests, ipow__exp_eq_max){
  * |                       | lhs.positive = true,    |                                      |
  * |                       | lhs.isSigned = true &&  |                                      |
  * |                       | lhs.positive = true     |                                      |
- * | Value of rhs.value    | rhs.value >= 0          | rhs.value < 0, rhs.value > MAXUINT64 |
- * | Value of rhs.scale    | 0 <= rhs.scale <= 18    | rhs.scale < 0, rhs.scale > MAXUINT64 |
- * | Value of rhs.length   | 1 <= rhs.length <= 18   | rhs.length < 0, rhs.length > 18      |
+ * | Value of rhs.value    | 0 <= rhs.value <= 9(9)  | rhs.value < 0, rhs.value > 9(9)      |
+ * | Value of rhs.scale    | 0 <= rhs.scale <= 9     | rhs.scale < 0, rhs.scale > 9         | 
+ * | Value of rhs.length   | 1 <= rhs.length <= 9    | rhs.length < 0, rhs.length > 9       |
  * | Value of rhs.isSigned | rhs.isSigned = false,   |                                      |
  * |                       | rhs.isSigned = true     |                                      |
  * | Value of rhs.positive | rhs.positive = false,   |                                      |
@@ -341,14 +341,14 @@ Test(arithmetic_tests, ipow__exp_eq_max){
 /*
  * Testing valid conditions:
  *
- * lhs.value >= 0,
+ * 0 <= lhs.value <= 999999999999999999,
  * 0 <= lhs.scale <= 18,
  * 1 <= lhs.length <= 18,
  * lhs.isSigned = false,
  * lhs.positive = true,
  * lhs.isSigned = false && lhs.positive = true
  *
- * rhs.value >= 0,
+ *  0 <= rhs.value <= 999999999999999999,
  * 0 <= rhs.scale <= 18,
  * 1 <= rhs.length <= 18,
  * rhs.isSigned = false,
@@ -412,14 +412,14 @@ Test(arithmetic_tests, bstd_sum__pos_unsigned){
 /*
  * Testing valid conditions:
  *
- * lhs.value >= 0,
+ * 0 <= lhs.value <= 999999999999999999,
  * 0 <= lhs.scale <= 18,
  * 1 <= lhs.length <= 18,
  * lhs.isSigned = true,
  * lhs.positive = true,
  * lhs.isSigned = true && lhs.positive = true
  *
- * rhs.value >= 0,
+ *  0 <= rhs.value <= 999999999999999999,
  * 0 <= rhs.scale <= 18,
  * 1 <= rhs.length <= 18,
  * rhs.isSigned = true,
@@ -484,14 +484,14 @@ Test(arithmetic_tests, bstd_sum__pos_signed_pos){
 /*
  * Testing valid conditions:
  *
- * lhs.value >= 0,
+ * 0 <= lhs.value <= 999999999999999999,
  * 0 <= lhs.scale <= 18,
  * 1 <= lhs.length <= 18,
  * lhs.isSigned = true,
  * lhs.positive = false,
  * lhs.isSigned = true && lhs.positive = false
  *
- * rhs.value >= 0,
+ *  0 <= rhs.value <= 999999999999999999,
  * 0 <= rhs.scale <= 18,
  * 1 <= rhs.length <= 18,
  * rhs.isSigned = true,
@@ -556,14 +556,14 @@ Test(arithmetic_tests, bstd_sum__pos_signed_neg){
 /*
  * Testing valid conditions:
  *
- * lhs.value >= 0,
+ * 0 <= lhs.value <= 999999999999999999,
  * 0 <= lhs.scale <= 18,
  * 1 <= lhs.length <= 18,
  * lhs.isSigned = true,
  * lhs.positive = true,
  * lhs.isSigned = true && lhs.positive = true
  *
- * rhs.value >= 0,
+ *  0 <= rhs.value <= 999999999999999999,
  * 0 <= rhs.scale <= 18,
  * 1 <= rhs.length <= 18,
  * rhs.isSigned = true,
@@ -628,14 +628,14 @@ Test(arithmetic_tests, bstd_sum__lhs_pos_rhs_neg){
 /*
  * Testing valid conditions:
  *
- * lhs.value >= 0,
+ * 0 <= lhs.value <= 999999999999999999,
  * 0 <= lhs.scale <= 18,
  * 1 <= lhs.length <= 18,
  * lhs.isSigned = true,
  * lhs.positive = false,
  * lhs.isSigned = true && lhs.positive = false
  *
- * rhs.value >= 0,
+ * 0 <= rhs.value <= 999999999999999999,
  * 0 <= rhs.scale <= 18,
  * 1 <= rhs.length <= 18,
  * rhs.isSigned = true,
@@ -707,7 +707,7 @@ Test(arithmetic_tests, bstd_sum__lhs_neg_rhs_pos){
  * lhs.positive = true,
  * lhs.isSigned = false && lhs.positive = true
  *
- * rhs.value >= 0,
+ * 0 <= rhs.value <= 999999999999999999,
  * 0 <= rhs.scale <= 18,
  * 1 <= rhs.length <= 18,
  * rhs.isSigned = false,
@@ -782,7 +782,7 @@ Test(arithmetic_tests, bstd_sum__lhs_value_lt_0){
  * lhs.positive = true,
  * lhs.isSigned = false && lhs.positive = true
  *
- * rhs.value >= 0,
+ * 0 <= rhs.value <= 999999999999999999,
  * 0 <= rhs.scale <= 18,
  * 1 <= rhs.length <= 18,
  * rhs.isSigned = false,
@@ -790,10 +790,10 @@ Test(arithmetic_tests, bstd_sum__lhs_value_lt_0){
  * rhs.isSigned = false && rhs.positive = true
  *
  * with invalid condition:
- * lhs.value > maxuint64
+ * lhs.value > 9(18)
  *
  * in:
- * lhs.value = 18446744073709551616;
+ * lhs.value = 999999999999999999 + 1;
  * lhs.scale = 3;
  * lhs.length = 4;
  * lhs.isSigned = false;
@@ -806,16 +806,16 @@ Test(arithmetic_tests, bstd_sum__lhs_value_lt_0){
  * rhs.positive = true;
  *
  * expected:
- * ex.value = 1234;
+ * ex.value = 875820019684213970;
  * ex.scale = 6;
- * ex.length = 4;
+ * ex.length = 18;
  * ex.isSigned = false;
  * ex.positive = true;
  *
  */
 Test(arithmetic_tests, bstd_sum__lhs_value_gt_max){
     bstd_number lhs;
-    lhs.value = 18446744073709551616;
+    lhs.value = 999999999999999999 + 1;
     lhs.scale = 3;
     lhs.length = 4;
     lhs.isSigned = false;
@@ -831,9 +831,9 @@ Test(arithmetic_tests, bstd_sum__lhs_value_gt_max){
     bstd_number* res = bstd_sum(&lhs, &rhs);
 
     bstd_number ex;
-    ex.value = 1234;
+    ex.value = 875820019684213970;
     ex.scale = 6;
-    ex.length = 4;
+    ex.length = 18;
     ex.isSigned = false;
     ex.positive = true;
 
@@ -849,14 +849,14 @@ Test(arithmetic_tests, bstd_sum__lhs_value_gt_max){
 /*
  * Testing valid conditions:
  *
- * lhs.value >= 0,
+ * 0 <= lhs.value <= 999999999999999999,
  * 0 <= lhs.scale <= 18,
  * 1 <= lhs.length <= 18,
  * lhs.isSigned = false,
  * lhs.positive = true,
  * lhs.isSigned = false && lhs.positive = true
  *
- * rhs.value >= 0,
+ * 0 <= rhs.value <= 999999999999999999,
  * 0 <= rhs.scale <= 18,
  * 1 <= rhs.length <= 18,
  * rhs.isSigned = false,
@@ -923,13 +923,13 @@ Test(arithmetic_tests, bstd_sum__lhs_scale_lt_0){
 /*
  * Testing valid conditions:
  *
- * lhs.value >= 0
+ * 0 <= lhs.value <= 999999999999999999,
  * 1 <= lhs.length <= 18,
  * lhs.isSigned = false,
  * lhs.positive = true,
  * lhs.isSigned = false && lhs.positive = true
  *
- * rhs.value >= 0,
+ * 0 <= rhs.value <= 999999999999999999,
  * 0 <= rhs.scale <= 18,
  * 1 <= rhs.length <= 18,
  * rhs.isSigned = false,
@@ -996,13 +996,13 @@ Test(arithmetic_tests, bstd_sum__lhs_scale_gt_18){
 /*
  * Testing valid conditions:
  *
- * lhs.value >= 0,
+ * 0 <= lhs.value <= 999999999999999999,
  * 0 <= lhs.scale <= 18,
  * lhs.isSigned = false,
  * lhs.positive = true,
  * lhs.isSigned = false && lhs.positive = true
  *
- * rhs.value >= 0,
+ * 0 <= rhs.value <= 999999999999999999,
  * 0 <= rhs.scale <= 18,
  * 1 <= rhs.length <= 18,
  * rhs.isSigned = false,
@@ -1069,13 +1069,13 @@ Test(arithmetic_tests, bstd_sum__lhs_length_lt_0){
 /*
  * Testing valid conditions:
  *
- * lhs.value >= 0,
+ * 0 <= lhs.value <= 999999999999999999,
  * 0 <= lhs.scale <= 18,
  * lhs.isSigned = false,
  * lhs.positive = true,
  * lhs.isSigned = false && lhs.positive = true
  *
- * rhs.value >= 0,
+ * 0 <= rhs.value <= 999999999999999999,
  * 0 <= rhs.scale <= 18,
  * 1 <= rhs.length <= 18,
  * rhs.isSigned = false,
@@ -1142,13 +1142,13 @@ Test(arithmetic_tests, bstd_sum__lhs_length_gt_18){
 /*
  * Testing valid conditions:
  *
- * lhs.value >= 0,
+ * 0 <= lhs.value <= 999999999999999999,
  * 0 <= lhs.scale <= 18,
  * 1 <= lhs.length <= 18,
  * lhs.isSigned = false,
  * lhs.positive = false,
  *
- * rhs.value >= 0,
+ * 0 <= rhs.value <= 999999999999999999,
  * 0 <= rhs.scale <= 18,
  * 1 <= rhs.length <= 18,
  * rhs.isSigned = false,
@@ -1216,7 +1216,7 @@ Test(arithmetic_tests, bstd_sum__lhs_unsigned_negative){
 
 /*
  * Testing valid conditions:
- * lhs.value >= 0,
+ * 0 <= lhs.value <= 999999999999999999,
  * 0 <= lhs.scale <= 18,
  * 1 <= lhs.length <= 18,
  * lhs.isSigned = false,
@@ -1290,7 +1290,7 @@ Test(arithmetic_tests, bstd_sum__rhs_value_lt_0){
 
 /*
  * Testing valid conditions:
- * lhs.value >= 0,
+ * 0 <= lhs.value <= 999999999999999999,
  * 0 <= lhs.scale <= 18,
  * 1 <= lhs.length <= 18,
  * lhs.isSigned = false,
@@ -1305,7 +1305,7 @@ Test(arithmetic_tests, bstd_sum__rhs_value_lt_0){
  * rhs.isSigned = false && rhs.positive = true
  *
  * with invalid condition:
- * rhs.value > maxuint64
+ * rhs.value > 9(18)
  *
  * in:
  * lhs.value = 5555;
@@ -1323,7 +1323,7 @@ Test(arithmetic_tests, bstd_sum__rhs_value_lt_0){
  * expected:
  * ex.value = 5555000;
  * ex.scale = 6;
- * ex.length = 7;
+ * ex.length = 18;
  * ex.isSigned = false;
  * ex.positive = true;
  *
@@ -1337,7 +1337,7 @@ Test(arithmetic_tests, bstd_sum__rhs_value_gt_max){
     lhs.positive = true;
 
     bstd_number rhs;
-    rhs.value = 18446744073709551616;
+    rhs.value = 999999999999999999 + 1;
     rhs.scale = 6;
     rhs.length = 7;
     rhs.isSigned = false;
@@ -1348,7 +1348,7 @@ Test(arithmetic_tests, bstd_sum__rhs_value_gt_max){
     bstd_number ex;
     ex.value = 5555000;
     ex.scale = 6;
-    ex.length = 7;
+    ex.length = 18;
     ex.isSigned = false;
     ex.positive = true;
 
@@ -1364,14 +1364,14 @@ Test(arithmetic_tests, bstd_sum__rhs_value_gt_max){
 /*
  * Testing valid conditions:
  *
- * lhs.value >= 0,
+ * 0 <= lhs.value <= 999999999999999999,
  * 0 <= lhs.scale <= 18,
  * 1 <= lhs.length <= 18,
  * lhs.isSigned = false,
  * lhs.positive = true,
  * lhs.isSigned = false && lhs.positive = true
  *
- * rhs.value >= 0,
+ * 0 <= rhs.value <= 999999999999999999,
  * 1 <= rhs.length <= 18,
  * rhs.isSigned = false,
  * rhs.positive = true,
@@ -1437,14 +1437,14 @@ Test(arithmetic_tests, bstd_sum__rhs_scale_lt_0){
 /*
  * Testing valid conditions:
  *
- * lhs.value >= 0
+ * 0 <= lhs.value <= 999999999999999999
  * 0 <= lhs.scale <= 18,
  * 1 <= lhs.length <= 18,
  * lhs.isSigned = false,
  * lhs.positive = true,
  * lhs.isSigned = false && lhs.positive = true
  *
- * rhs.value >= 0,
+ * 0 <= rhs.value <= 999999999999999999,
  * 0 <= rhs.scale <= 18,
  * 1 <= rhs.length <= 18,
  * rhs.isSigned = false,
@@ -1511,14 +1511,14 @@ Test(arithmetic_tests, bstd_sum__rhs_scale_gt_18){
 /*
  * Testing valid conditions:
  *
- * lhs.value >= 0,
+ * 0 <= lhs.value <= 999999999999999999,
  * 0 <= lhs.scale <= 18,
  * 1 <= lhs.length <= 18,
  * lhs.isSigned = false,
  * lhs.positive = true,
  * lhs.isSigned = false && lhs.positive = true
  *
- * rhs.value >= 0,
+ * 0 <= rhs.value <= 999999999999999999,
  * 0 <= rhs.scale <= 18,
  * rhs.isSigned = false,
  * rhs.positive = true,
@@ -1584,14 +1584,14 @@ Test(arithmetic_tests, bstd_sum__rhs_length_lt_0){
 /*
  * Testing valid conditions:
  *
- * lhs.value >= 0,
+ * 0 <= lhs.value <= 999999999999999999,
  * 0 <= lhs.scale <= 18,
  * 1 <= rhs.length <= 18,
  * lhs.isSigned = false,
  * lhs.positive = true,
  * lhs.isSigned = false && lhs.positive = true
  *
- * rhs.value >= 0,
+ * 0 <= rhs.value <= 999999999999999999,
  * 0 <= rhs.scale <= 18,
  * rhs.isSigned = false,
  * rhs.positive = true,
@@ -1657,14 +1657,14 @@ Test(arithmetic_tests, bstd_sum__rhs_length_gt_18){
 /*
  * Testing valid conditions:
  *
- * lhs.value >= 0,
+ * 0 <= lhs.value <= 999999999999999999,
  * 0 <= lhs.scale <= 18,
  * 1 <= lhs.length <= 18,
  * lhs.isSigned = false,
  * lhs.positive = true,
  * lhs.isSigned = false && lhs.positive = true
  *
- * rhs.value >= 0,
+ * 0 <= rhs.value <= 999999999999999999,
  * 0 <= rhs.scale <= 18,
  * 1 <= rhs.length <= 18,
  * rhs.isSigned = false,
@@ -1727,8 +1727,6 @@ Test(arithmetic_tests, bstd_sum__rhs_unsigned_negative){
 
     free(res);
 }
-
-//TODO: boundary value analysis for sum
 
 // boundary value analysis for lhs
 
@@ -1794,10 +1792,10 @@ Test(arithmetic_tests, bstd_sum__lhs_value_eq_0){
 
 /*
  *
- * testing boundary value lhs.value = MAXUINT64
+ * testing boundary value lhs.value = MAXUINT64 with values using differing scales.
  *
  * in:
- * lhs.value = 0;
+ * lhs.value = 999999999999999999;
  * lhs.scale = 3;
  * lhs.length = 4;
  * lhs.isSigned = false;
@@ -1810,19 +1808,136 @@ Test(arithmetic_tests, bstd_sum__lhs_value_eq_0){
  * rhs.positive = true;
  *
  * expected:
- * ex.value = 1234;
- * ex.scale = 6;
- * ex.length = 7;
+ * ex.value = 0;
+ * ex.scale = 3;
+ * ex.length = 18;
  * ex.isSigned = false;
  * ex.positive = true;
  *
  *
  *
  */
-Test(arithmetic_tests, bstd_sum__lhs_value_eq_max){
+Test(arithmetic_tests, bstd_sum__lhs_value_eq_max_differing_scales){
     bstd_number lhs;
-    lhs.value = 0;
+    lhs.value = 999999999999999999;
     lhs.scale = 3;
+    lhs.length = 18;
+    lhs.isSigned = false;
+    lhs.positive = true;
+
+    bstd_number rhs;
+    rhs.value = 1234;
+    rhs.scale = 6;
+    rhs.length = 7;
+    rhs.isSigned = false;
+    rhs.positive = true;
+
+    bstd_number* res = bstd_sum(&lhs, &rhs);
+
+    bstd_number ex;
+    ex.value = 0;
+    ex.scale = 3;
+    ex.length = 18;
+    ex.isSigned = false;
+    ex.positive = true;
+
+    cr_assert_eq(ex.value, res->value);
+    cr_assert_eq(ex.scale, res->scale);
+    cr_assert_eq(ex.length, res->length);
+    cr_assert_eq(ex.isSigned, res->isSigned);
+    cr_assert_eq(ex.positive, res->positive);
+
+    free(res);
+}
+
+/*
+ *
+ * testing boundary value lhs.value = MAXUINT64 with values using same scales.
+ *
+ * in:
+ * lhs.value = 999999999999999999;
+ * lhs.scale = 3;
+ * lhs.length = 18;
+ * lhs.isSigned = false;
+ * lhs.positive = true;
+ *
+ * rhs.value = 1234;
+ * rhs.scale = 6;
+ * rhs.length = 7;
+ * rhs.isSigned = false;
+ * rhs.positive = true;
+ *
+ * expected:
+ * ex.value = 1233;
+ * ex.scale = 3;
+ * ex.length = 18;
+ * ex.isSigned = false;
+ * ex.positive = true;
+ *
+ *
+ *
+ */
+Test(arithmetic_tests, bstd_sum__lhs_value_eq_max_same_scales){
+    bstd_number lhs;
+    lhs.value = 999999999999999999;
+    lhs.scale = 3;
+    lhs.length = 18;
+    lhs.isSigned = false;
+    lhs.positive = true;
+
+    bstd_number rhs;
+    rhs.value = 1234;
+    rhs.scale = 3;
+    rhs.length = 7;
+    rhs.isSigned = false;
+    rhs.positive = true;
+
+    bstd_number* res = bstd_sum(&lhs, &rhs);
+
+    bstd_number ex;
+    ex.value = 1233;
+    ex.scale = 3;
+    ex.length = 18;
+    ex.isSigned = false;
+    ex.positive = true;
+
+    cr_assert_eq(ex.value, res->value);
+    cr_assert_eq(ex.scale, res->scale);
+    cr_assert_eq(ex.length, res->length);
+    cr_assert_eq(ex.isSigned, res->isSigned);
+    cr_assert_eq(ex.positive, res->positive);
+
+    free(res);
+}
+
+/*
+ * testing boundary value lhs.scale = 0
+ *
+ * in:
+ * lhs.value = 5555;
+ * lhs.scale = 0;
+ * lhs.length = 4;
+ * lhs.isSigned = false;
+ * lhs.positive = true;
+ *
+ * rhs.value = 1234;
+ * rhs.scale = 6;
+ * rhs.length = 7;
+ * rhs.isSigned = false;
+ * rhs.positive = true;
+ *
+ * expected:
+ * ex.value = 5555001234;
+ * ex.scale = 6;
+ * ex.length = 10;
+ * ex.isSigned = false;
+ * ex.positive = true;
+ *
+ */
+Test(arithmetic_tests, bstd_sum__lhs_scale_eq_0){
+    bstd_number lhs;
+    lhs.value = 5555;
+    lhs.scale = 0;
     lhs.length = 4;
     lhs.isSigned = false;
     lhs.positive = true;
@@ -1837,9 +1952,9 @@ Test(arithmetic_tests, bstd_sum__lhs_value_eq_max){
     bstd_number* res = bstd_sum(&lhs, &rhs);
 
     bstd_number ex;
-    ex.value = 1234;
+    ex.value = 5555001234;
     ex.scale = 6;
-    ex.length = 4;
+    ex.length = 10;
     ex.isSigned = false;
     ex.positive = true;
 
@@ -1851,3 +1966,61 @@ Test(arithmetic_tests, bstd_sum__lhs_value_eq_max){
 
     free(res);
 }
+
+/*
+ * testing boundary value lhs.scale = 18
+ *
+ * in:
+ * lhs.value = 5555;
+ * lhs.scale = 18;
+ * lhs.length = 4;
+ * lhs.isSigned = false;
+ * lhs.positive = true;
+ *
+ * rhs.value = 1234;
+ * rhs.scale = 6;
+ * rhs.length = 7;
+ * rhs.isSigned = false;
+ * rhs.positive = true;
+ *
+ * expected:
+ * ex.value = 1234000000005555;
+ * ex.scale = 18;
+ * ex.length = 16;
+ * ex.isSigned = false;
+ * ex.positive = true;
+ *
+ */
+Test(arithmetic_tests, bstd_sum__lhs_scale_eq_18){
+    bstd_number lhs;
+    lhs.value = 5555;
+    lhs.scale = 18;
+    lhs.length = 4;
+    lhs.isSigned = false;
+    lhs.positive = true;
+
+    bstd_number rhs;
+    rhs.value = 1234;
+    rhs.scale = 6;
+    rhs.length = 7;
+    rhs.isSigned = false;
+    rhs.positive = true;
+
+    bstd_number* res = bstd_sum(&lhs, &rhs);
+
+    bstd_number ex;
+    ex.value = 1234000000005555;
+    ex.scale = 18;
+    ex.length = 16;
+    ex.isSigned = false;
+    ex.positive = true;
+
+    cr_assert_eq(ex.value, res->value);
+    cr_assert_eq(ex.scale, res->scale);
+    cr_assert_eq(ex.length, res->length);
+    cr_assert_eq(ex.isSigned, res->isSigned);
+    cr_assert_eq(ex.positive, res->positive);
+
+    free(res);
+}
+
