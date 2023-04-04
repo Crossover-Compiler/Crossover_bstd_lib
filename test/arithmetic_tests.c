@@ -1729,3 +1729,125 @@ Test(arithmetic_tests, bstd_sum__rhs_unsigned_negative){
 }
 
 //TODO: boundary value analysis for sum
+
+// boundary value analysis for lhs
+
+/*
+ *
+ * testing boundary value lhs.value = 0
+ *
+ * in:
+ * lhs.value = 0;
+ * lhs.scale = 3;
+ * lhs.length = 4;
+ * lhs.isSigned = false;
+ * lhs.positive = true;
+ *
+ * rhs.value = 1234;
+ * rhs.scale = 6;
+ * rhs.length = 7;
+ * rhs.isSigned = false;
+ * rhs.positive = true;
+ *
+ * expected:
+ * ex.value = 1234;
+ * ex.scale = 6;
+ * ex.length = 7;
+ * ex.isSigned = false;
+ * ex.positive = true;
+ *
+ *
+ *
+ */
+Test(arithmetic_tests, bstd_sum__lhs_value_eq_0){
+    bstd_number lhs;
+    lhs.value = 0;
+    lhs.scale = 3;
+    lhs.length = 4;
+    lhs.isSigned = false;
+    lhs.positive = true;
+
+    bstd_number rhs;
+    rhs.value = 1234;
+    rhs.scale = 6;
+    rhs.length = 7;
+    rhs.isSigned = false;
+    rhs.positive = true;
+
+    bstd_number* res = bstd_sum(&lhs, &rhs);
+
+    bstd_number ex;
+    ex.value = 1234;
+    ex.scale = 6;
+    ex.length = 4;
+    ex.isSigned = false;
+    ex.positive = true;
+
+    cr_assert_eq(ex.value, res->value);
+    cr_assert_eq(ex.scale, res->scale);
+    cr_assert_eq(ex.length, res->length);
+    cr_assert_eq(ex.isSigned, res->isSigned);
+    cr_assert_eq(ex.positive, res->positive);
+
+    free(res);
+}
+
+/*
+ *
+ * testing boundary value lhs.value = MAXUINT64
+ *
+ * in:
+ * lhs.value = 0;
+ * lhs.scale = 3;
+ * lhs.length = 4;
+ * lhs.isSigned = false;
+ * lhs.positive = true;
+ *
+ * rhs.value = 1234;
+ * rhs.scale = 6;
+ * rhs.length = 7;
+ * rhs.isSigned = false;
+ * rhs.positive = true;
+ *
+ * expected:
+ * ex.value = 1234;
+ * ex.scale = 6;
+ * ex.length = 7;
+ * ex.isSigned = false;
+ * ex.positive = true;
+ *
+ *
+ *
+ */
+Test(arithmetic_tests, bstd_sum__lhs_value_eq_max){
+    bstd_number lhs;
+    lhs.value = 0;
+    lhs.scale = 3;
+    lhs.length = 4;
+    lhs.isSigned = false;
+    lhs.positive = true;
+
+    bstd_number rhs;
+    rhs.value = 1234;
+    rhs.scale = 6;
+    rhs.length = 7;
+    rhs.isSigned = false;
+    rhs.positive = true;
+
+    bstd_number* res = bstd_sum(&lhs, &rhs);
+
+    bstd_number ex;
+    ex.value = 1234;
+    ex.scale = 6;
+    ex.length = 4;
+    ex.isSigned = false;
+    ex.positive = true;
+
+    cr_assert_eq(ex.value, res->value);
+    cr_assert_eq(ex.scale, res->scale);
+    cr_assert_eq(ex.length, res->length);
+    cr_assert_eq(ex.isSigned, res->isSigned);
+    cr_assert_eq(ex.positive, res->positive);
+
+    free(res);
+}
