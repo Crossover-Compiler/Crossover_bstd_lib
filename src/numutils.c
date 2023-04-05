@@ -19,10 +19,10 @@ void bstd_assign_number(bstd_number* assignee, const bstd_number* value) {
 
     if (bstd_number_is_integer(value)) {
 
-        const int value_conv = (int)bstd_number_to_int(value);
+        const int64_t value_conv = bstd_number_to_int(value);
 
         if (bstd_number_is_integer(assignee)) {
-            bstd_assign_int(assignee, value_conv);
+            bstd_assign_int64(assignee, value_conv);
         } else {
             bstd_assign_double(assignee, (double)value_conv);
         }
@@ -32,7 +32,7 @@ void bstd_assign_number(bstd_number* assignee, const bstd_number* value) {
         const double value_conv = bstd_number_to_double(value);
 
         if (bstd_number_is_integer(assignee)) {
-            bstd_assign_int(assignee, (int)value_conv);
+            bstd_assign_int64(assignee, (int64_t)value_conv);
         } else {
             bstd_assign_double(assignee, value_conv);
         }
@@ -40,8 +40,12 @@ void bstd_assign_number(bstd_number* assignee, const bstd_number* value) {
 }
 
 void bstd_assign_int(bstd_number* number, const int value) {
+    bstd_assign_int64(number, value);
+}
 
-    int abs_value = abs(value);
+void bstd_assign_int64(bstd_number* number, const int64_t value) {
+
+    int64_t abs_value = labs(value);
     int64_t mag = ipow(10, number->length);
     int64_t mask = (abs_value / mag) * mag;
     int64_t cropped_value = abs_value - mask;
@@ -142,13 +146,13 @@ char *bstd_number_to_cstr(bstd_number number) {
 }
 
 // TODO: Sign gets calculated here, but should be calculated in bstd_number_to_cstr!
-void bstd_print_number(bstd_number number, bool advancing) {
+void bstd_print_number(bstd_number number, bool spacer) {
     char *str = bstd_number_to_cstr(number);
-    if (advancing) {
+    if (spacer) {
         if (number.positive && number.isSigned) {
-            printf("+%s\r\n", str);
+            printf(" +%s", str);
         } else {
-            printf("%s\r\n", str);
+            printf(" %s", str);
         }
     } else {
         if (number.positive && number.isSigned) {

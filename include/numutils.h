@@ -11,8 +11,8 @@
 int bstd_number_is_integer(const bstd_number* number);
 
 /**
-// * Creates an integer representation for the specified bstd_number. The representation is an independent copy (setting it does not affect the specified bstd_number).
-// * Note that instances of the type bstd_number can represent values much larger than a regular integer may be able to,
+ * Creates an integer representation for the specified bstd_number. The representation is an independent copy (setting it does not affect the specified bstd_number).
+ * Note that instances of the type bstd_number can represent values much larger than a regular integer may be able to,
  * which may lead to unexpected behaviour when this narrowing conversion is done.
  *
  * @param number The number to create a representation of.
@@ -45,6 +45,13 @@ void bstd_assign_number(bstd_number* assignee, const bstd_number* value);
 void bstd_assign_int(bstd_number* number, int value);
 
 /**
+ * Assigns the specified 64-bit integer to the specified bstd_number, following the BabyCobol assignment specifications.
+ * @param number The number to assign the specified integer to.
+ * @param value The integer to assign to the specified number.
+ */
+void bstd_assign_int64(bstd_number* number, int64_t value);
+
+/**
  * Assigns the specified double to the specified bstd_number, following the BabyCobol assignment specifications.
  * @param number The number to assign the specified double to.
  * @param value The double to assign to the specified number.
@@ -52,14 +59,14 @@ void bstd_assign_int(bstd_number* number, int value);
 void bstd_assign_double(bstd_number* number, double value);
 
 /**
- * todo: doc
+ * todo: remove; bstd_number_to_cstr is sufficient
  * @param number
  * @param advancing
  */
 void bstd_print_number(bstd_number number, bool advancing);
 
 /**
- * todo: doc
+ * todo: rename to bstd_number_to_str to be consistent with bstd_picture_to_str
  * @param number
  * @return
  */
