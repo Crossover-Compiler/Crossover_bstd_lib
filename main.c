@@ -1,4 +1,4 @@
-#include "include/arithmetic.h"
+#include "include/numutils.h"
 
 int main(){
 // used for debugging
