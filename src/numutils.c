@@ -70,7 +70,7 @@ void bstd_assign_double(bstd_number* number, const double value) {
 char *bstd_number_to_cstr(bstd_number number) {
     double value = bstd_number_to_double(&number);
     char *raw_double = (char *) malloc(64);
-    sprintf(raw_double, "%f", value);
+    sprintf(raw_double, "%.9f", value);
 
     bool stringEnd = false;
     int k = 0;
