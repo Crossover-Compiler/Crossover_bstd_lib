@@ -2370,7 +2370,7 @@ Test(numutils_tests, bstd_assign_number__value_length_eq_9){
  * |                          | number.positive = true,          |                                            |
  * |                          | number.isSigned = true &&        |                                            |
  * |                          | number.positive = true           |                                            |
- * | Value of value           | -999999999 <= value <= 999999999 | value < MININT32, value > MAXINT32         |
+ * | Value of value           | -999999999 <= value <= 999999999 | value < -999999999, value > 999999999      |
  * +--------------------------+----------------------------------+--------------------------------------------+
  *
  */
@@ -3016,7 +3016,7 @@ Test(numutils_tests, bstd_assign_int__value_eq_negative_999999999){
  * |                          | number.positive = true,          |                                            |
  * |                          | number.isSigned = true &&        |                                            |
  * |                          | number.positive = true           |                                            |
- * | Value of value           | -999999999 <= value <= 999999999 | value < MININT32, value > MAXINT32         |
+ * | Value of value           | -999999999 <= value <= 999999999 | value < -999999999, value > 999999999      |
  * +--------------------------+----------------------------------+--------------------------------------------+
  *
  */
@@ -3628,6 +3628,651 @@ Test(numutils_tests, bstd_assign_int64__value_eq_negative_999999999){
     bstd_number ex;
     ex.value = 9999;
     ex.scale = 0;
+    ex.length = 4;
+    ex.isSigned = true;
+    ex.positive = false;
+
+    cr_assert_eq(ex.value,      number.value);
+    cr_assert_eq(ex.scale,      number.scale);
+    cr_assert_eq(ex.length,     number.length);
+    cr_assert_eq(ex.isSigned,   number.isSigned);
+    cr_assert_eq(ex.positive,   number.positive);
+
+}
+
+/**
+ * Tests for void bstd_assign_double(bstd_number* number, const int value)
+ *
+ * +--------------------------+--------------------------------------+--------------------------------------------+
+ * |        Condition         |                Valid                 |                  Invalid                   |
+ * +--------------------------+--------------------------------------+--------------------------------------------+
+ * | Value of number.value    | 0 <= number.value <= 999999999       | number.value < 0, number.value > 999999999 |
+ * | Value of number.scale    | 0 <= number.scale = 9                | number.scale < 0,  number.scale > 9        |
+ * | Value of number.length   | 1 <= number.length <= 9              | number.length < 0, number.length > 9       |
+ * | Value of number.isSigned | number.isSigned = false,             |                                            |
+ * |                          | number.isSigned = true               |                                            |
+ * | Value of number.positive | number.positive = false,             |                                            |
+ * |                          | number.positive = true               |                                            |
+ * | Relation                 | number.isSigned = true &&            | number.isSigned = false &&                 |
+ * |                          | number.positive = false,             | number.positive = false                    |
+ * |                          | number.isSigned = false &&           |                                            |
+ * |                          | number.positive = true,              |                                            |
+ * |                          | number.isSigned = true &&            |                                            |
+ * |                          | number.positive = true               |                                            |
+ * | Value of value           | -999999999.0 <= value <= 999999999.0 | value < -999999999.0, value > 999999999.0  |
+ * +--------------------------+--------------------------------------+--------------------------------------------+
+ *
+ *
+ */
+
+
+//valid classes tests
+
+/*
+ * Testing valid conditions:
+ *
+ * 0 <= number.value <= 999999999,
+ * number.scale = 0,
+ * 1 <= number.length <= 9,
+ * number.isSigned = false,
+ * number.positive = true,
+ * number.isSigned = false && number.positive = true
+ *
+ * -999999999.0 <= value <= 999999999.0
+ *
+ * in:
+ * number.value = 5555;
+ * number.scale = 3;
+ * number.length = 4;
+ * number.isSigned = false;
+ * number.positive = true;
+ *
+ * value = 5.5
+ *
+ * expected:
+ * number.value = 5500;
+ * number.scale = 3;
+ * number.length = 4;
+ * number.isSigned = false;
+ * number.positive = true;
+ *
+ */
+Test(numutils_tests, bstd_assign_double__pos_unsigned){
+    bstd_number number;
+    number.value = 5555;
+    number.scale = 3;
+    number.length = 4;
+    number.isSigned = false;
+    number.positive = true;
+
+    double value = 5.5;
+
+    bstd_assign_double(&number, value);
+
+    bstd_number ex;
+    ex.value = 5500;
+    ex.scale = 3;
+    ex.length = 4;
+    ex.isSigned = false;
+    ex.positive = true;
+
+    cr_assert_eq(ex.value, number.value);
+    cr_assert_eq(ex.scale, number.scale);
+    cr_assert_eq(ex.length, number.length);
+    cr_assert_eq(ex.isSigned, number.isSigned);
+    cr_assert_eq(ex.positive, number.positive);
+}
+
+/*
+ * Testing valid conditions:
+ *
+ * 0 <= number.value <= 999999999,
+ * number.scale <= 0,
+ * 1 <= number.length <= 9,
+ * number.isSigned = true,
+ * number.positive = true,
+ * number.isSigned = true && number.positive = true
+ *
+ * -999999999 <= value <= 999999999
+ *
+ * in:
+ * number.value = 5555;
+ * number.scale = 3;
+ * number.length = 4;
+ * number.isSigned = true;
+ * number.positive = true;
+ *
+ * value = 1234;
+ *
+ * expected:
+ * ex.value = 2340;
+ * ex.scale = 0;
+ * ex.length = 4;
+ * ex.isSigned = true;
+ * ex.positive = true;
+ *
+ */
+Test(numutils_tests, bstd_assign_double__pos_signed_pos){
+    bstd_number number;
+    number.value = 5555;
+    number.scale = 3;
+    number.length = 4;
+    number.isSigned = true;
+    number.positive = true;
+
+    double value = 12.34;
+    bstd_assign_double(&number, value);
+
+    bstd_number ex;
+    ex.value = 2340;
+    ex.scale = 3;
+    ex.length = 4;
+    ex.isSigned = true;
+    ex.positive = true;
+
+
+    cr_assert_eq(ex.value, number.value);
+    cr_assert_eq(ex.scale, number.scale);
+    cr_assert_eq(ex.length, number.length);
+    cr_assert_eq(ex.isSigned, number.isSigned);
+    cr_assert_eq(ex.positive, number.positive);
+}
+
+/*
+ * Testing valid conditions:
+ *
+ * 0 <= number.value <= 999999999,
+ * number.scale = 0,
+ * 1 <= number.length <= 9,
+ * number.isSigned = true,
+ * number.positive = false,
+ * number.isSigned = true && number.positive = false
+ *
+ * -999999999 <= value <= 999999999
+ * in:
+ * number.value = 5555;
+ * number.scale = 3;
+ * number.length = 4;
+ * number.isSigned = true;
+ * number.positive = false;
+ *
+ * value = 12.34;
+ *
+ * expected:
+ * ex.value = 2340;
+ * ex.scale = 3;
+ * ex.length = 4;
+ * ex.isSigned = true;
+ * ex.positive = true;
+ *
+ */
+Test(numutils_tests, bstd_assign_double__pos_signed_neg){
+    bstd_number number;
+    number.value = 5555;
+    number.scale = 3;
+    number.length = 4;
+    number.isSigned = true;
+    number.positive = false;
+
+    double value = 12.34;
+
+    bstd_assign_double(&number, value);
+
+    bstd_number ex;
+    ex.value = 2340;
+    ex.scale = 3;
+    ex.length = 4;
+    ex.isSigned = true;
+    ex.positive = true;
+
+
+    cr_assert_eq(ex.value,      number.value);
+    cr_assert_eq(ex.scale,      number.scale);
+    cr_assert_eq(ex.length,     number.length);
+    cr_assert_eq(ex.isSigned,   number.isSigned);
+    cr_assert_eq(ex.positive,   number.positive);
+}
+
+/*
+ * Testing valid conditions:
+ *
+ * 0 <= number.value <= 999999999,
+ * number.scale = 0,
+ * 1 <= number.length <= 9,
+ * number.isSigned = true,
+ * number.positive = true,
+ * number.isSigned = true && number.positive = true
+ *
+ * -999999999 <= value <= 999999999
+ *
+ * in:
+ * number.value = 5555;
+ * number.scale = 3;
+ * number.length = 4;
+ * number.isSigned = true;
+ * number.positive = true;
+ *
+ * value = 1234;
+ *
+ *
+ * expected:
+ * ex.value = -1234;
+ * ex.scale = 3;
+ * ex.length = 4;
+ * ex.isSigned = true;
+ * ex.positive = false;
+ *
+ */
+Test(numutils_tests, bstd_assign_double__number_pos_value_neg){
+    bstd_number number;
+    number.value = 5555;
+    number.scale = 3;
+    number.length = 4;
+    number.isSigned = true;
+    number.positive = true;
+
+    double value = -12.34;
+
+
+    bstd_assign_double(&number, value);
+
+    bstd_number ex;
+    ex.value = 2340;
+    ex.scale = 3;
+    ex.length = 4;
+    ex.isSigned = true;
+    ex.positive = false;
+
+
+    cr_assert_eq(ex.value,      number.value);
+    cr_assert_eq(ex.scale,      number.scale);
+    cr_assert_eq(ex.length,     number.length);
+    cr_assert_eq(ex.isSigned,   number.isSigned);
+    cr_assert_eq(ex.positive,   number.positive);
+}
+
+/*
+ * Testing valid conditions:
+ *
+ * 0 <= number.value <= 999999999,
+ * number.scale = 0,
+ * 1 <= number.length <= 9,
+ * number.isSigned = true,
+ * number.positive = false,
+ * number.isSigned = true && number.positive = false
+ *
+ * -999999999 <= value <= 999999999
+ *
+ * in:
+ * number.value = 5555;
+ * number.scale = 3;
+ * number.length = 4;
+ * number.isSigned = true;
+ * number.positive = false;
+ *
+ * value = 12.34;
+ *
+ * expected:
+ * ex.value = 2340;
+ * ex.scale = 3;
+ * ex.length = 4;
+ * ex.isSigned = true;
+ * ex.positive = true;
+ *
+ */
+Test(numutils_tests, bstd_assign_double__number_neg_value_pos){
+    bstd_number number;
+    number.value = 5555;
+    number.scale = 3;
+    number.length = 4;
+    number.isSigned = true;
+    number.positive = false;
+
+    double value = 12.34;
+
+    bstd_assign_double(&number, value);
+
+    bstd_number ex;
+    ex.value = 2340;
+    ex.scale = 3;
+    ex.length = 4;
+    ex.isSigned = true;
+    ex.positive = true;
+
+
+    cr_assert_eq(ex.value,      number.value);
+    cr_assert_eq(ex.scale,      number.scale);
+    cr_assert_eq(ex.length,     number.length);
+    cr_assert_eq(ex.isSigned,   number.isSigned);
+    cr_assert_eq(ex.positive,   number.positive);
+
+}
+
+// boundary value analysis for number
+
+/*
+ *
+ * testing boundary value number.value = 0
+ *
+ * in:
+ * number.value = 0;
+ * number.scale = 3;
+ * number.length = 4;
+ * number.isSigned = false;
+ * number.positive = true;
+ *
+ * value = 12.34;
+ *
+ * expected:
+ * ex.value = 2340;
+ * ex.scale = 3;
+ * ex.length = 4;
+ * ex.isSigned = false;
+ * ex.positive = true;
+ *
+ *
+ *
+ */
+Test(numutils_tests, bstd_assign_double__number_value_eq_0){
+    bstd_number number;
+    number.value = 0;
+    number.scale = 3;
+    number.length = 4;
+    number.isSigned = false;
+    number.positive = true;
+
+    double value = 12.34;
+
+    bstd_assign_double(&number, value);
+
+    bstd_number ex;
+    ex.value = 2340;
+    ex.scale = 3;
+    ex.length = 4;
+    ex.isSigned = false;
+    ex.positive = true;
+
+    cr_assert_eq(ex.value,      number.value);
+    cr_assert_eq(ex.scale,      number.scale);
+    cr_assert_eq(ex.length,     number.length);
+    cr_assert_eq(ex.isSigned,   number.isSigned);
+    cr_assert_eq(ex.positive,   number.positive);
+}
+
+/*
+ *
+ * testing boundary value number.value = 9(9) with values using differing scales.
+ *
+ * in:
+ * number.value = 999999999;
+ * number.scale = 3;
+ * number.length = 4;
+ * number.isSigned = false;
+ * number.positive = true;
+ *
+ * value = 1234;
+ *
+ * expected:
+ * ex.value = 2340;
+ * ex.scale = 3;
+ * ex.length = 4;
+ * ex.isSigned = false;
+ * ex.positive = true;
+ *
+ */
+Test(numutils_tests, bstd_assign_double__number_value_eq_max){
+    bstd_number number;
+    number.value = 999999999;
+    number.scale = 3;
+    number.length = 4;
+    number.isSigned = false;
+    number.positive = true;
+
+    double value = 12.34;
+
+    bstd_assign_double(&number, value);
+
+    bstd_number ex;
+    ex.value = 2340;
+    ex.scale = 3;
+    ex.length = 4;
+    ex.isSigned = false;
+    ex.positive = true;
+
+    cr_assert_eq(ex.value,      number.value);
+    cr_assert_eq(ex.scale,      number.scale);
+    cr_assert_eq(ex.length,     number.length);
+    cr_assert_eq(ex.isSigned,   number.isSigned);
+    cr_assert_eq(ex.positive,   number.positive);
+}
+
+/*
+ * testing boundary value number.scale = 0
+ *
+ * in:
+ * number.value = 5555;
+ * number.scale = 0;
+ * number.length = 4;
+ * number.isSigned = false;
+ * number.positive = true;
+ *
+ * value = 12.34;
+ *
+ * expected:
+ * ex.value = 12;
+ * ex.scale = 0;
+ * ex.length = 4;
+ * ex.isSigned = false;
+ * ex.positive = true;
+ *
+ */
+Test(numutils_tests, bstd_assign_double__number_scale_eq_0){
+    bstd_number number;
+    number.value = 5555;
+    number.scale = 0;
+    number.length = 4;
+    number.isSigned = false;
+    number.positive = true;
+
+    double value = 12.34;
+
+    bstd_assign_double(&number, value);
+
+    bstd_number ex;
+    ex.value = 12;
+    ex.scale = 0;
+    ex.length = 4;
+    ex.isSigned = false;
+    ex.positive = true;
+
+    cr_assert_eq(ex.value,      number.value);
+    cr_assert_eq(ex.scale,      number.scale);
+    cr_assert_eq(ex.length,     number.length);
+    cr_assert_eq(ex.isSigned,   number.isSigned);
+    cr_assert_eq(ex.positive,   number.positive);
+
+}
+
+/*
+ * testing boundary value number.length = 1
+ *
+ * in:
+ * number.value = 5555;
+ * number.scale = 0;
+ * number.length = 1;
+ * number.isSigned = false;
+ * number.positive = true;
+ *
+ * value = 12.34;
+ *
+ * expected:
+ * ex.value = 2;
+ * ex.scale = 0;
+ * ex.length = 1;
+ * ex.isSigned = false;
+ * ex.positive = true;
+ *
+ */
+Test(numutils_tests, bstd_assign_double__number_length_eq_1){
+    bstd_number number;
+    number.value = 5555;
+    number.scale = 0;
+    number.length = 1;
+    number.isSigned = false;
+    number.positive = true;
+
+    double value = 12.34;
+
+    bstd_assign_double(&number, value);
+
+    bstd_number ex;
+    ex.value = 2;
+    ex.scale = 0;
+    ex.length = 1;
+    ex.isSigned = false;
+    ex.positive = true;
+
+    cr_assert_eq(ex.value,      number.value);
+    cr_assert_eq(ex.scale,      number.scale);
+    cr_assert_eq(ex.length,     number.length);
+    cr_assert_eq(ex.isSigned,   number.isSigned);
+    cr_assert_eq(ex.positive,   number.positive);
+
+}
+
+/*
+ * testing boundary value number.length = 9
+ *
+ * in:
+ * number.value = 5555;
+ * number.scale = 3;
+ * number.length = 9;
+ * number.isSigned = false;
+ * number.positive = true;
+ *
+ * value.value = 12.34;
+ *
+ * expected:
+ * ex.value = 12340;
+ * ex.scale = 3;
+ * ex.length = 9;
+ * ex.isSigned = false;
+ * ex.positive = true;
+ *
+ */
+Test(numutils_tests, bstd_assign_double__number_length_eq_9){
+    bstd_number number;
+    number.value = 5555;
+    number.scale = 3;
+    number.length = 9;
+    number.isSigned = false;
+    number.positive = true;
+
+    double value = 12.34;
+
+    bstd_assign_double(&number, value);
+
+    bstd_number ex;
+    ex.value = 12340;
+    ex.scale = 3;
+    ex.length = 9;
+    ex.isSigned = false;
+    ex.positive = true;
+
+    cr_assert_eq(ex.value,      number.value);
+    cr_assert_eq(ex.scale,      number.scale);
+    cr_assert_eq(ex.length,     number.length);
+    cr_assert_eq(ex.isSigned,   number.isSigned);
+    cr_assert_eq(ex.positive,   number.positive);
+
+}
+
+// boundary value analysis for value
+
+
+/*
+ * testing boundary value 999999999.0
+ *
+ * in:
+ * number.value = 5555;
+ * number.scale = 3;
+ * number.length = 4;
+ * number.isSigned = false;
+ * number.positive = true;
+ *
+ * value = 999999999.0;
+ *
+ * expected:
+ * ex.value = 999999000;
+ * ex.scale = 3;
+ * ex.length = 4;
+ * ex.isSigned = false;
+ * ex.positive = true;
+ *
+ */
+Test(numutils_tests, bstd_assign_double__value_eq_999999999){
+    bstd_number number;
+    number.value = 5555;
+    number.scale = 3;
+    number.length = 4;
+    number.isSigned = false;
+    number.positive = true;
+
+    double value = 999999999.0;
+
+    bstd_assign_double(&number, value);
+
+    bstd_number ex;
+    ex.value = 9000;
+    ex.scale = 3;
+    ex.length = 4;
+    ex.isSigned = false;
+    ex.positive = true;
+
+    cr_assert_eq(ex.value,      number.value);
+    cr_assert_eq(ex.scale,      number.scale);
+    cr_assert_eq(ex.length,     number.length);
+    cr_assert_eq(ex.isSigned,   number.isSigned);
+    cr_assert_eq(ex.positive,   number.positive);
+
+}
+
+
+/*
+ * testing boundary value 999999999
+ *
+ * in:
+ * number.value = 5555;
+ * number.scale = 3;
+ * number.length = 4;
+ * number.isSigned = true;
+ * number.positive = true;
+ *
+ * value = -999999999.0;
+ *
+ * expected:
+ * ex.value = 999999000;
+ * ex.scale = 3;
+ * ex.length = 4;
+ * ex.isSigned = true;
+ * ex.positive = false;
+ *
+ */
+Test(numutils_tests, bstd_assign_double__value_eq_negative_999999999){
+    bstd_number number;
+    number.value = 5555;
+    number.scale = 3;
+    number.length = 4;
+    number.isSigned = true;
+    number.positive = true;
+
+    double value = -999999999.0;
+
+    bstd_assign_double(&number, value);
+
+    bstd_number ex;
+    ex.value = 9000;
+    ex.scale = 3;
     ex.length = 4;
     ex.isSigned = true;
     ex.positive = false;
