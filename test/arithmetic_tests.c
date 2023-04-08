@@ -1021,7 +1021,7 @@ Test(arithmetic_tests, bstd_sum__lhs_length_eq_1){
     bstd_number lhs;
     lhs.value = 5555;
     lhs.scale = 3;
-    lhs.length = 0;
+    lhs.length = 1;
     lhs.isSigned = false;
     lhs.positive = true;
 
@@ -2196,7 +2196,7 @@ Test(arithmetic_tests, bstd_add__lhs_scale_eq_9){
 }
 
 /*
- * testing boundary value lhs.length = 0
+ * testing boundary value lhs.length = 1
  *
  * in:
  * lhs.value = 5555;
@@ -2599,7 +2599,7 @@ Test(arithmetic_tests, bstd_add__rhs_scale_eq_9){
 }
 
 /*
- * testing boundary value rhs.length = 0
+ * testing boundary value rhs.length = 1
  *
  * in:
  * lhs.value = 5555;
@@ -2610,7 +2610,7 @@ Test(arithmetic_tests, bstd_add__rhs_scale_eq_9){
  *
  * rhs.value = 1234;
  * rhs.scale = 6;
- * rhs.length = 0;
+ * rhs.length = 1;
  * rhs.isSigned = false;
  * rhs.positive = true;
  *
@@ -2633,7 +2633,7 @@ Test(arithmetic_tests, bstd_add__rhs_length_eq_1){
     bstd_number rhs;
     rhs.value = 1234;
     rhs.scale = 6;
-    rhs.length = 0;
+    rhs.length = 1;
     rhs.isSigned = false;
     rhs.positive = true;
 
