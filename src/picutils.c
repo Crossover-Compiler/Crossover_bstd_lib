@@ -5,29 +5,30 @@
 #include <string.h>
 #include <ctype.h>
 
-/**
- * Deep copies the content of the specified source buffer to the specified target buffer.
- * The specified buffers must be of equal length.
- * @param source The buffer whose content to copy_buffer.
- * @param target The buffer to copy_buffer into.
- * @param length The length of the buffers.
- * @return Returns a reference to the target buffer.
- */
-static unsigned char *copy_buffer(const unsigned char *source, unsigned char *target, size_t length) {
-    for (int i = 0; i < length; ++i) {
-        target[i] = source[i];
-    }
-    return target;
+bstd_picture* bstd_create_picture(char *mask_str) {
+
+    uint8_t length = strlen(mask_str);
+    unsigned char *bytes = (unsigned char *) malloc(sizeof(unsigned char) * length);
+
+    // bytes can contain garbage, we will initialize the picture shortly
+    bstd_picture *picture = bstd_picture_of(bytes, mask_str, length);
+
+    free(bytes); // byte contents were copied, we should release the memory
+
+    // initialize picture bytes to the default value under its mask_str
+    bstd_picture_init(picture);
+
+    return picture;
 }
 
 bstd_picture *bstd_picture_of(unsigned char *bytes, char *mask, uint8_t length) {
 
-    unsigned char *b = (unsigned char *) malloc(sizeof(unsigned char) * length + 1);
-    char *m = (char *) malloc(sizeof(char) * length + 1);
+    unsigned char *b = (unsigned char *) malloc(sizeof(unsigned char) * length);
+    char *m = (char *) malloc(sizeof(char) * length);
 
     bstd_picture *picture = (bstd_picture *) malloc(sizeof(bstd_picture));
-    picture->bytes = copy_buffer(bytes, b, length + 1);
-    picture->mask = (char*) copy_buffer((unsigned char*) mask, (unsigned char*) m , length + 1);
+    picture->bytes = memcpy(b, bytes, length);
+    picture->mask = memcpy(m, mask, length);
     picture->length = length;
 
     // todo: ensure that the bytes do not violate the mask
