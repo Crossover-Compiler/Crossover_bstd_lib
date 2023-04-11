@@ -15,12 +15,23 @@
 #define BSTD_SPACE ' '
 #endif
 
+/**
+ * Creates a new bstd_picture struct with a copy of the specified mask string.
+ * The new bstd_picture's bytes are initialized with default values under its mask.
+ * Note: the caller still owns the mask string.
+ * @param mask The mask for which to create the picture.
+ * @return Returns a new bstd_picture struct with default bytes under the specified mask.
+ */
+bstd_picture* bstd_create_picture(char *mask_str);
+
  /**
-* todo: doc. Make sure it copies the arrays!
-* @param bytes
-* @param mask
-* @param length
-* @return
+* Creates a new bstd_picture struct containing direct copies of the specified bytes and mask parameters.
+* Bytes are copied directly and are not checked of their validity under the specified mask.
+* Note: The caller still owns the bytes and mask pointers and they may safely be freed (the picture contains copies).
+* @param bytes The bytes to copy into the new bstd_picture.
+* @param mask The mask to copy into the new bstd_picture.
+* @param length The length of the new bstd_picture.
+* @return Returns a new bstd_picture struct populated with direct copies of the specified bytes and mask.
 */
 bstd_picture *bstd_picture_of(unsigned char *bytes, char *mask, uint8_t length);
 
