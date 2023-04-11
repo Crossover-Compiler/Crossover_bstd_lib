@@ -506,7 +506,6 @@ Test(picutils_tests, bstd_unmask__mask_A_byte_c_char_z){
  *
  */
 
-
 /*
  * testing valid conditions:
  * unsigned char* containing a combination of byte values 0-127
@@ -755,7 +754,7 @@ Test(picutils_tests, bstd_picture_init__min_length) {
  * testing boundary value length = 255
  *
  * in:
- * * bytes = {'}', 'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+ * bytes = {'}', 'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
                             'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
                             'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
                             'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
@@ -838,8 +837,86 @@ Test(picutils_tests, bstd_picture_init__min_length) {
  * length = 255
  *
  * ex:
- * bytes = {}
- * mask = {}
+ * bytes = {'}', 'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
  * length = 255
  *
  *
@@ -1486,4 +1563,2647 @@ Test(picutils_tests, bstd_picture_to_cstr__max_length) {
     cr_assert_str_eq(ex,res);
 }
 
-///todo test remaining three functions
+/**
+ * Tests for bstd_picture* bstd_create_picture(char *mask_str)
+ *
+ * Equivalence classes:
+ * +--------------------+-------------------------------------+--------------------------------------------------------+
+ * |     Condition      |                Valid                |                        Invalid                         |
+ * +--------------------+-------------------------------------+--------------------------------------------------------+
+ * | Value mask_str     | char* containing ‘A’, ‘X’ and ‘9’ s | char* containing anything other than ‘A’, ‘X’ and ‘9’s |
+ * | Length of mask_str | 0 <= mask_str.length <= 255         | mask_str.length < 0,                                   |
+ * |                    |                                     | mask_str.length  > 255                                 |
+ * +--------------------+-------------------------------------+--------------------------------------------------------+
+ */
+
+// valid tests
+
+/*
+ * testing valid conditions:
+ * char* containing ‘A’, ‘X’ and ‘9’ s
+ * 0 <= mask_str.length <= 255
+ * in:
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * mask_str.length = 3
+ *
+ * ex:
+ * bytes = {' ', ' ', 0}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ *
+ *
+ */
+Test(picutils_tests, bstd_create_picture__mask_XA9) {
+    char mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    bstd_picture *picture = bstd_create_picture(mask);
+
+    bstd_picture_init(picture);
+
+    bstd_picture ex;
+    ex.length = 3;
+    char ex_mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    ex.mask = ex_mask;
+    unsigned char ex_c[3] = {' ', ' ', 0};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < picture->length; ++i) {
+        cr_assert_eq(picture->bytes[i], ex.bytes[i]);
+    }
+}
+
+// boundary value analysis
+
+/*
+ * Testing boundary value mask_str.length = 255
+ *
+ *
+ * ex:
+ * bytes = {' ', ' ', 0}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ *
+ *
+ */
+Test(picutils_tests, bstd_create_picture__mask_length_eq_0) {
+    char mask[0] = {};
+    bstd_picture *picture = bstd_create_picture(mask);
+
+    bstd_picture_init(picture);
+
+    bstd_picture ex;
+    ex.length = 0;
+    char ex_mask[0] = {};
+    ex.mask = ex_mask;
+    unsigned char ex_c[0] = {};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < picture->length; ++i) {
+        cr_assert_eq(picture->bytes[i], ex.bytes[i]);
+    }
+}
+
+/*
+ * Testing boundary value mask_str.length = 255
+ *
+ *
+ * ex:
+ * bytes = {' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ *
+ *
+ */
+Test(picutils_tests, bstd_create_picture__mask_length_eq_255) {
+    char mask[255] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    bstd_picture *picture = bstd_create_picture(mask);
+
+    bstd_picture_init(picture);
+
+    bstd_picture ex;
+    ex.length = 255;
+    char ex_mask[255] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                        BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                        BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                        BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                        BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                        BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                        BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                        BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                        BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                        BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                        BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                        BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                        BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                        BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                        BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                        BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                        BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                        BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                        BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                        BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                        BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                        BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                        BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                        BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                        BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                        BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                        BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                        BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                        BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                        BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                        BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                        BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                        BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                        BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                        BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                        BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                        BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                        BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                        BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                        BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                        BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                        BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                        BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                        BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                        BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                        BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                        BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                        BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                        BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                        BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                        BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};;
+    ex.mask = ex_mask;
+    unsigned char ex_c[255] ={' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                            ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                            ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                            ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                            ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                            ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                            ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                            ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                            ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                            ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                            ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                            ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                            ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                            ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                            ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                            ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                            ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                            ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                            ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                            ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                            ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                            ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                            ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                            ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                            ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                            ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                            ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                            ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                            ' ', ' ', 0};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < picture->length; ++i) {
+        cr_assert_eq(picture->bytes[i], ex.bytes[i]);
+    }
+}
+
+/**
+ * Tests for bstd_picture *bstd_picture_of(unsigned char *bytes, char *mask, uint8_t length)
+ *
+ * Equivalence classes:
+ * +-----------------+--------------------------------------------------------------+-------------------------------------------------------------------+
+ * |    Condition    |                            Valid                             |                              Invalid                              |
+ * +-----------------+--------------------------------------------------------------+-------------------------------------------------------------------+
+ * | Value of bytes  | unsigned char* containing a combination of byte values 0-127 | unsigned char* containing a combination of byte values <0 or >127 |
+ * | Value of mask   | char* containing ‘A’, ‘X’ and ‘9’ s                          | char* containing anything other than ‘A’, ‘X’ and ‘9’s            |
+ * | Value of length | 0 <=length <= 255                                            | length < 0,                                                       |
+ * |                 |                                                              | length  > 255                                                     |
+ * | Relation        | length ==                                                    | length !=                                                         |
+ * |                 | length of bytes ==                                           | length of bytes !=                                                |
+ * |                 | length of mask                                               | length of mask                                                    |
+ * | Relation        | mask[i] ==‘A’ &&                                             | mask[i] ==‘A’ &&                                                  |
+ * |                 | 65 <= bytes[i] <= 90 ||                                      | (bytes[i] < 65                                                    |
+ * |                 | 97 <= bytes[i] <= 122,                                       | || bytes[i] >122 ||                                               |
+ * |                 |                                                              | 90 < bytes[i] < 97||                                              |
+ * |                 |                                                              |                                                                   |
+ * |                 | mask[i] ==‘X’ &&                                             |                                                                   |
+ * |                 | 0 <=bytes[i] <= 127,                                         | mask[i] ==‘X’ &&                                                  |
+ * |                 |                                                              | (bytes[i] < 0 ||bytes[i] >127),                                   |
+ * |                 |                                                              |                                                                   |
+ * |                 | mask[i] == ‘9’ &&                                            | mask[i] == ‘9’ &&                                                 |
+ * |                 | 0 <=bytes[i] <= 9                                            | (bytes[i] < 0 ||bytes[i] >9)                                      |
+ * +-----------------+--------------------------------------------------------------+-------------------------------------------------------------------+
+ */
+
+//valid test cases
+
+/*
+ * testing valid conditions:
+ * unsigned char* containing a combination of byte values 0-127
+ * char* containing ‘A’, ‘X’ and ‘9’ s
+ * 0 <= length <= 255
+ * length == length of bytes == length of mask
+ * mask[i] ==‘A’ && 65 <= bytes[i] <= 90,
+ * mask[i] ==‘X’ && 0 <= bytes[i] <= 127,
+ * mask[i] == ‘9’ && 0 <= bytes[i] <= 9
+ *
+ * in:
+ * bytes = {'}', 'B', 3}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ *
+ * ex:
+ * bytes = {'}', 'B', 3}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ *
+ *
+ */
+Test(picutils_tests, bstd_picture_of__mask_XA9_bytes_char_curlybracketright_char_B_3) {
+    unsigned char c[3] = {'}', 'B', 3};
+    char mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    bstd_picture *picture = bstd_picture_of(c, mask, 3);
+
+
+    bstd_picture ex;
+    ex.length = 3;
+    char ex_mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    ex.mask = ex_mask;
+    unsigned char ex_c[3] = {'}', 'B', 3};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < picture->length; ++i) {
+        cr_assert_eq(picture->bytes[i], ex.bytes[i]);
+    }
+}
+
+/*
+ * testing valid conditions:
+ * unsigned char* containing a combination of byte values 0-127
+ * char* containing ‘A’, ‘X’ and ‘9’ s
+ * 0 <= length <= 255
+ * length == length of bytes == length of mask
+ * mask[i] ==‘A’ && 75 <= bytes[i] <= 122,
+ * mask[i] ==‘X’ && 0 <= bytes[i] <= 127,
+ * mask[i] == ‘9’ && 0 <= bytes[i] <= 9
+ *
+* in:
+ * bytes = {'}', 'b', 3}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ *
+ * ex:
+ * bytes = {'}', 'b', 3}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ */
+Test(picutils_tests, bstd_picture_of__mask_XA9_bytes_char_curlybracketright_char_b_3) {
+    unsigned char c[3] = {'}', 'b', 3};
+    char mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    bstd_picture *picture = bstd_picture_of(c, mask, 3);
+
+    bstd_picture ex;
+    ex.length = 3;
+    char ex_mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    ex.mask = ex_mask;
+    unsigned char ex_c[3] = {'}', 'b', 3};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < picture->length; ++i) {
+        cr_assert_eq(picture->bytes[i], ex.bytes[i]);
+    }
+}
+
+// boundary value analysis
+
+/*
+ * testing boundary values:
+ *
+ * in:
+ * bytes = {0, 65, 0}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ *
+ * ex:
+ * bytes = {0, 65, 0}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ */
+Test(picutils_tests, bstd_picture_of__mask_XA9_min_values_uppercase_A) {
+    unsigned char c[3] = {0, 65, 0};
+    char mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    bstd_picture *picture = bstd_picture_of(c, mask, 3);
+
+    bstd_picture ex;
+    ex.length = 3;
+    char ex_mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    ex.mask = ex_mask;
+    unsigned char ex_c[3] = {0, 65, 0};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < picture->length; ++i) {
+        cr_assert_eq(picture->bytes[i], ex.bytes[i]);
+    }
+}
+
+/*
+ * testing boundary values:
+ *
+ * in:
+ * bytes = {0, 97, 0}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ *
+ * ex:
+ * bytes = {0, 97, 0}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ */
+Test(picutils_tests, bstd_picture_of__mask_XA9_min_values_lowercase_a) {
+    unsigned char c[3] = {0, 97, 0};
+    char mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    bstd_picture *picture = bstd_picture_of(c, mask, 3);
+
+    bstd_picture ex;
+    ex.length = 3;
+    char ex_mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    ex.mask = ex_mask;
+    unsigned char ex_c[3] = {0, 97, 0};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < picture->length; ++i) {
+        cr_assert_eq(picture->bytes[i], ex.bytes[i]);
+    }
+}
+
+/*
+ * testing boundary values:
+ *
+ * in:
+ * bytes = {127, 90, 9}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ *
+ * ex:
+ * bytes = {127, 90, 9}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ */
+Test(picutils_tests, bstd_picture_mask__mask_XA9_max_values_uppercase_Z) {
+    unsigned char c[3] = {127, 90, 9};
+    char mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    bstd_picture *picture = bstd_picture_of(c, mask, 3);
+
+    bstd_picture ex;
+    ex.length = 3;
+    char ex_mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    ex.mask = ex_mask;
+    unsigned char ex_c[3] = {127, 90, 9};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < picture->length; ++i) {
+        cr_assert_eq(picture->bytes[i], ex.bytes[i]);
+    }
+}
+
+/*
+ * testing boundary values:
+ *
+ * in:
+ * bytes = {127, 122, 9}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ *
+ * ex:
+ * bytes = {127, 122, 9}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ */
+Test(picutils_tests, bstd_picture_of__mask_XA9_max_values_lowercase_z) {
+    unsigned char c[3] = {127, 122, 9};
+    char mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    bstd_picture *picture = bstd_picture_of(c, mask, 3);
+
+    bstd_picture ex;
+    ex.length = 3;
+    char ex_mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    ex.mask = ex_mask;
+    unsigned char ex_c[3] = {127, 122, 9};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < picture->length; ++i) {
+        cr_assert_eq(picture->bytes[i], ex.bytes[i]);
+    }
+}
+
+/*
+ * testing boundary value length =0
+ *
+ * in:
+ * bytes = {}
+ * mask = {}
+ * length = 0
+ *
+ * ex:
+ * bytes = {}
+ * mask = {}
+ * length = 0
+ *
+ *
+ */
+Test(picutils_tests, bstd_picture_of__min_length) {
+    unsigned char c[0] = {};
+    char mask[0] = {};
+    bstd_picture *picture = bstd_picture_of(c, mask, 0);
+
+    bstd_picture ex;
+    ex.length = 0;
+    char ex_mask[0] = {};
+    ex.mask = ex_mask;
+    unsigned char ex_c[0] = {};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < picture->length; ++i) {
+        cr_assert_eq(picture->bytes[i], ex.bytes[i]);
+    }
+}
+
+/*
+ * testing boundary value length = 255
+ *
+ * in:
+ * * bytes = {'}', 'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 255
+ *
+ * ex:
+ * bytes = {'}', 'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 255
+ *
+ *
+ */
+Test(picutils_tests, bstd_picture_of__max_length) {
+    unsigned char c[255] = {'}', 'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3};
+    char mask[255] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    bstd_picture *picture = bstd_picture_of(c, mask, 255);
+
+
+    bstd_picture ex;
+    ex.length = 255;
+    char ex_mask[255] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};;
+    ex.mask = ex_mask;
+    unsigned char ex_c[255] = {'}', 'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                               'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                               'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                               'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                               'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                               'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                               'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                               'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                               'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                               'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                               'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                               'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                               'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                               'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                               'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                               'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                               'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                               'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                               'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                               'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                               'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                               'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                               'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                               'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                               'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                               'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                               'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                               'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                               'B', 3};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < picture->length; ++i) {
+        cr_assert_eq(picture->bytes[i], ex.bytes[i]);
+    }
+}
+
+
+/**
+ * Tests for void bstd_assign_str(bstd_picture *assignee, const char *str)
+ *
+ * Equivalence classes:
+ * +--------------------------+--------------------------------------------------------------+-------------------------------------------------------------------+
+ * |        Condition         |                            Valid                             |                              Invalid                              |
+ * +--------------------------+--------------------------------------------------------------+-------------------------------------------------------------------+
+ * | Value of assignee.bytes  | unsigned char* containing a combination of byte values 0-127 | unsigned char* containing a combination of byte values <0 or >127 |
+ * | Value of assignee.mask   | char* containing ‘A’, ‘X’ and ‘9’ s                          | char* containing anything other than ‘A’, ‘X’ and ‘9’s            |
+ * | Value of assignee.length | 0 <= assignee.length <= 255                                  | assignee.length < 0,                                              |
+ * |                          |                                                              | assignee.length  > 255                                            |
+ * | Relation                 | assignee.length ==                                           | assignee.length !=                                                |
+ * |                          | length of assignee.bytes == length of assignee.mask          | length of assignee.bytes != length of assignee.mask               |
+ * | Relation                 | assignee.mask[i] ==‘A’ &&                                    | assignee.mask[i] ==‘A’ &&                                         |
+ * |                          | 65 <= assignee.bytes[i] <= 90 ||                             | (assignee.bytes[i] < 65                                           |
+ * |                          | 97 <= assignee.bytes[i] <= 122,                              | || assignee.bytes[i] >122 ||                                      |
+ * |                          |                                                              | 90 < assignee.bytes[i] < 97||                                     |
+ * |                          |                                                              |                                                                   |
+ * |                          | assignee.mask[i] ==‘X’ &&                                    |                                                                   |
+ * |                          | 0 <= assignee.bytes[i] <= 127,                               | assignee.mask[i] ==‘X’ &&                                         |
+ * |                          |                                                              | (assignee.bytes[i] < 0                                            |
+ * |                          |                                                              | || assignee.bytes[i] >127),                                       |
+ * |                          | assignee.mask[i] == ‘9’ &&                                   |                                                                   |
+ * |                          | 0 <= assignee.bytes[i] <= 9                                  | assignee.mask[i] == ‘9’ &&                                        |
+ * |                          |                                                              | (assignee.bytes[i] < 0                                            |
+ * |                          |                                                              | || assignee.bytes[i] >9)                                          |
+ * | Value of str             | char* containing a combination of byte values 0-127          | unsigned char* containing a combination of byte values <0 or >127 |
+ * +--------------------------+--------------------------------------------------------------+-------------------------------------------------------------------+
+*/
+
+/*
+ * testing valid conditions:
+ * unsigned char* containing a combination of byte values 0-127
+ * char* containing ‘A’, ‘X’ and ‘9’ s
+ * 0 <= picture.length <= 255
+ * picture.length == length of picture.bytes == length of picture.mask
+ * picture.mask[i] ==‘A’ && 65 <= picture.bytes[i] <= 90,
+ * picture.mask[i] ==‘X’ && 0 <= picture.bytes[i] <= 127,
+ * picture.mask[i] == ‘9’ && 0 <= picture.bytes[i] <= 9
+ * char* containing a combination of byte values 0-127
+ *
+ * in:
+ * bytes = {' ', ' ', 0}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ *
+ * str = -A6
+ *
+ * ex:
+ * bytes = {'-', 'A', 6}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ *
+ *
+ */
+Test(picutils_tests, bstd_assign_str__mask_XA9_bytes_char_curlybracketright_char_B_3_str_dash_A6) {
+    unsigned char c[3] = {'}', 'B', 3};
+    char mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    bstd_picture *picture = bstd_picture_of(c, mask, 3);
+
+    char* str = "-A6";
+
+    bstd_assign_str(picture, str);
+
+    bstd_picture ex;
+    ex.length = 3;
+    char ex_mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    ex.mask = ex_mask;
+    unsigned char ex_c[3] = {'-', 'A', 6};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < picture->length; ++i) {
+        cr_assert_eq(picture->bytes[i], ex.bytes[i]);
+    }
+}
+
+/*
+ * testing valid conditions:
+ * unsigned char* containing a combination of byte values 0-127
+ * char* containing ‘A’, ‘X’ and ‘9’ s
+ * 0 <= picture.length <= 255
+ * picture.length == length of picture.bytes == length of picture.mask
+ * picture.mask[i] ==‘A’ && 75 <= picture.bytes[i] <= 122,
+ * picture.mask[i] ==‘X’ && 0 <= picture.bytes[i] <= 127,
+ * picture.mask[i] == ‘9’ && 0 <= picture.bytes[i] <= 9
+ *
+* in:
+ * bytes = {'}', 'b', 3}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ *
+ * str = "-A6"
+ *
+ * ex:
+ * bytes = {' ', ' ', 0}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ */
+Test(picutils_tests, bstd_assign_str_init__mask_XA9_bytes_char_curlybracketright_char_b_3_str_dash_A6) {
+    unsigned char c[3] = {'}', 'b', 3};
+    char mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    bstd_picture *picture = bstd_picture_of(c, mask, 3);
+
+    char* str = "-A6";
+
+    bstd_assign_str(picture, str);
+
+    bstd_picture ex;
+    ex.length = 3;
+    char ex_mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    ex.mask = ex_mask;
+    unsigned char ex_c[3] = {'-', 'A', 6};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < picture->length; ++i) {
+        cr_assert_eq(picture->bytes[i], ex.bytes[i]);
+    }
+}
+
+// boundary value analysis
+
+/*
+ * testing boundary values:
+ *
+ * in:
+ * bytes = {0, 65, 0}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ *
+ * str = "-A6"
+ *
+ * ex:
+ * bytes = {'-', 'A', 6}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ */
+Test(picutils_tests, bstd_assign_str__mask_XA9_min_values_uppercase_A_str_dash_A6) {
+    unsigned char c[3] = {0, 65, 0};
+    char mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    bstd_picture *picture = bstd_picture_of(c, mask, 3);
+
+    char* str = "-A6";
+
+    bstd_assign_str(picture, str);
+
+    bstd_picture ex;
+    ex.length = 3;
+    char ex_mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    ex.mask = ex_mask;
+    unsigned char ex_c[3] = {'-', 'A', 6};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < picture->length; ++i) {
+        cr_assert_eq(picture->bytes[i], ex.bytes[i]);
+    }
+}
+
+/*
+ * testing boundary values:
+ *
+ * in:
+ * bytes = {0, 97, 0}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ *
+ * str = "-A6"
+ *
+ * ex:
+ * bytes = {'-', 'A', 6}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ */
+Test(picutils_tests, bstd_assign_str__mask_XA9_min_values_lowercase_a_str_dash_A6) {
+    unsigned char c[3] = {0, 97, 0};
+    char mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    bstd_picture *picture = bstd_picture_of(c, mask, 3);
+
+    char* str = "-A6";
+
+    bstd_assign_str(picture, str);
+
+    bstd_picture ex;
+    ex.length = 3;
+    char ex_mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    ex.mask = ex_mask;
+    unsigned char ex_c[3] = {'-', 'A', 6};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < picture->length; ++i) {
+        cr_assert_eq(picture->bytes[i], ex.bytes[i]);
+    }
+}
+
+/*
+ * testing boundary values:
+ *
+ * in:
+ * bytes = {127, 90, 9}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ *
+ * str = "-A6"
+ *
+ * ex:
+ * bytes = {'-', 'A', 6}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ */
+Test(picutils_tests, bstd_assign_str__mask_XA9_max_values_uppercase_Z_str_dash_A6) {
+    unsigned char c[3] = {127, 90, 9};
+    char mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    bstd_picture *picture = bstd_picture_of(c, mask, 3);
+
+    char* str = "-A6";
+
+    bstd_assign_str(picture, str);
+
+    bstd_picture ex;
+    ex.length = 3;
+    char ex_mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    ex.mask = ex_mask;
+    unsigned char ex_c[3] = {'-', 'A', 6};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < picture->length; ++i) {
+        cr_assert_eq(picture->bytes[i], ex.bytes[i]);
+    }
+}
+
+/*
+ * testing boundary values:
+ *
+ * in:
+ * bytes = {127, 122, 9}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ *
+ * str = "-A6"
+ *
+ * ex:
+ * bytes = {'-', 'A', 6}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ */
+Test(picutils_tests, bstd_assign_str__mask_XA9_max_values_lowercase_z_str_dash_A6) {
+    unsigned char c[3] = {127, 122, 9};
+    char mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    bstd_picture *picture = bstd_picture_of(c, mask, 3);
+
+    char* str = "-A6";
+
+    bstd_assign_str(picture, str);
+
+    bstd_picture ex;
+    ex.length = 3;
+    char ex_mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    ex.mask = ex_mask;
+    unsigned char ex_c[3] = {'-', 'A', 6};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < picture->length; ++i) {
+        cr_assert_eq(picture->bytes[i], ex.bytes[i]);
+    }
+}
+
+/*
+ * testing boundary value length =0
+ *
+ * in:
+ * bytes = {}
+ * mask = {}
+ * length = 0
+ *
+ * ex:
+ * bytes = {}
+ * mask = {}
+ * length = 0
+ *
+ *
+ */
+Test(picutils_tests, bstd_assign_str__min_length_str_dash_A6) {
+    unsigned char c[0] = {};
+    char mask[0] = {};
+    bstd_picture *picture = bstd_picture_of(c, mask, 0);
+
+    char* str = "-A6";
+
+    bstd_assign_str(picture, str);
+
+    bstd_picture ex;
+    ex.length = 0;
+    char ex_mask[0] = {};
+    ex.mask = ex_mask;
+    unsigned char ex_c[0] = {};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < picture->length; ++i) {
+        cr_assert_eq(picture->bytes[i], ex.bytes[i]);
+    }
+}
+
+/*
+ * testing boundary value length = 255
+ *
+ * in:
+ * bytes = {'}', 'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 255
+ *
+ * str = "-A6";
+ * ex:
+ * bytes = {'-', 'A', 6,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 255
+ *
+ *
+ */
+Test(picutils_tests, bstd_assign_str_init__max_length_str_dash_A6) {
+    unsigned char c[255] = {'}', 'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3};
+    char mask[255] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    bstd_picture *picture = bstd_picture_of(c, mask, 255);
+
+    char* str = "-A6";
+
+    bstd_assign_str(picture, str);
+
+    bstd_picture ex;
+    ex.length = 255;
+    char ex_mask[255] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};;
+    ex.mask = ex_mask;
+    unsigned char ex_c[255] = {'-', 'A', 6,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < picture->length; ++i) {
+        cr_assert_eq(picture->bytes[i], ex.bytes[i]);
+    }
+}
+
+/**
+ * Tests for void bstd_assign_picture(bstd_picture *assignee, const bstd_picture *value)
+ *
+ * Equivalence classes:
+ * +--------------------------+--------------------------------------------------------------+-------------------------------------------------------------------+
+ * |        Condition         |                            Valid                             |                              Invalid                              |
+ * +--------------------------+--------------------------------------------------------------+-------------------------------------------------------------------+
+ * | Value of assignee.bytes  | unsigned char* containing a combination of byte values 0-127 | unsigned char* containing a combination of byte values <0 or >127 |
+ * | Value of assignee.mask   | char* containing ‘A’, ‘X’ and ‘9’ s                          | char* containing anything other than ‘A’, ‘X’ and ‘9’s            |
+ * | Value of assignee.length | 0 <= assignee.length <= 255                                  | assignee.length < 0,                                              |
+ * |                          |                                                              | assignee.length  > 255                                            |
+ * | Relation                 | assignee.length ==                                           | assignee.length !=                                                |
+ * |                          | length of assignee.bytes == length of assignee.mask          | length of assignee.bytes != length of assignee.mask               |
+ * | Relation                 | assignee.mask[i] ==‘A’ &&                                    | assignee.mask[i] ==‘A’ &&                                         |
+ * |                          | 65 <= assignee.bytes[i] <= 90 ||                             | (assignee.bytes[i] < 65                                           |
+ * |                          | 97 <= assignee.bytes[i] <= 122,                              | || assignee.bytes[i] >122 ||                                      |
+ * |                          |                                                              | 90 < assignee.bytes[i] < 97||                                     |
+ * |                          |                                                              |                                                                   |
+ * |                          | assignee.mask[i] ==‘X’ &&                                    |                                                                   |
+ * |                          | 0 <= assignee.bytes[i] <= 127,                               | assignee.mask[i] ==‘X’ &&                                         |
+ * |                          |                                                              | (assignee.bytes[i] < 0                                            |
+ * |                          |                                                              | || assignee.bytes[i] >127),                                       |
+ * |                          | assignee.mask[i] == ‘9’ &&                                   |                                                                   |
+ * |                          | 0 <= assignee.bytes[i] <= 9                                  | assignee.mask[i] == ‘9’ &&                                        |
+ * |                          |                                                              | (assignee.bytes[i] < 0                                            |
+ * |                          |                                                              | || assignee.bytes[i] >9)                                          |
+ * | Value of value.bytes     | unsigned char* containing a combination of byte values 0-127 | unsigned char* containing a combination of byte values <0 or >127 |
+ * | Value of value.mask      | char* containing ‘A’, ‘X’ and ‘9’ s                          | char* containing anything other than ‘A’, ‘X’ and ‘9’s            |
+ * | Value of value.length    | 0 <= value.length <= 255                                     | value.length < 0,                                                 |
+ * |                          |                                                              | value.length  > 255                                               |
+ * | Relation                 | value.length ==                                              | value.length !=                                                   |
+ * |                          | length of value.bytes == length of value.mask                | length of value.bytes != length of value.mask                     |
+ * | Relation                 | value.mask[i] ==‘A’ &&                                       | value.mask[i] ==‘A’ &&                                            |
+ * |                          | 65 <= value.bytes[i] <= 90 ||                                | (value.bytes[i] < 65                                              |
+ * |                          | 97 <= value.bytes[i] <= 122,                                 | || value.bytes[i] >122 ||                                         |
+ * |                          |                                                              | 90 < value.bytes[i] < 97||                                        |
+ * |                          |                                                              |                                                                   |
+ * |                          | value.mask[i] ==‘X’ &&                                       |                                                                   |
+ * |                          | 0 <= value.bytes[i] <= 127,                                  | value.mask[i] ==‘X’ &&                                            |
+ * |                          |                                                              | (value.bytes[i] < 0                                               |
+ * |                          |                                                              | || value.bytes[i] >127),                                          |
+ * |                          | value.mask[i] == ‘9’ &&                                      |                                                                   |
+ * |                          | 0 <= value.bytes[i] <= 9                                     | value.mask[i] == ‘9’ &&                                           |
+ * |                          |                                                              | (value.bytes[i] < 0                                               |
+ * |                          |                                                              | || value.bytes[i] >9)                                             |
+ * +--------------------------+--------------------------------------------------------------+-------------------------------------------------------------------+
+ */
+
+
+/*
+ * testing valid conditions:
+ * assignee:
+ * unsigned char* containing a combination of byte values 0-127
+ * char* containing ‘A’, ‘X’ and ‘9’ s
+ * 0 <= assignee.length <= 255
+ * assignee.length == length of assignee.bytes == length of assignee.mask
+ * assignee.mask[i] ==‘A’ && 65 <= assignee.bytes[i] <= 90,
+ * assignee.mask[i] ==‘X’ && 0 <= assignee.bytes[i] <= 127,
+ * assignee.mask[i] == ‘9’ && 0 <= assignee.bytes[i] <= 9
+ *
+ * value:
+ * unsigned char* containing a combination of byte values 0-127
+ * char* containing ‘A’, ‘X’ and ‘9’ s
+ * 0 <= value.length <= 255
+ * value.length == length of value.bytes == length of value.mask
+ * value.mask[i] ==‘A’ && 65 <= value.bytes[i] <= 90,
+ * value.mask[i] ==‘X’ && 0 <= value.bytes[i] <= 127,
+ * value.mask[i] == ‘9’ && 0 <= value.bytes[i] <= 9
+ *
+ *
+ *
+ * in:
+ * assignee.bytes = {'}', 'B', 3}
+ * assignee.mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * assignee.length = 3
+ *
+ * value.bytes = {'-', 'A', 3, 'B'}
+ * value.mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9, BSTD_MASK_A}
+ * value.length = 4
+ *
+ * ex:
+ * bytes = {'-', 'A', 3}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ *
+ *
+ */
+Test(picutils_tests, bstd_assign_picture__valid_case_1) {
+    unsigned char c_assignee[3] = {'}', 'B', 3};
+    char mask_assignee[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    bstd_picture *assignee = bstd_picture_of(c_assignee, mask_assignee, 3);
+
+    unsigned char c_value[4] = {'-', 'A', 3, 'B'};
+    char mask_value[4] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9, BSTD_MASK_A};
+    bstd_picture *value = bstd_picture_of(c_value, mask_value, 4);
+
+    bstd_assign_picture(assignee, value);
+
+    bstd_picture ex;
+    ex.length = 3;
+    char ex_mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    ex.mask = ex_mask;
+    unsigned char ex_c[3] = {'-', 'A', 3};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < assignee->length; ++i) {
+        cr_assert_eq(assignee->bytes[i], ex.bytes[i]);
+    }
+}
+
+/*
+ * testing valid conditions:
+ *
+ * assignee:
+ * unsigned char* containing a combination of byte values 0-127
+ * char* containing ‘A’, ‘X’ and ‘9’ s
+ * 0 <= assignee.length <= 255
+ * assignee.length == length of assignee.bytes == length of assignee.mask
+ * assignee.mask[i] ==‘A’ && 75 <= assignee.bytes[i] <= 122,
+ * assignee.mask[i] ==‘X’ && 0 <= assignee.bytes[i] <= 127,
+ * assignee.mask[i] == ‘9’ && 0 <= assignee.bytes[i] <= 9
+ *
+ * value:
+ * unsigned char* containing a combination of byte values 0-127
+ * char* containing ‘A’, ‘X’ and ‘9’ s
+ * 0 <= value.length <= 255
+ * value.length == length of value.bytes == length of value.mask
+ * value.mask[i] ==‘A’ && 75 <= value.bytes[i] <= 122,
+ * value.mask[i] ==‘X’ && 0 <= value.bytes[i] <= 127,
+ * value.mask[i] == ‘9’ && 0 <= value.bytes[i] <= 9
+ *
+ * in:
+ * assignee.bytes = {'-', 'A', 3, 'B'}
+ * assignee.mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9, BSTD_MASK_A}
+ * assignee.length = 4
+ *
+ * value.bytes = {'}', 'B', 3}
+ * value.mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * value.length = 3
+ *
+ * ex:
+ * bytes = {'}', 'B', 3, ' '}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9, BSTD_MASK_A}
+ * length = 3
+ */
+Test(picutils_tests, bstd_assign_picture__valid_case_2) {
+    unsigned char c_assignee[4] = {'-', 'A', 3, 'B'};
+    char mask_assignee[4] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9, BSTD_MASK_A};
+    bstd_picture *assignee = bstd_picture_of(c_assignee, mask_assignee, 4);
+
+    unsigned char c_value[3] = {'}', 'B', 3};
+    char mask_value[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    bstd_picture *value = bstd_picture_of(c_value, mask_value, 3);
+
+
+
+    bstd_assign_picture(assignee, value);
+
+    bstd_picture ex;
+    ex.length = 4;
+    char ex_mask[4] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9, BSTD_MASK_A};
+    ex.mask = ex_mask;
+    unsigned char ex_c[4] = {'}', 'B', 3, ' '};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < assignee->length; ++i) {
+        cr_assert_eq(assignee->bytes[i], ex.bytes[i]);
+    }
+}
+
+// boundary value analysis
+
+/*
+ * testing boundary values:
+ *
+ * bytes = {0, 65, 0}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ *
+ * ex:
+ * bytes = {'-', 'A', 3}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ */
+Test(picutils_tests, bstd_assign_picture__assignee_mask_XA9_min_values_uppercase_A) {
+    unsigned char c_assignee[3] = {0, 65, 0};
+    char mask_assignee[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    bstd_picture *assignee = bstd_picture_of(c_assignee, mask_assignee, 3);
+
+    unsigned char c_value[4] = {'-', 'A', 3, 'B'};
+    char mask_value[4] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9, BSTD_MASK_A};
+    bstd_picture *value = bstd_picture_of(c_value, mask_value, 4);
+
+    bstd_assign_picture(assignee,  value);
+
+    bstd_picture ex;
+    ex.length = 3;
+    char ex_mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    ex.mask = ex_mask;
+    unsigned char ex_c[3] = {'-', 'A', 3};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < assignee->length; ++i) {
+        cr_assert_eq(assignee->bytes[i], ex.bytes[i]);
+    }
+}
+
+/*
+ * testing boundary values:
+
+ * bytes = {0, 97, 0}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ *
+ * ex:
+ * bytes = {'-', 'A', 3}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ */
+Test(picutils_tests, bstd_assign_picture__assignee_mask_XA9_min_values_lowercase_a) {
+    unsigned char c_assignee[3] = {0, 97, 0};
+    char mask_assignee[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    bstd_picture *assignee = bstd_picture_of(c_assignee, mask_assignee, 3);
+
+    unsigned char c_value[4] = {'-', 'A', 3, 'B'};
+    char mask_value[4] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9, BSTD_MASK_A};
+    bstd_picture *value = bstd_picture_of(c_value, mask_value, 4);
+
+    bstd_assign_picture(assignee,  value);
+
+    bstd_picture ex;
+    ex.length = 3;
+    char ex_mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    ex.mask = ex_mask;
+    unsigned char ex_c[3] = {'-', 'A', 3};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < assignee->length; ++i) {
+        cr_assert_eq(assignee->bytes[i], ex.bytes[i]);
+    }
+}
+
+/*
+ * testing boundary values:
+ *
+ * bytes = {127, 90, 9}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ *
+ * ex:
+ * bytes = {'-', 'A', 3}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ */
+Test(picutils_tests, std_assign_picture__assignee_mask_XA9_max_values_uppercase_Z) {
+    unsigned char c_assignee[3] = {127, 90, 9};
+    char mask_assignee[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    bstd_picture *assignee = bstd_picture_of(c_assignee, mask_assignee, 3);
+
+    unsigned char c_value[4] = {'-', 'A', 3, 'B'};
+    char mask_value[4] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9, BSTD_MASK_A};
+    bstd_picture *value = bstd_picture_of(c_value, mask_value, 4);
+
+    bstd_assign_picture(assignee,  value);
+
+    bstd_picture ex;
+    ex.length = 3;
+    char ex_mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    ex.mask = ex_mask;
+    unsigned char ex_c[3] = {'-', 'A', 3};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < assignee->length; ++i) {
+        cr_assert_eq(assignee->bytes[i], ex.bytes[i]);
+    }
+}
+
+/*
+ * testing boundary values:
+ * bytes = {127, 122, 9}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ *
+ * ex:
+ * bytes = {'-', 'A', 3}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ */
+Test(picutils_tests, std_assign_picture__assignee_mask_XA9_max_values_lowercase_z) {
+    unsigned char c_assignee[3] = {127, 122, 9};
+    char mask_assignee[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    bstd_picture *assignee = bstd_picture_of(c_assignee, mask_assignee, 3);
+
+    unsigned char c_value[4] = {'-', 'A', 3, 'B'};
+    char mask_value[4] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9, BSTD_MASK_A};
+    bstd_picture *value = bstd_picture_of(c_value, mask_value, 4);
+
+    bstd_assign_picture(assignee,  value);
+
+    bstd_picture ex;
+    ex.length = 3;
+    char ex_mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    ex.mask = ex_mask;
+    unsigned char ex_c[3] = {'-', 'A', 3};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < assignee->length; ++i) {
+        cr_assert_eq(assignee->bytes[i], ex.bytes[i]);
+    }
+}
+
+/*
+ * testing boundary value length =0
+ *
+ * in:
+ * bytes = {}
+ * mask = {}
+ * length = 0
+ *
+ * ex:
+ * bytes = {}
+ * mask = {}
+ * length = 0
+ *
+ *
+ */
+Test(picutils_tests, std_assign_picture__assignee_min_length) {
+    unsigned char c_assignee[0] = {};
+    char mask_assignee[0] = {};
+    bstd_picture *assignee = bstd_picture_of(c_assignee, mask_assignee, 0);
+
+    unsigned char c_value[4] = {'-', 'A', 3, 'B'};
+    char mask_value[4] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9, BSTD_MASK_A};
+    bstd_picture *value = bstd_picture_of(c_value, mask_value, 4);
+
+    bstd_assign_picture(assignee,  value);
+
+    bstd_picture ex;
+    ex.length = 0;
+    char ex_mask[0] = {};
+    ex.mask = ex_mask;
+    unsigned char ex_c[0] = {};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < assignee->length; ++i) {
+        cr_assert_eq(assignee->bytes[i], ex.bytes[i]);
+    }
+}
+
+/*
+ * testing boundary value length = 255
+ *
+ * in:
+ * bytes = {'}', 'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 255
+ *
+ * ex:
+ * bytes = {'-', 'A', 3,'B', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 255
+ *
+ *
+ */
+Test(picutils_tests, std_assign_picture__assignee_max_length) {
+    unsigned char c_assignee[255] = {'}', 'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3};
+    char mask_assignee[255] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    bstd_picture *assignee = bstd_picture_of(c_assignee, mask_assignee, 255);
+
+    unsigned char c_value[4] = {'-', 'A', 3, 'B'};
+    char mask_value[4] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9, BSTD_MASK_A};
+    bstd_picture *value = bstd_picture_of(c_value, mask_value, 4);
+
+    bstd_assign_picture(assignee,  value);
+
+
+    bstd_picture ex;
+    ex.length = 255;
+    char ex_mask[255] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                         BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                         BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                         BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};;
+    ex.mask = ex_mask;
+    unsigned char ex_c[255] = {'-', 'A', 3,'B', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0,' ', ' ', 0,' ', ' ', 0,
+                               ' ', ' ', 0};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < assignee->length; ++i) {
+        cr_assert_eq(assignee->bytes[i], ex.bytes[i]);
+    }
+}
+
+
+
+/*
+ * testing boundary values:
+ *
+ * bytes = {0, 65, 0}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ *
+ * ex:
+ * bytes = {0, 65, 0, ' '}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9, BSTD_MASK_A}
+ * length = 4
+ */
+Test(picutils_tests, bstd_assign_picture__value_mask_XA9_min_values_uppercase_A) {
+    unsigned char c_value[3] = {0, 65, 0};
+    char mask_value[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    bstd_picture *value = bstd_picture_of(c_value, mask_value, 3);
+
+    unsigned char c_assignee[4] = {'-', 'A', 3, 'B'};
+    char mask_assignee[4] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9, BSTD_MASK_A};
+    bstd_picture *assignee = bstd_picture_of(c_assignee, mask_assignee, 4);
+
+    bstd_assign_picture(assignee,  value);
+
+    bstd_picture ex;
+    ex.length = 4;
+    char ex_mask[4] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9, BSTD_MASK_A};
+    ex.mask = ex_mask;
+    unsigned char ex_c[4] = {0, 65, 0, ' '};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < assignee->length; ++i) {
+        cr_assert_eq(assignee->bytes[i], ex.bytes[i]);
+    }
+}
+
+/*
+ * testing boundary values:
+
+ * bytes = {0, 97, 0}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ *
+ * ex:
+ * bytes = {0, 97, 0, ' '}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9, BSTD_MASK_A}
+ * length = 3
+ */
+Test(picutils_tests, bstd_assign_picture__value_mask_XA9_min_values_lowercase_a) {
+    unsigned char c_value[3] = {0, 97, 0};
+    char mask_value[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    bstd_picture *value = bstd_picture_of(c_value, mask_value, 3);
+
+    unsigned char c_assignee[4] = {'-', 'A', 3, 'B'};
+    char mask_assignee[4] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9, BSTD_MASK_A};
+    bstd_picture *assignee = bstd_picture_of(c_assignee, mask_assignee, 4);
+
+    bstd_assign_picture(assignee,  value);
+
+    bstd_picture ex;
+    ex.length = 4;
+    char ex_mask[4] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9, BSTD_MASK_A};
+    ex.mask = ex_mask;
+    unsigned char ex_c[4] = {0, 97, 0, ' '};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < assignee->length; ++i) {
+        cr_assert_eq(assignee->bytes[i], ex.bytes[i]);
+    }
+}
+
+/*
+ * testing boundary values:
+ *
+ * bytes = {127, 90, 9}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ *
+ * ex:
+ * bytes = {127, 90, 9, ' '}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9, BSTD_MASK_A}
+ * length = 4
+ */
+Test(picutils_tests, std_assign_picture__value_mask_XA9_max_values_uppercase_Z) {
+    unsigned char c_value[3] = {127, 90, 9};
+    char mask_value[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    bstd_picture *value = bstd_picture_of(c_value, mask_value, 3);
+
+    unsigned char c_assignee[4] = {'-', 'A', 3, 'B'};
+    char mask_assignee[4] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9, BSTD_MASK_A};
+    bstd_picture *assignee = bstd_picture_of(c_assignee, mask_assignee, 4);
+
+    bstd_assign_picture(assignee,  value);
+
+    bstd_picture ex;
+    ex.length = 4;
+    char ex_mask[4] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9, BSTD_MASK_A};
+    ex.mask = ex_mask;
+    unsigned char ex_c[4] = {127, 90, 9, ' '};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < assignee->length; ++i) {
+        cr_assert_eq(assignee->bytes[i], ex.bytes[i]);
+    }
+}
+
+/*
+ * testing boundary values:
+ * bytes = {127, 122, 9}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ *
+ * ex:
+ * bytes = {'-', 'A', 3}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 3
+ */
+Test(picutils_tests, std_assign_picture__value_mask_XA9_max_values_lowercase_z) {
+    unsigned char c_assignee[3] = {127, 122, 9};
+    char mask_assignee[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    bstd_picture *assignee = bstd_picture_of(c_assignee, mask_assignee, 3);
+
+    unsigned char c_value[4] = {'-', 'A', 3, 'B'};
+    char mask_value[4] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9, BSTD_MASK_A};
+    bstd_picture *value = bstd_picture_of(c_value, mask_value, 4);
+
+    bstd_assign_picture(assignee,  value);
+
+    bstd_picture ex;
+    ex.length = 3;
+    char ex_mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    ex.mask = ex_mask;
+    unsigned char ex_c[3] = {'-', 'A', 3};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < assignee->length; ++i) {
+        cr_assert_eq(assignee->bytes[i], ex.bytes[i]);
+    }
+}
+
+/*
+ * testing boundary value length =0
+ *
+ * in:
+ * bytes = {}
+ * mask = {}
+ * length = 0
+ *
+ * ex:
+ * bytes = {}
+ * mask = {}
+ * length = 0
+ *
+ *
+ */
+Test(picutils_tests, std_assign_picture__value_min_length) {
+    unsigned char c_value[0] = {};
+    char mask_value[0] = {};
+    bstd_picture *value = bstd_picture_of(c_value, mask_value, 0);
+
+    unsigned char c_assignee[4] = {'-', 'A', 3, 'B'};
+    char mask_assignee[4] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9, BSTD_MASK_A};
+    bstd_picture *assignee = bstd_picture_of(c_assignee, mask_assignee, 4);
+
+    bstd_assign_picture(assignee,  value);
+
+    bstd_picture ex;
+    ex.length = 4;
+    char ex_mask[4] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9, BSTD_MASK_A};
+    ex.mask = ex_mask;
+    unsigned char ex_c[4] = {' ', ' ', 0, ' '};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < assignee->length; ++i) {
+        cr_assert_eq(assignee->bytes[i], ex.bytes[i]);
+    }
+}
+
+/*
+ * testing boundary value length = 255
+ *
+ * in:
+ * bytes = {'}', 'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                            'B', 3}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                      BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                      BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                      BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9}
+ * length = 255
+ *
+ * ex:
+ * bytes = {'}', 'B', 3,' '}
+ * mask = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_A}
+ * length = 4
+ *
+ *
+ */
+Test(picutils_tests, std_assign_picture__value_max_length) {
+    unsigned char c_value[255] = {'}', 'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                                     'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                                     'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                                     'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                                     'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                                     'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                                     'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                                     'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                                     'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                                     'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                                     'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                                     'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                                     'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                                     'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                                     'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                                     'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                                     'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                                     'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                                     'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                                     'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                                     'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                                     'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                                     'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                                     'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                                     'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                                     'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                                     'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                                     'B', 3,'}', 'B', 3,'}', 'B', 3,'}',
+                                     'B', 3};
+    char mask_value[255] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                               BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                               BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                               BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                               BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                               BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                               BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                               BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                               BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                               BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                               BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                               BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                               BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                               BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                               BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                               BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                               BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                               BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                               BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                               BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                               BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                               BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                               BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                               BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                               BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                               BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                               BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                               BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                               BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                               BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                               BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                               BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                               BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                               BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                               BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                               BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                               BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                               BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                               BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                               BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                               BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                               BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                               BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                               BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                               BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                               BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                               BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                               BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,
+                               BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A,
+                               BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X,
+                               BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    bstd_picture *value = bstd_picture_of(c_value, mask_value, 255);
+
+    unsigned char c_assignee[4] = {'-', 'A', 3, 'B'};
+    char mask_assignee[4] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9, BSTD_MASK_A};
+    bstd_picture *assignee = bstd_picture_of(c_assignee, mask_assignee, 4);
+
+    bstd_assign_picture(assignee,  value);
+
+
+    bstd_picture ex;
+    ex.length = 4;
+    char ex_mask[4] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9,BSTD_MASK_A};
+    ex.mask = ex_mask;
+    unsigned char ex_c[4] = {'}', 'B', 3,' '};
+    ex.bytes = ex_c;
+
+    for (int i = 0; i < assignee->length; ++i) {
+        cr_assert_eq(assignee->bytes[i], ex.bytes[i]);
+    }
+}
