@@ -46,9 +46,9 @@ void bstd_assign_int(bstd_number* number, const int value) {
 void bstd_assign_int64(bstd_number* number, const int64_t value) {
 
     int64_t abs_value = labs(value);
-    int64_t mag = ipow(10, number->length);
+    int64_t mag = ipow(10, number->length - number->scale);
     int64_t mask = (abs_value / mag) * mag;
-    int64_t cropped_value = abs_value - mask;
+    int64_t cropped_value = (abs_value - mask) * ipow(10, number->scale);
 
     number->positive = !number->isSigned || value >= 0;
     number->value = cropped_value;

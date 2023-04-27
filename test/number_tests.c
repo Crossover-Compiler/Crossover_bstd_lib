@@ -8,7 +8,7 @@
 
 /*
  * bstd_assign_int
-
+ */
 
 Test(number_tests, number_assign_int__integer_to_number_int){
 
@@ -42,7 +42,7 @@ Test(number_tests, number_assign_int__integer_to_number_dec){
     bstd_assign_int(&n, in);
 
     const double result = bstd_number_to_double(&n);
-    const double expected = 45.6;
+    const double expected = 56;
 
     cr_assert_float_eq(result, expected, 1E-6, "result: %f, | expected: %f", result, expected);
 }
