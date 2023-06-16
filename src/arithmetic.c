@@ -36,6 +36,12 @@ bstd_number* bstd_sum(const bstd_number *lhs, const bstd_number *rhs) {
     int64_t result = a + b;
     uint64_t length = result == 0 ? 1 : (uint64_t)ceill(log10l(labs(result)));
 
+    if (length > 18){
+        int overflow = ((int)length) - 18;
+        length = 18;
+        result = result % (int64_t)ipow(10, floor(log10((double)result) - overflow + 1));
+    }
+
     bstd_number* number = (bstd_number*)malloc(sizeof(bstd_number));
     number->value = (uint64_t)labs(result);
     number->scale = s;

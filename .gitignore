@@ -1,6 +1,9 @@
 # Project exclude paths
+.idea/*
 /cmake-build-debug/
 /test/main
 /test/Testing/
 /Testing/
 /test/out/*
+/test/coverage.info
+/test/coverage/
