@@ -51,3 +51,75 @@ bstd_number* bstd_sum(const bstd_number *lhs, const bstd_number *rhs) {
 
     return number;
 }
+
+void bstd_add_int(bstd_number *lhs, int64_t rhs) {
+
+    if (bstd_number_is_integer(lhs)) {
+
+        const int64_t current = bstd_number_to_int(lhs);
+        const int64_t sum = current + rhs;
+
+        bstd_assign_int64(lhs, sum);
+
+    } else {
+
+        const double current = bstd_number_to_double(lhs);
+        const double sum = current + rhs;
+
+        bstd_assign_double(lhs, sum);
+    }
+}
+
+void bstd_subtract_int(bstd_number *lhs, int64_t rhs) {
+
+    if (bstd_number_is_integer(lhs)) {
+
+        const int64_t current = bstd_number_to_int(lhs);
+        const int64_t difference = current - rhs;
+
+        bstd_assign_int64(lhs, difference);
+
+    } else {
+
+        const double current = bstd_number_to_double(lhs);
+        const double difference = current - rhs;
+
+        bstd_assign_double(lhs, difference);
+    }
+}
+
+void bstd_add_double(bstd_number *lhs, double rhs) {
+
+    if (bstd_number_is_integer(lhs)) {
+
+        const int64_t current = bstd_number_to_int(lhs);
+        const int64_t sum = current + rhs;
+
+        bstd_assign_int64(lhs, sum);
+
+    } else {
+
+        const double current = bstd_number_to_double(lhs);
+        const double sum = current + rhs;
+
+        bstd_assign_double(lhs, sum);
+    }
+}
+
+void bstd_subtract_double(bstd_number *lhs, double rhs) {
+
+    if (bstd_number_is_integer(lhs)) {
+
+        const int64_t current = bstd_number_to_int(lhs);
+        const int64_t difference = current - rhs;
+
+        bstd_assign_int64(lhs, difference);
+
+    } else {
+
+        const double current = bstd_number_to_double(lhs);
+        const double difference = current - rhs;
+
+        bstd_assign_double(lhs, difference);
+    }
+}

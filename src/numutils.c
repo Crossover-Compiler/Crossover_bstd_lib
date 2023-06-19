@@ -64,85 +64,31 @@ void bstd_assign_double(bstd_number* number, const double value) {
 
     number->positive = value >= 0;
     number->value = cropped_value;
+
 }
 
 // TODO: Sign does not get added here
 char *bstd_number_to_cstr(bstd_number number) {
-    double value = bstd_number_to_double(&number);
-    char *raw_double = (char *) malloc(64);
-    sprintf(raw_double, "%.9f", value);
 
-    bool stringEnd = false;
-    int k = 0;
-    int str_length = 0;
-    int digit_length = 0;
-    while (!stringEnd) {
-        if (raw_double[k] == '\00') {
-            stringEnd = true;
-            str_length = k;
-        } else if (raw_double[k] == '.') {
-            digit_length = k;
-        }
-        k++;
+    char format[9];
+    char* result;
+
+    const double value = bstd_number_to_double(&number);
+
+    if (bstd_number_is_integer(&number)) {
+
+        sprintf(format, "%d", (int)number.length);
+        result = malloc(sizeof(char*) * (number.length + 1));
+
+    } else {
+
+        sprintf(format, "%%0%d.%ldf", (int)number.length + 1, number.scale);
+        result = malloc(sizeof(char*) * (number.length + 2));
     }
 
-    // Do int part
-    char *int_part = (char *) malloc(64);
-    int digits = number.length - number.scale;
-    int i = 0;
-    if (digits > digit_length) {
-        int amount_of_front_0_to_go = digits - digit_length;
-        while (amount_of_front_0_to_go > 0) {
-            // front insert
-            int_part[i] = '0';
-            amount_of_front_0_to_go--;
-            i++;
+    sprintf(result, format, value);
 
-        }
-        while (i < digits) {
-            int_part[i] = raw_double[i - (digits - digit_length)];
-            i++;
-        }
-    }
-
-    if (digits == digit_length) {
-        // just copy
-        while (i < digits) {
-            int_part[i] = raw_double[i];
-            i++;
-        }
-    } else if (digits < digit_length) {
-        int offset = digit_length - digits;
-        // cut-off first amount_of_front_0_to_go amount, then just copy
-        while (i < digits) {
-            int_part[i] = raw_double[i + offset];
-            i++;
-        }
-    }
-
-    if (number.scale == 0) {
-        // int
-        int_part[i] = '\00';
-        return int_part;
-    }
-
-    int_part[i] = '.';
-    char* double_part = (char *) malloc(64);
-    // start inserting decimals untill we run out of decimals, ten insert 0's
-    int required_decimals = number.scale;
-    int j = 0;
-    while (j < required_decimals) {
-        if (digit_length + 1 + j >= str_length) {
-            double_part[j] = '0';
-            int_part[i+1+j] = '0';
-        } else {
-            double_part[j] = raw_double[digit_length + 1 + j];
-            int_part[i+1+j] = raw_double[digit_length + 1 + j];
-        }
-        j++;
-    }
-    int_part[i+1+j] = '\00';
-    return int_part;
+    return result;
 }
 
 // TODO: Sign gets calculated here, but should be calculated in bstd_number_to_cstr!
