@@ -77,7 +77,7 @@ char *bstd_number_to_cstr(bstd_number number) {
 
     if (bstd_number_is_integer(&number)) {
 
-        sprintf(format, "%d", (int)number.length);
+        sprintf(format, "\%d");
         result = malloc(sizeof(char*) * (number.length + 1));
 
     } else {
