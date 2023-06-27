@@ -73,20 +73,23 @@ char *bstd_number_to_cstr(bstd_number number) {
     char format[9];
     char* result;
 
-    const double value = bstd_number_to_double(&number);
 
     if (bstd_number_is_integer(&number)) {
 
-        sprintf(format, "\%d");
+        sprintf(format, "%%ld");
         result = malloc(sizeof(char*) * (number.length + 1));
+
+        const int64_t value = bstd_number_to_int(&number);
+        sprintf(result, format, value);
 
     } else {
 
         sprintf(format, "%%0%d.%ldf", (int)number.length + 1, number.scale);
         result = malloc(sizeof(char*) * (number.length + 2));
-    }
 
-    sprintf(result, format, value);
+        const double value = bstd_number_to_double(&number);
+        sprintf(result, format, value);
+    }
 
     return result;
 }
