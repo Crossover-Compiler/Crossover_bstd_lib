@@ -6,7 +6,6 @@ set(CMAKE_C_STANDARD 11)
 include(GNUInstallDirs)
 
 add_library(bstd SHARED
-        include/bstd.h
         src/arithmetic.c
         src/numutils.c
         src/picutils.c)
@@ -14,7 +13,7 @@ add_library(bstd SHARED
 set_target_properties(bstd PROPERTIES
         VERSION ${PROJECT_VERSION}
         SOVERSION 0.1
-        PUBLIC_HEADER "include/bstd.h;include/number.h;include/picture.h;include/numutils.h;include/picutils.h;include/arithmetic.h")
+        PUBLIC_HEADER "include/number.h;include/picture.h;include/numutils.h;include/picutils.h;include/arithmetic.h")
 
 configure_file(bstd.pc.in bstd.pc @ONLY)
 

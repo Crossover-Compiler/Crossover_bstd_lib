@@ -2,6 +2,10 @@
 
 #include "number.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif // __cplusplus
+
 /**
  * Determines whether the specified number represents an integer or not.
  * (A bstd_number is an integer iff its scale is equal to zero.)
@@ -71,3 +75,7 @@ void bstd_print_number(bstd_number number, bool advancing);
  * @return
  */
 char* bstd_number_to_cstr(bstd_number number);
+
+#ifdef __cplusplus
+}
+#endif // __cplusplus

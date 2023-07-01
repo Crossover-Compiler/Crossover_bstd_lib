@@ -15,6 +15,10 @@
 #define BSTD_SPACE ' '
 #endif
 
+#ifdef __cplusplus
+extern "C" {
+#endif // __cplusplus
+
 /**
  * Creates a new bstd_picture struct with a copy of the specified mask string.
  * The new bstd_picture's bytes are initialized with default values under its mask.
@@ -96,3 +100,7 @@ unsigned char bstd_unmask(char c, char mask);
  * @param advancing
  */
 void bstd_print_picture(bstd_picture picture, bool advancing);
+
+#ifdef __cplusplus
+}
+#endif // __cplusplus

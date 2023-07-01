@@ -2,6 +2,10 @@
 
 #include "number.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif // __cplusplus
+
 uint64_t max(uint64_t a, uint64_t b);
 
 int64_t ipow(int64_t base, uint64_t exp);
@@ -49,3 +53,7 @@ void bstd_add_double(bstd_number *lhs, double rhs);
  * @param rhs The right-hand side of the subtraction.
  */
 void bstd_subtract_double(bstd_number *lhs, double rhs);
+
+#ifdef __cplusplus
+}
+#endif // __cplusplus
