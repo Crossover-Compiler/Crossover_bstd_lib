@@ -27,6 +27,22 @@ void bstd_add(bstd_number *lhs, const bstd_number *rhs);
 bstd_number* bstd_sum(const bstd_number *lhs, const bstd_number *rhs);
 
 /**
+ * Subtracts the specified right-hand side from the specified left-hand side, and assigns the result to the left-hand side.
+ * This function does not modify the right-hand side.
+ * @param lhs The left-hand side of the subtraction.
+ * @param rhs The right-hand side of the subtraction.
+ */
+void bstd_subtract(bstd_number *lhs, const bstd_number *rhs);
+
+/**
+ * Subtracts the specified right-hand side from the specified left-hand side, and returns the result.
+ * This function does not modify either of its parameters.
+ * @param lhs The left-hand side of the subtraction.
+ * @param rhs The right-hand side of the subtraction.
+ */
+bstd_number* bstd_difference(const bstd_number *lhs, const bstd_number *rhs);
+
+/**
  * Addition between an Number (lhs) and an int (rhs)
  * @param lhs The left-hand side of the addition.
  * @param rhs The right-hand side of the addition.

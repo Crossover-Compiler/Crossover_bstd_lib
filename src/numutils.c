@@ -3,16 +3,42 @@
 #include "../include/numutils.h"
 #include "../include/arithmetic.h"
 
+bstd_number* bstd_number_from_int(int value, uint64_t length, bool isSigned) {
+
+    bstd_number* number = malloc(sizeof(bstd_number));
+
+    (*number) = (bstd_number) {
+        .value = 0,
+        .scale = 0,
+        .length = length,
+        .isSigned = isSigned,
+        .positive = false
+    };
+
+    bstd_assign_int(number, value);
+
+    return number;
+}
+
 int bstd_number_is_integer(const bstd_number* number) {
     return !number->scale;
 }
 
-int64_t bstd_number_to_int(const bstd_number* number) {
+static int64_t number_to_signed_value(const bstd_number* number) {
     return !number->positive && number->isSigned ? -number->value : number->value;
 }
 
+int64_t bstd_number_to_int(const bstd_number* number) {
+
+    if (bstd_number_is_integer(number)) {
+        return number_to_signed_value(number);
+    }
+
+    return (int64_t) bstd_number_to_double(number);
+}
+
 double bstd_number_to_double(const bstd_number* number) {
-    return bstd_number_to_int(number) / (double)ipow(10, number->scale);
+    return number_to_signed_value(number) / (double)ipow(10, number->scale);
 }
 
 void bstd_assign_number(bstd_number* assignee, const bstd_number* value) {
@@ -64,10 +90,33 @@ void bstd_assign_double(bstd_number* number, const double value) {
 
     number->positive = value >= 0;
     number->value = cropped_value;
-
 }
 
-// TODO: Sign does not get added here
+bool bstd_greater_than(const bstd_number* lhs, const bstd_number* rhs) {
+
+    const int64_t lhsInt = bstd_number_to_int(lhs);
+    const int64_t rhsInt = bstd_number_to_int(rhs);
+
+    return lhsInt > rhsInt;
+}
+
+bool bstd_less_than(const bstd_number* lhs, const bstd_number* rhs) {
+
+    const int64_t lhsInt = bstd_number_to_int(lhs);
+    const int64_t rhsInt = bstd_number_to_int(rhs);
+
+    return lhsInt < rhsInt;
+}
+
+bool bstd_number_equals(const bstd_number* lhs, const bstd_number* rhs) {
+
+    const int64_t lhsInt = bstd_number_to_int(lhs);
+    const int64_t rhsInt = bstd_number_to_int(rhs);
+
+    return lhsInt == rhsInt;
+}
+
+// TODO: Sign should be included in the string
 char *bstd_number_to_cstr(bstd_number number) {
 
     char format[9];
