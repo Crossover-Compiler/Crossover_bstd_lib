@@ -2709,3 +2709,227 @@ Test(arithmetic_tests, bstd_add__rhs_length_eq_9){
     cr_assert_eq(ex.positive,   lhs.positive);
 
 }
+
+/*
+ * testing subtract with positives
+ *
+ * in:
+ * lhs.value = 100;
+ * lhs.scale = 0;
+ * lhs.length = 3;
+ * lhs.isSigned = true;
+ * lhs.positive = true;
+ *
+ * rhs.value = 10;
+ * rhs.scale = 0;
+ * rhs.length = 2;
+ * rhs.isSigned = true;
+ * rhs.positive = true;
+ *
+ * expected:
+ * ex.value = 90;
+ * ex.scale = 0;
+ * ex.length = 3;
+ * ex.isSigned = true;
+ * ex.positive = true;
+ *
+ */
+Test(arithmetic_tests, bstd_subtract_positive){
+bstd_number lhs;
+lhs.value = 100;
+lhs.scale = 0;
+lhs.length = 3;
+lhs.isSigned = true;
+lhs.positive = true;
+
+bstd_number rhs;
+rhs.value = 10;
+rhs.scale = 0;
+rhs.length = 2;
+rhs.isSigned = true;
+rhs.positive = true;
+
+bstd_subtract(&lhs, &rhs);
+
+bstd_number ex;
+ex.value = 90;
+ex.scale = 0;
+ex.length = 3;
+ex.isSigned = true;
+ex.positive = true;
+
+cr_assert_eq(ex.value,      lhs.value);
+cr_assert_eq(ex.scale,      lhs.scale);
+cr_assert_eq(ex.length,     lhs.length);
+cr_assert_eq(ex.isSigned,   lhs.isSigned);
+cr_assert_eq(ex.positive,   lhs.positive);
+
+}
+
+/*
+ * testing subtract with lhs negative
+ *
+ * in:
+ * lhs.value = 100;
+ * lhs.scale = 0;
+ * lhs.length = 3;
+ * lhs.isSigned = true;
+ * lhs.positive = false;
+ *
+ * rhs.value = 10;
+ * rhs.scale = 0;
+ * rhs.length = 2;
+ * rhs.isSigned = true;
+ * rhs.positive = true;
+ *
+ * expected:
+ * ex.value = 90;
+ * ex.scale = 0;
+ * ex.length = 3;
+ * ex.isSigned = true;
+ * ex.positive = true;
+ *
+ */
+Test(arithmetic_tests, bstd_subtract_left_negative){
+bstd_number lhs;
+lhs.value = 100;
+lhs.scale = 0;
+lhs.length = 3;
+lhs.isSigned = true;
+lhs.positive = false;
+
+bstd_number rhs;
+rhs.value = 10;
+rhs.scale = 0;
+rhs.length = 2;
+rhs.isSigned = true;
+rhs.positive = true;
+
+bstd_subtract(&lhs, &rhs);
+
+bstd_number ex;
+ex.value = 110;
+ex.scale = 0;
+ex.length = 3;
+ex.isSigned = true;
+ex.positive = false;
+
+cr_assert_eq(ex.value,      lhs.value);
+cr_assert_eq(ex.scale,      lhs.scale);
+cr_assert_eq(ex.length,     lhs.length);
+cr_assert_eq(ex.isSigned,   lhs.isSigned);
+cr_assert_eq(ex.positive,   lhs.positive);
+
+}
+
+/*
+ * testing subtract with rhs negative
+ *
+ * in:
+ * lhs.value = 100;
+ * lhs.scale = 0;
+ * lhs.length = 3;
+ * lhs.isSigned = false;
+ * lhs.positive = true;
+ *
+ * rhs.value = 10;
+ * rhs.scale = 0;
+ * rhs.length = 2;
+ * rhs.isSigned = true;
+ * rhs.positive = false;
+ *
+ * expected:
+ * ex.value = 90;
+ * ex.scale = 0;
+ * ex.length = 3;
+ * ex.isSigned = false;
+ * ex.positive = true;
+ *
+ */
+Test(arithmetic_tests, bstd_subtract_right_negative){
+bstd_number lhs;
+lhs.value = 100;
+lhs.scale = 0;
+lhs.length = 3;
+lhs.isSigned = true;
+lhs.positive = true;
+
+bstd_number rhs;
+rhs.value = 10;
+rhs.scale = 0;
+rhs.length = 2;
+rhs.isSigned = true;
+rhs.positive = false;
+
+bstd_subtract(&lhs, &rhs);
+
+bstd_number ex;
+ex.value = 110;
+ex.scale = 0;
+ex.length = 3;
+ex.isSigned = true;
+ex.positive = true;
+
+cr_assert_eq(ex.value,      lhs.value);
+cr_assert_eq(ex.scale,      lhs.scale);
+cr_assert_eq(ex.length,     lhs.length);
+cr_assert_eq(ex.isSigned,   lhs.isSigned);
+cr_assert_eq(ex.positive,   lhs.positive);
+
+}
+
+/*
+ * testing subtract with negatives
+ *
+ * in:
+ * lhs.value = 100;
+ * lhs.scale = 0;
+ * lhs.length = 3;
+ * lhs.isSigned = true;
+ * lhs.positive = false;
+ *
+ * rhs.value = 10;
+ * rhs.scale = 0;
+ * rhs.length = 2;
+ * rhs.isSigned = true;
+ * rhs.positive = false;
+ *
+ * expected:
+ * ex.value = 90;
+ * ex.scale = 0;
+ * ex.length = 3;
+ * ex.isSigned = true;
+ * ex.positive = false;
+ *
+ */
+Test(arithmetic_tests, bstd_subtract_negative){
+bstd_number lhs;
+lhs.value = 100;
+lhs.scale = 0;
+lhs.length = 3;
+lhs.isSigned = true;
+lhs.positive = false;
+
+bstd_number rhs;
+rhs.value = 10;
+rhs.scale = 0;
+rhs.length = 2;
+rhs.isSigned = true;
+rhs.positive = false;
+
+bstd_subtract(&lhs, &rhs);
+
+bstd_number ex;
+ex.value = 90;
+ex.scale = 0;
+ex.length = 3;
+ex.isSigned = true;
+ex.positive = false;
+
+cr_assert_eq(ex.value,      lhs.value);
+cr_assert_eq(ex.scale,      lhs.scale);
+cr_assert_eq(ex.length,     lhs.length);
+cr_assert_eq(ex.isSigned,   lhs.isSigned);
+cr_assert_eq(ex.positive,   lhs.positive);
+
+}

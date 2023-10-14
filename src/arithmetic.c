@@ -28,6 +28,20 @@ void bstd_add(bstd_number *lhs, const bstd_number *rhs) {
     free((void*)sum);
 }
 
+void bstd_subtract(bstd_number *lhs, const bstd_number *rhs) {
+    bstd_number rhs_copy = *rhs;
+    rhs_copy.isSigned = true;
+    if (rhs_copy.positive == 0) {
+        rhs_copy.positive = 1;
+    } else {
+        rhs_copy.positive = 0;
+    }
+
+    const bstd_number* sum = bstd_sum(lhs, &rhs_copy);
+    bstd_assign_number(lhs, sum);
+    free((void*)sum);
+}
+
 bstd_number* bstd_sum(const bstd_number *lhs, const bstd_number *rhs) {
 
     uint64_t s = max(lhs->scale, rhs->scale);

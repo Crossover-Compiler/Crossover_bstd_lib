@@ -19,6 +19,14 @@ int64_t ipow(int64_t base, uint64_t exp);
 void bstd_add(bstd_number *lhs, const bstd_number *rhs);
 
 /**
+ * subtracts the specified left- and right-hand sides, and assigns the result to the specified left-hand side.
+ * This function does not modify the right-hand side.
+ * @param lhs The left-hand side of the subtraction.
+ * @param rhs The right-hand side of the subtraction.
+ */
+void bstd_subtract(bstd_number *lhs, const bstd_number *rhs);
+
+/**
  * Sums the specified left- and right-hand sides, and returns the result.
  * This function does not modify either of its parameters.
  * @param lhs The left-hand side of the addition.
