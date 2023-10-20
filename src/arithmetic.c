@@ -22,6 +22,10 @@ int64_t ipow(int64_t base, uint64_t exp) {
     return result;
 }
 
+static int64_t number_to_signed_value(const bstd_number* number) {
+    return !number->positive && number->isSigned ? -number->value : number->value;
+}
+
 void bstd_add(bstd_number *lhs, const bstd_number *rhs) {
     const bstd_number* sum = bstd_sum(lhs, rhs);
     bstd_assign_number(lhs, sum);
@@ -31,9 +35,39 @@ void bstd_add(bstd_number *lhs, const bstd_number *rhs) {
 bstd_number* bstd_sum(const bstd_number *lhs, const bstd_number *rhs) {
 
     uint64_t s = max(lhs->scale, rhs->scale);
-    int64_t a = bstd_number_to_int(lhs) * ipow(10, (int64_t)((-lhs->scale) + s));
-    int64_t b = bstd_number_to_int(rhs) * ipow(10, (int64_t)((-rhs->scale) + s));
+    int64_t a = number_to_signed_value(lhs) * ipow(10, (int64_t)((-lhs->scale) + s));
+    int64_t b = number_to_signed_value(rhs) * ipow(10, (int64_t)((-rhs->scale) + s));
     int64_t result = a + b;
+    uint64_t length = result == 0 ? 1 : (uint64_t)ceill(log10l(labs(result)));
+
+    if (length > 18){
+        int overflow = ((int)length) - 18;
+        length = 18;
+        result = result % (int64_t)ipow(10, floor(log10((double)result) - overflow + 1));
+    }
+
+    bstd_number* number = (bstd_number*)malloc(sizeof(bstd_number));
+    number->value = (uint64_t)labs(result);
+    number->scale = s;
+    number->positive = result >= 0;
+    number->isSigned = !number->positive;
+    number->length = length;
+
+    return number;
+}
+
+void bstd_subtract(bstd_number *lhs, const bstd_number *rhs) {
+    const bstd_number* difference = bstd_difference(lhs, rhs);
+    bstd_assign_number(lhs, difference);
+    free((void*)difference);
+}
+
+bstd_number* bstd_difference(const bstd_number *lhs, const bstd_number *rhs) {
+
+    uint64_t s = max(lhs->scale, rhs->scale);
+    int64_t a = number_to_signed_value(lhs) * ipow(10, (int64_t)((-lhs->scale) + s));
+    int64_t b = number_to_signed_value(rhs) * ipow(10, (int64_t)((-rhs->scale) + s));
+    int64_t result = a - b;
     uint64_t length = result == 0 ? 1 : (uint64_t)ceill(log10l(labs(result)));
 
     if (length > 18){
