@@ -1593,8 +1593,9 @@ Test(picutils_tests, bstd_picture_to_cstr__max_length) {
  *
  *
  */
+#include <stdio.h>
 Test(picutils_tests, bstd_create_picture__mask_XA9) {
-    char mask[3] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9};
+    char mask[4] = {BSTD_MASK_X, BSTD_MASK_A, BSTD_MASK_9, 0};
     bstd_picture *picture = bstd_create_picture(mask);
 
     bstd_picture_init(picture);
