@@ -486,7 +486,7 @@ Test(numutils_tests, bstd_number_to_int__number_value_eq_0){
  * in:
  * number.value = 999999999;
  * number.scale = 0;
- * number.length = 4;
+ * number.length = 9;
  * number.isSigned = false;
  * number.positive = true;
  *
@@ -497,8 +497,8 @@ Test(numutils_tests, bstd_number_to_int__number_value_eq_0){
 Test(numutils_tests, bstd_number_to_int__number_value_eq_max){
     bstd_number number;
     number.value = 999999999;
-    number.scale = 3;
-    number.length = 4;
+    number.scale = 0;
+    number.length = 9;
     number.isSigned = false;
     number.positive = true;
 
@@ -522,8 +522,8 @@ Test(numutils_tests, bstd_number_to_int__number_value_eq_max){
  */
 Test(numutils_tests, bstd_number_to_int__number_length_eq_1){
     bstd_number number;
-    number.value = 5555;
-    number.scale = 3;
+    number.value = 5;
+    number.scale = 0;
     number.length = 1;
     number.isSigned = false;
     number.positive = true;
@@ -531,7 +531,7 @@ Test(numutils_tests, bstd_number_to_int__number_length_eq_1){
 
     uint64_t res = bstd_number_to_int(&number);
 
-    cr_assert_eq(5555, res);
+    cr_assert_eq(5, res);
 
 }
 
@@ -540,7 +540,7 @@ Test(numutils_tests, bstd_number_to_int__number_length_eq_1){
  *
  * in:
  * number.value = 5555;
- * number.scale = 3;
+ * number.scale = 0;
  * number.length = 9;
  * number.isSigned = false;
  * number.positive = true;
@@ -552,7 +552,7 @@ Test(numutils_tests, bstd_number_to_int__number_length_eq_1){
 Test(numutils_tests, bstd_number_to_int__number_length_eq_9){
     bstd_number number;
     number.value = 5555;
-    number.scale = 3;
+    number.scale = 0;
     number.length = 9;
     number.isSigned = false;
     number.positive = true;
@@ -952,7 +952,7 @@ Test(numutils_tests, bstd_number_to_cstr__signed_pos){
 
     char* res = bstd_number_to_cstr(number);
 
-    cr_assert_str_eq("5.555", res);
+    cr_assert_str_eq(res, "+5.555");
 }
 
 /*
@@ -987,7 +987,7 @@ Test(numutils_tests, bstd_number_to_cstr__signed_neg){
 
     char* res = bstd_number_to_cstr(number);
 
-    cr_assert_str_eq("5.555", res);
+    cr_assert_str_eq(res, "-5.555");
 }
 
 
@@ -1099,7 +1099,7 @@ Test(numutils_tests, bstd_number_to_cstr__number_scale_eq_9){
     number.positive = true;
 
     char* res = bstd_number_to_cstr(number);
-    cr_assert_str_eq(".000005555", res);
+    cr_assert_str_eq(res, ".000005555");
 
 }
 
@@ -1152,7 +1152,7 @@ Test(numutils_tests, bstd_number_to_cstr__number_length_eq_9){
     number.positive = true;
 
     char* res = bstd_number_to_cstr(number);
-    cr_assert_str_eq("000005.555", res);
+    cr_assert_str_eq(res, "000005.555");
 }
 
 

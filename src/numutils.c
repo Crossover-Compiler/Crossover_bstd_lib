@@ -116,28 +116,50 @@ bool bstd_number_equals(const bstd_number* lhs, const bstd_number* rhs) {
     return lhsInt == rhsInt;
 }
 
-// TODO: Sign should be included in the string
 char *bstd_number_to_cstr(bstd_number number) {
 
-    char format[9];
     char* result;
 
+    char format[8];
+    sprintf(format, "%%0%dlu", number.length);
 
-    if (bstd_number_is_integer(&number)) {
+    int resultLength = number.length;
+    if (number.isSigned) {
+        // we need to accomodate for a sign character
+        resultLength++;
+    }
+    if (!bstd_number_is_integer(&number)) {
+        resultLength++;
+    }
 
-        sprintf(format, "%%ld");
-        result = malloc(sizeof(char*) * (number.length + 1));
+    result = malloc(sizeof(char) * (resultLength + 1));
+    result[resultLength] = '\0';
 
-        const int64_t value = bstd_number_to_int(&number);
-        sprintf(result, format, value);
+    char *valueStr = (char*)calloc(number.length, sizeof(char));
+    sprintf(valueStr, format, number.value);
 
-    } else {
+    const int decimalSeparatorIndex = (number.isSigned + number.length) - number.scale;
 
-        sprintf(format, "%%0%d.%ldf", (int)number.length + 1, number.scale);
-        result = malloc(sizeof(char*) * (number.length + 2));
+    for (int i = number.isSigned; i < resultLength; ++i) {
 
-        const double value = bstd_number_to_double(&number);
-        sprintf(result, format, value);
+        const int valueIndex = i - number.isSigned;
+
+        if (i < decimalSeparatorIndex) {
+
+            result[i] = valueStr[valueIndex];
+
+        } else if (i == decimalSeparatorIndex) {
+
+            result[i] = '.';
+
+        } else {
+
+            result[i] = valueStr[valueIndex - 1];
+        }
+    }
+
+    if (number.isSigned) {
+        result[0] = number.positive ? '+' : '-';
     }
 
     return result;
