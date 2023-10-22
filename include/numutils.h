@@ -113,7 +113,7 @@ bool bstd_number_equals(const bstd_number* lhs, const bstd_number* rhs);
  * @param number
  * @return
  */
-char* bstd_number_to_cstr(bstd_number number);
+char* bstd_number_to_cstr(bstd_number* number);
 
 #ifdef __cplusplus
 }
